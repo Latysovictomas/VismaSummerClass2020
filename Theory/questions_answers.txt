@@ -1,0 +1,68 @@
+1. What is a DOCTYPE?
+
+It is an "information" to the browser about what document type to expect, therefore validates the content and renders it correctly.
+
+2. How does the web work? (https://github.com/vasanthk/how-web-works)
+
+Once the browser figure out the IP address/addresses for the entered domain using DNS, it takes that and the given port number from URL, and makes a call to the system library function named socket and requests a TCP stream. The client and the server establish the TLS session with the agreed symmetric key and from now on the transmited HTTP data between them is encrypted. To retrieve the page an HTTP request and headers (cookies too) is sent from the client to the server. HTTP response starts with the returned status code from the server. Then, server sends a payload of the HTML content of the requested website. Requests/responses on the server side are handled by HTTP Daemon servers like Apache. DOM is the final output when browsers processes the page, and then rendering engine visualise the content.
+
+3. Do older html files work on newer browsers?
+
+Yes, older HTML files are compliant to the HTML standard. Most older files work on the newer browsers, though some features may not work.
+
+4. What are the differences between different DOCTYPES (xHTML, HTML 4.01, HTML5)?
+
+HTML4 has a loose syntax, e.g. closing tags optional.
+XHTML requires all tags to be closed once opened. Case sensitive. XML-based helps creaate better formatted code. Solves browser compatabiltiy issues.
+HTML5 doctype is simplier. It offers new features like support for audio and video, support for geolocation, allows multiple storage options.
+
+5. Do all HTML tags come in pairs?
+No, not all html tags are comes in pair. Unpaired tags do not require content in them, e.g: <br/> <hr/> <img/> <area/>
+
+6. Why should you use different HTML5 elements in your page? What is semantic HTML? (https://www.internetingishard.com/html-and-css/semantic-html/)
+
+Semantic HTML refers to adding more meaning to the overall layout of a web page by using content specific elements.
+By using different HTML5 elements it makes easier for search engines to identify different parts of the website, what is more it helps developer to be organised.
+
+7. Why is SEO important? What ways are there to utilize it?
+
+SEO helps increase traffic to the website, additionally good SEO practices improve user experience and usability of a web site. One way to utilize SEO would be technical SEO, which means optimizing website for the crawling and indexing. Second way to utilize SEO would be on-site SEO, which means providing signals (like website structure, SEO keywords, title optimizations) to help understand meaning of the content. Third way to utilize SEO would be off-site SEO, which means website promotion with link building or social media marketing.
+
+
+8. Should you put quotes around attribute values? Why?
+
+Yes, because there will be an error if an attribute value of several words is used without spaces. What is more, quoting it helps reduce the risk of introducing invalid attribute values.
+
+9. How do you insert a text comment in html code?
+Place a text between the following tags:
+<!-- Write your comments here -->
+
+10. What does CSS stand for?
+Cascading Style Sheets.
+
+11. What are style sheets?
+
+A style sheet is a collection of style rules to tell browser how various styles are to be applied to the HTML tags.
+
+12. What is CSS positioning? What are the differences between them?
+
+CSS positioning allows to put HTML element at whatever location you like. Relative positioning changes the position of the HTML element relative to where it normally appears. Absolute positioning allows to position an HTML element at the specified coordinates relative to your computer screen top-left corner. Fixed positioning allows you to fix the position of an element to a particular spot on the page, regardless of scrolling.
+
+13. What are CSS vendor prefixes? Why are they used?
+
+A string characters to be places before CSS property name. CSS vendor prefixes are a way for a browser makers to add support for new CSS features before those features are fully supported in all browsers and are stable. It allows to check the new properties/methods.
+
+14. What is the range for font-weight value?
+Font-weight value ranges from 100 to 900.
+
+15. Can several selectors with class names be grouped together?
+
+You can place any valid selector in a group, and all elements in the document that match all the grouped elements will have the same style based on that style property.
+
+16. What is responsive web design and why it’s important today?
+
+Responsive design is a way to put together a website so that it automatically scales its content and elements to match the screen size on which it is viewed. It is important because it prevents visitors on mobile to have optimized browser experience without issues.
+
+17. What are different units for CSS size properties?
+
+The absolute length units are fixed and a length expressed in any of these will appear as exactly that size. Relative length units specify a length relative to another length property.
