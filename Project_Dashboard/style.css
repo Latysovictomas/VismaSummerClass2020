@@ -20,7 +20,8 @@ body
 
 .header {
   grid-area: header;
-  background-color: #5585a5;
+  /* background-color: #5585a5; */
+  background-color: #d4e6f7ce;
 }
 
 .sidenav {
@@ -42,7 +43,7 @@ body
     display: flex;
     justify-content: space-between;
     padding: 0 20px;
-    background-color: #5585a5;
+    background-color: #d4e6f7;
 }
 
 .header_box {
@@ -53,13 +54,11 @@ body
 }
 
 .header_search{
-  flex-basis: 32%;
   margin-left: 80px;
   max-height: 50px;
 }
 
 .header_nav{
-  flex-basis: 45%;
   max-height: 50px;
 }
 
@@ -103,11 +102,20 @@ body
   margin: 20px;
 }
 
+
 @media only screen and (min-width: 750px){
 .main-cards {
     column-count: 2;
     column-gap: 20px;
     margin: 20px;
+    
+  }
+
+  .card {
+    
+    break-inside: avoid-column; 
+    /* overflow: hidden; */
+    transform: translateZ(0);
   }
   
 }
@@ -129,6 +137,7 @@ body
     break-inside: avoid-column; 
     /* for Firefox alternative page-break-inside: avoid;*/
     overflow: hidden;
+    transform: translateZ(0);
     
   }
 
@@ -139,68 +148,52 @@ body
     margin-top: 80px;
   }
 
-
-
  }
 
- .card:hover {
-  background-color: #ffffff;
-  transition: 0.2s;
-}
+
   .card {
     background-color: #d4e6f7;
+    background-image: linear-gradient(#d4e6f7, #ffffff);
+    box-shadow: 5px 5px 5px 5px rgba(0,0,0,0.1);
     margin-bottom: 20px;
-  }
-
-   .card:first-child {
-    height: 490px;
-    max-height: 490px;
-    text-align: center;
     
   }
 
-  .card-container {
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: 1fr;
-    height: 245px;
-    /*for image*/
-    object-fit: cover;
-    overflow: hidden;
-  } 
+  .card:hover {
+    transform: scale(1.05);
+    transition: 0.2s;
+    
+  }
+
+  /*card1*/
+   .card:first-child{
+    height: 490px;
+    max-height: 490px;
+    text-align: center; 
+   
+  }
   
-
-  .card-image{
-    max-height: 245px;
-    /* allows repositioning */
-    /* move the whole width of the image to the right */
-    /* magic! */
-    position: relative; 
-    left: 500%;
-    margin-left: -1000%;
-    object-fit: cover;
-    overflow: hidden;
-   }
-
-
-
-  .card-text{
-    padding: 20px;
-    font-size: 2vh;
-    max-height: 245px;
-  } 
 
   .card:nth-child(2) {
     height: 490px;
     max-height: 490px;
-  
+    overflow: hidden;
   }
 
+  /*card3*/
   .card:nth-child(3) {
     height: 620px;
     max-height: 620px;
-  }
+  } 
 
+ 
+  .card3 {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      height: 100vh;
+  }
+ 
   .card:nth-child(4) {
     height: 240px;
     max-height: 240px;
@@ -210,6 +203,9 @@ body
   .card:nth-child(5) {
     height: 240px;
     max-height: 240px;
+  
+    
+   
   }
 
   .card:nth-child(6) {
@@ -225,7 +221,7 @@ body
   .card:nth-child(8) {
     height: 240px;
     max-height: 240px;
-  }
+  }  
 
   /* 4 small cards */
   .subcard-grid {
@@ -234,8 +230,6 @@ body
     grid-template-rows: 1fr 1fr;
     max-height: 240px;
     gap: 20px;
-    
-
   }
 
  
@@ -244,26 +238,24 @@ body
     display: flex;
     flex-direction: column;
     background-color: #d4e6f7;
-    
-    /* for Chrome and Edge */
+    background-image: linear-gradient(#d4e6f7, #ffffff);
     break-inside: avoid-column;
-    /* for Firefox alternative to page-break-inside: avoid; */
     overflow: hidden;
-    
+    box-shadow: 5px 5px 5px 5px rgba(0,0,0,0.1);
     box-sizing: border-box;
-    /* margin-bottom: 20px; */
     height: 110px;
     max-height: 110px;
+    
+   
   }
 
  
   .subcard:hover {
-    
-    background-color: #ffffff;
+    transform: scale(1.05);
     transition: 0.2s;
   }
 
-/* flex - four small rectangles at the bottom */
+/* four small rectangles at the bottom */
   .main-overview {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(165px, 1fr));
@@ -273,13 +265,366 @@ body
   }
   
   
-  .overviewcard {
+  .overview-card {
     background-color:rgba(100, 124, 151, 0.178);
+    background-image: linear-gradient(rgba(100, 124, 151, 0.178), #ffffff);
+    box-shadow: 5px 5px 5px 5px rgba(0,0,0,0.1);
     max-height: 110px;
+    /*for the content*/
+    display: flex;
+    justify-content:center;
+    
   }
 
-  .overviewcard:hover {
-    
-    background-color: #ffffff;
+  .overview-card:hover {
+    transform: scale(1.05);
     transition: 0.2s;
   }
+
+   /* Adding details to widgets*/
+
+
+
+   .sprite {
+    background: url("http://www.trenatics.com/public/images/iconfile/sprites/css-sprite/sprite-action-grey600.png") no-repeat;
+   }
+   
+
+   /* card1 half text half image*/
+   .card1-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    height: 245px;
+    /*for image*/
+    object-fit: cover;
+    overflow: hidden;
+  } 
+  
+  .card-image{
+    max-height: 245px;
+    /* allows repositioning */
+    /* move the whole width of the image to the right */
+    /* magic! */
+    position: relative; 
+    left: 500%;
+    margin-left: -1000%;
+    object-fit: cover;
+    overflow: hidden;
+   }
+  .card-text{
+
+    padding: 20px;
+    font-size: 2vh;
+    max-height: 245px;
+    overflow:auto;
+  } 
+
+  /*card3 chat*/
+  textarea {
+  width: 98.5%;
+  resize: none;
+  height: 100px;
+}
+.form-container .btn {
+  background-color: #5585a5;
+  color: white;
+  width: 100%;
+  padding: 10px;
+  opacity: 0.8;
+}
+.btn:hover {
+  opacity: 1;
+}
+
+.chat-message-avatar{
+  
+  object-fit: none;
+  object-position: 0 0;
+  width: 63px;
+  height: 25px;
+  /* margin-right: 15px; */
+  
+}
+.chat-message {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  ;
+}
+.chat-message-right {
+  flex-direction: row-reverse;
+}
+.chat-message p{
+  margin-left:20px
+}
+
+.chat-log {
+  padding: 20px;
+  font-size: 2vh;
+  overflow:scroll;
+}
+
+
+/*table*/
+th, td {
+  padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+table {
+    width: 100%;
+    height: 100%;
+}
+
+.card5, .card6, .card7 {
+  overflow: auto;
+}
+
+/* card headers for settings icon, and subcard headers*/
+
+
+.settings, .subcard-title {
+  display: flex;
+  direction: row;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.settings > p{
+  margin-left: 20px;
+}
+.settings-frame {
+  margin-right: 20px;
+}
+
+/* card4 of statistics */
+
+.settings-icon, .table-settings-icon{ 
+  object-fit: none;
+  background-position: -335px -140px;
+  width: 33px;
+  height: 25px;
+  margin-right: 10px;
+}
+   .card4 {
+    overflow: scroll;
+   }
+
+   .card4-container-image{
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+   }
+
+   .card-stats {
+    display: flex;
+    justify-content: center;
+    max-width: 300px;
+  } 
+
+  /* calendar*/
+ul {list-style-type: none;}
+.month {
+  padding: 50px 0px;
+  width: 100%;
+  background: #5585a5;
+  text-align: center;
+}
+.month ul {
+  margin: 0;
+  padding: 0;
+}
+
+.month ul li {
+  color: white;
+  font-size: 20px;
+  text-transform: uppercase;
+  display: inline-block;
+}
+.month{
+  display: flex;
+  justify-content: center;
+ 
+}
+.month li:first-child {
+  margin-right: 70px;
+ 
+}
+.month li:last-child {
+  margin-left: 70px;
+  
+}
+.weekdays {
+  margin: 0;
+  padding: 10px 10px;
+  background-color:#ddd;
+}
+
+.weekdays li {
+  display: inline-block;
+  width: 13%;
+  color: #666;
+  text-align: center;
+}
+
+.days {
+  margin: 0;
+  padding: 10px 10px 10px; 
+}
+.days li {
+  
+  display: inline-block;
+  width: 13%;
+  color: #666;
+  text-align: center;
+  padding: 20px 0px;
+}
+.days li .not-included{
+  color: rgb(223, 215, 215);
+}
+
+/*subcard contents*/
+
+.subcard-icon{
+  object-fit: none;
+  object-position: -375px -140px;
+  width: 33px;
+  height: 25px;
+  margin-left: 10px;
+  
+}
+.subcard-title{
+  padding-top: 10px;
+}
+.trunc-text {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding-right: 20px;
+  
+}
+.subcard-frame {
+  margin-right: 10px;
+}
+
+.subcard-content{
+  display: flex;
+  justify-content:center;
+  overflow:auto;
+  margin-left:-20px;
+}
+.subcard p{
+  font-weight: bold;
+  margin: 0;
+  list-style-position: inside;
+}
+
+/* four buttons at the bottom and their contents*/
+
+.overview-card {
+  display: flex;
+  align-items: center;
+}
+.overview-frame{
+  padding-right:20px;
+  padding-left:10px;
+}
+.overview-card-content{
+  text-align: left;
+  margin-top:-10px;
+}
+
+.overview-card-content div{
+  margin-bottom:0;
+  font-weight: bold;
+  font-size: larger;
+}
+
+/* header menu*/
+
+.menu{
+  display: flex;
+}
+.menu a {
+ 
+  display: inline-block;
+  color: black;
+  text-align: center;
+  padding: 10px 10px ;
+  text-decoration: none;
+  font-size: 2.5vh;
+
+  position: relative;
+  margin-right:-4px;
+
+  
+}
+.menu a:hover {
+  background-color: #ddd;
+  color: black;
+}
+.menu a:before{
+  background-image: url(http://www.trenatics.com/public/images/iconfile/sprites/css-sprite/sprite-action-grey600.png);
+}
+
+.top-menu1:before { 
+  background-position: 0 0;
+  width:33px;
+  height:25px;
+  display:inline-block;
+  content: "";
+  
+}
+
+.top-menu2:before { 
+  background-position: 0 -35px;
+  width:33px;
+  height:25px;
+  display:inline-block;
+  content: "";
+}
+
+.top-menu3:before { 
+  background-position: 0 -70px;
+  width:33px;
+  height:25px;
+  display:inline-block;
+  content: "";
+}
+
+.top-menu4:before { 
+  background-position: 0 -105px;
+  width:33px;
+  height:25px;
+  display:inline-block;
+  content: "";
+}
+
+/* top nav menu search*/
+.header_search {
+  display:flex;
+  justify-content: flex-end;
+  align-items: center;
+  overflow: hidden;
+  padding-right: 20px;
+}
+
+.header_search input[type=text] {
+  padding: 6px;
+  border: none;
+  margin-top: 8px;
+  margin-right: 16px;
+  font-size: 17px;
+}
+.avatar{
+  background-position: 0 0px;
+  width:33px;
+  height:25px;
+  display:inline-block;
+  content: "";
+}
+
+
