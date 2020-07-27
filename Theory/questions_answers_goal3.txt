@@ -1,0 +1,37 @@
+1. What are some of the common list types that can be used when designing a page?
+
+decimal, lower/upper alpha/roman ,none, square, circle.
+
+2. What is a hyperlink?
+
+A link which redirects to another location by clicking on it.
+
+3. How are active links different from normal links?
+
+They represent different states. Active link is a state of link after it has been clicked.
+
+4. How do you select active link with CSS selector?
+
+a:active
+
+5. What are CSS sprites? How can you manipulate them?
+
+
+CSS sprites are multiple images combined into one to improve performance. To use sprites one should load them as a background image and specify background position to select specific sprite.
+
+
+6. What is the difference between adaptive and responsive design?
+
+Responsive resign adapts to the size of the screen being used. Adaptive design is uses static layouts for a specific device.
+
+7. What does 'Mobile first' mean?
+
+It means that styles are applied to mobile screen size first.
+
+8. What is media queries? What are the common media queries breakpoint values?
+
+The @media rule is used in media queries to apply different styles for different media types/devices. 
+
+320px — 480px: Mobile devices.
+481px — 768px: iPads, Tablets.
+769px — 1024px: Small screens, laptops.
