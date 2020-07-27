@@ -54,7 +54,6 @@ body
 }
 
 .header_search{
-  margin-left: 80px;
   max-height: 50px;
 }
 
@@ -103,7 +102,18 @@ body
 }
 
 
-@media only screen and (min-width: 750px){
+@media only screen and (max-width: 750px){
+  .menu a {
+    display: none;
+  }
+
+  .hide-top-menu{
+    display:inline-block;
+  }
+
+}
+
+@media only screen and (min-width: 751px){
 .main-cards {
     column-count: 2;
     column-gap: 20px;
@@ -114,8 +124,19 @@ body
   .card {
     
     break-inside: avoid-column; 
-    /* overflow: hidden; */
+    overflow: hidden;
     transform: translateZ(0);
+  }
+  .menu a{
+    display: inline-block;
+  }
+
+  .menu span{
+    display:none;
+  }
+
+  .hide-top-menu{
+    display:none;
   }
   
 }
@@ -148,6 +169,20 @@ body
     margin-top: 80px;
   }
 
+.menu a {
+  display: inline-block;
+}
+  
+  .menu span {
+    display:inline-block;
+  }
+
+  .hide-top-menu{
+    display:none;
+  }
+  
+  
+
  }
 
 
@@ -156,6 +191,8 @@ body
     background-image: linear-gradient(#d4e6f7, #ffffff);
     box-shadow: 5px 5px 5px 5px rgba(0,0,0,0.1);
     margin-bottom: 20px;
+    overflow: hidden;
+    transform: translateZ(0);
     
   }
 
@@ -180,7 +217,7 @@ body
     overflow: hidden;
   }
 
-  /*card3*/
+  
   .card:nth-child(3) {
     height: 620px;
     max-height: 620px;
@@ -203,9 +240,6 @@ body
   .card:nth-child(5) {
     height: 240px;
     max-height: 240px;
-  
-    
-   
   }
 
   .card:nth-child(6) {
@@ -286,7 +320,7 @@ body
 
 
    .sprite {
-    background: url("http://www.trenatics.com/public/images/iconfile/sprites/css-sprite/sprite-action-grey600.png") no-repeat;
+    background-image: url("http://www.trenatics.com/public/images/iconfile/sprites/css-sprite/sprite-action-grey600.png");
    }
    
 
@@ -322,7 +356,7 @@ body
 
   /*card3 chat*/
   textarea {
-  width: 98.5%;
+  width: 98%;
   resize: none;
   height: 100px;
 }
@@ -341,39 +375,40 @@ body
   
   object-fit: none;
   object-position: 0 0;
-  width: 63px;
+  width: 30px;
   height: 25px;
-  /* margin-right: 15px; */
+  padding-left: 20px;
   
 }
 .chat-message {
   display: flex;
-  align-items: center;
+  align-items: space-around;
   width: 100%;
-  ;
 }
+
+
+
 .chat-message-right {
   flex-direction: row-reverse;
 }
-.chat-message p{
-  margin-left:20px
-}
+
 
 .chat-log {
   padding: 20px;
   font-size: 2vh;
-  overflow:scroll;
+  overflow:auto;
 }
 
 
 /*table*/
 th, td {
-  padding: 10px;
+  padding-left: 10px;
   text-align: left;
   border-bottom: 1px solid #ddd;
 }
 
 table {
+  
     width: 100%;
     height: 100%;
 }
@@ -385,20 +420,19 @@ table {
 /* card headers for settings icon, and subcard headers*/
 
 
-.settings, .subcard-title {
+.settings {
   display: flex;
   direction: row;
   align-items: center;
   justify-content: space-between;
   width: 100%;
+  
 }
 
 .settings > p{
   margin-left: 20px;
 }
-.settings-frame {
-  margin-right: 20px;
-}
+
 
 /* card4 of statistics */
 
@@ -410,20 +444,22 @@ table {
   margin-right: 10px;
 }
    .card4 {
-    overflow: scroll;
+    /* overflow:visible; */
    }
 
    .card4-container-image{
-    display: flex;
-    justify-content: center;
-    overflow: hidden;
+    overflow-x: scroll;     
+    width: 100%;
+    height: 190px;
+    position: absolute; 
    }
 
-   .card-stats {
-    display: flex;
-    justify-content: center;
-    max-width: 300px;
-  } 
+   .card4-container-image img {
+    height: 100%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
 
   /* calendar*/
 ul {list-style-type: none;}
@@ -465,7 +501,7 @@ ul {list-style-type: none;}
 
 .weekdays li {
   display: inline-block;
-  width: 13%;
+  width: 12%;
   color: #666;
   text-align: center;
 }
@@ -477,7 +513,7 @@ ul {list-style-type: none;}
 .days li {
   
   display: inline-block;
-  width: 13%;
+  width: 12%;
   color: #666;
   text-align: center;
   padding: 20px 0px;
@@ -490,24 +526,28 @@ ul {list-style-type: none;}
 
 .subcard-icon{
   object-fit: none;
-  object-position: -375px -140px;
+  background-position: -335px -105px;
   width: 33px;
   height: 25px;
-  margin-left: 10px;
-  
+  margin-right: 10px;
+  position: absolute;
 }
-.subcard-title{
+
+.subcard-title {
+  display: flex;
+  width: 100%;
   padding-top: 10px;
 }
+
+.subcard-title p {
+  padding-left: 50px;
+  padding-top: 5px;
+}
+
 .trunc-text {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  padding-right: 20px;
-  
-}
-.subcard-frame {
-  margin-right: 10px;
 }
 
 .subcard-content{
@@ -527,14 +567,17 @@ ul {list-style-type: none;}
 .overview-card {
   display: flex;
   align-items: center;
+  justify-content: space-around;
 }
-.overview-frame{
-  padding-right:20px;
-  padding-left:10px;
-}
-.overview-card-content{
-  text-align: left;
-  margin-top:-10px;
+
+
+.overview-card-icon{
+  display:block;
+  object-fit: none;
+  background-position: -335px -105px;
+  width: 33px;
+  height: 25px;
+  margin-left: 20px;
 }
 
 .overview-card-content div{
@@ -543,27 +586,36 @@ ul {list-style-type: none;}
   font-size: larger;
 }
 
+.overview-card-content{
+  padding-left: 20px;
+}
+
 /* header menu*/
 
-.menu{
-  display: flex;
+.hide-top-menu{
+  border:1px solid gray;
+  background-color: transparent;
+  margin-top: 10px;
+  margin-right: 20px;
+  height: 25px;
+  width: 25px;
+  /* display: inline-block; */
 }
+
 .menu a {
  
-  display: inline-block;
+  /* display: inline-block; */
   color: black;
   text-align: center;
   padding: 10px 10px ;
   text-decoration: none;
   font-size: 2.5vh;
-
   position: relative;
   margin-right:-4px;
-
   
 }
 .menu a:hover {
-  background-color: #ddd;
+  background-color: rgba(173, 180, 219, 0.377);
   color: black;
 }
 .menu a:before{
@@ -575,8 +627,7 @@ ul {list-style-type: none;}
   width:33px;
   height:25px;
   display:inline-block;
-  content: "";
-  
+  content: "";  
 }
 
 .top-menu2:before { 
@@ -619,12 +670,15 @@ ul {list-style-type: none;}
   margin-right: 16px;
   font-size: 17px;
 }
+
+
 .avatar{
   background-position: 0 0px;
   width:33px;
   height:25px;
   display:inline-block;
   content: "";
+  
 }
 
 
