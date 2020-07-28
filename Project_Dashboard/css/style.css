@@ -40,6 +40,11 @@ body {
     justify-content: space-between;
     padding: 0 20px;
     background-color: #d4e6f7;
+    /*sticky background*/
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    z-index: 1;
 }
 
 .header_box {
@@ -66,7 +71,7 @@ body {
   } */
 
 .sidenav {
-    grid-area: sidenav;
+    /* grid-area: sidenav; */
     display: flex;
     flex-direction: column;
     height: 100%;
@@ -74,7 +79,7 @@ body {
     position: fixed;
     overflow-y: auto;
     z-index: 2;
-    background-color: #394263;
+    /* background-color: #394263; */
     transform: translateX(-150px);
     transition: all .6s ease-in-out;
 }
@@ -255,9 +260,9 @@ body {
 .overview-card:hover {
     transform: scale(1.05);
     transition: 0.2s;
+    background: linear-gradient(rgb(97, 143, 196), #ffffff);
 }
 
-
-/* .overview-card:hover span{
+.overview-card:hover span {
     background-position: top right;
-  } */
+}

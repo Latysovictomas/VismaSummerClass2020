@@ -40,6 +40,11 @@ body {
     justify-content: space-between;
     padding: 0 20px;
     background-color: #d4e6f7;
+    /*sticky background*/
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    z-index: 1;
 }
 
 .header_box {

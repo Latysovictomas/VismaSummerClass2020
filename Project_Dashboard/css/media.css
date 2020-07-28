@@ -32,9 +32,17 @@
         position: relative;
         transform: translateX(0);
         transition: 0s;
+        position: fixed;
     }
     .sidenav-close-icon {
         visibility: hidden;
+    }
+    /*sticky header and main overlap when sidebar is fixed*/
+    .header {
+        margin-left: 150px;
+    }
+    .main {
+        margin-left: 150px;
     }
 }
 
