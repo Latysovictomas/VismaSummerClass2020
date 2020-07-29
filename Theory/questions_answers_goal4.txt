@@ -1,0 +1,146 @@
+1. Why JavaScript is used on websites? Is it used only on the front-end?
+
+Javascript is executed on the browser of a user's computer meaning it will not add any processing strain into the server making it less expensive in terms of server traffic. Also, javascript is easy to implement on the web just by putting the script in the HTML code. Javascript is supported natively in across browsers. On front end javascript is used to interact with forms, give feedback to the user, event handling, animating elements.
+
+Javascript is also used in front end. It accessess databases, file systems and servers. IT is usde to handle http requests. Code is running over local resources of a server (e.g Node.js). Server-side javascript can access hard disk.
+
+2. What do JavaScript functions prompt, alert and confirm do?
+
+The prompt() method displays a dialog box, the user will have to click either "OK" or "Cancel" which returns string of the input value if the user clicks "OK", otherwise null;
+The alert() method displays an alert box with a specified message and an OK button.
+The confirm() method displays a dialog box with a specified message, along with an OK and a Cancel button.
+
+3. Why is it preferred to include javascript and css code as separate files?
+
+Javascript and css are different kind of files. The project becomes more organised, structured and easier to maintain when files are grouped into same type of assets.
+
+4. What data types are in javascript?
+
+Primitive - string, number, boolean; 
+composite - functions, array, object; 
+special - undefined (value not assigned), null (empty value).
+
+5. What’s the difference between == and ===?
+
+The == operator will compare for equality after doing any necessary type conversions.
+The === operator will compare for equality and the types must be equal.
+
+6. What is the difference between undefined and null in JavaScript?
+
+undefined is a data type for a declared variable that is not assigned.
+null is data type declaring assigned value is empty/nothing.
+
+7. How to get the type of variable?
+
+Use "typeof" operator before value.
+
+8. How to convert number to string? string to number?
+
+Use toString() function to convert number to string.
+Use Number() function to convert string to number.
+
+9. What does "short-circuiting" mean in javascript context?
+
+Return result before the complete evualuation of the expression if result is clear in advance. It is way we to shorten unnecessary checks in our conditionals.
+E.g. For the &&, if the first condition is false it returns
+     For the ||, if the first condition is true it returns
+
+10. What are "truthy" and "falsy" values?
+
+Truthy are values that resolve to be true on boolean contenxt. E.g: true, 1, -1, non empty string.
+Falsy values are values that resolve to be false in boolean context. E.g: false, null, undefined, 0, NaN, empty strings, -0, 0n.
+
+11. How scope works in JavaScript?
+
+Scope determines the accessibility (visibility) of these variables. There are global and local variables.
+If you assign a value to a variable that has not been declared, it will automatically become a GLOBAL variable.
+
+E.g. Variables defined inside a function have a function scope therefore they can only be accessed from within a function. Variables defined outside function have global scope.
+
+12. Explain variable “hoisting”.
+
+Hoisting is JavaScript interpreter’s action of moving all variable and function declarations to the top of the current scope. However, only the actual declarations are hoisted. Any assignments are left where they are. Functions that are assigned to variables are not hoisted.
+
+13. What is "use strict"? What are the advantages and disadvantages to using it?
+
+Defines that JavaScript code should be executed in "strict mode". With strict mode, you can not, for example, use undeclared variables/objects, delete variables/objects/functions, use octal escape characters and octal numeric literals, get-only property is not allowed, certain words that cannot be used as variable names.
+
+Advantage: makes your code more robust, readable, and accurate; improves performance.
+Disadvantage: throws more errors and disables some features; introduces restrictions.
+
+14. What is the difference between function declaration and function expression?
+
+function declaration - tells the JS engine about a function's name, return type, and parameters.
+function expression - an anonymous function without a name, it can be referred by name but only in local scope. These functions are not hoisted.
+
+15. What does it mean "javascript functions are first-class"?
+
+First-class functions when functions are treated like any other variable. They can be stored in a variable, object, or array. passed as an argument to a function.
+
+16. How to declare a named function? An anonymous function?
+
+Named function: function name(){}
+Anonymous function: var name = function(){}
+
+17. What is a prototype?
+
+All JavaScript objects inherit properties and methods from a prototype. Prototype is an object, which acts as a template object that it inherits methods and properties from. An object's prototype object may also have a prototype object, which it inherits methods and properties from, and so on. This is often referred to as a prototype chain.
+
+18. What is a "closure"? How to create it?
+
+A closure is a function which has access to an outer function's scope.
+
+var add = (function () {
+  var counter = 0;
+  return function () {counter += 1; return counter}
+})();
+
+19. What are "higher order functions"?
+
+Functions that operate on other functions, either by taking them as arguments or by returning them, are called higher-order functions.
+
+20. What is event bubbling and capturing?
+
+Event bubbling and capturing are different ways to describe event propogation (the sequence of events that fired in a web browser). Elements on the web browser are nested. With bubbling, the event is first captured and handled by the innermost element and then propagated to outer elements.
+With capturing, the event is first captured by the outermost element and propagated to the inner elements.
+
+21. What is unit testing? How can it be beneficial?
+
+
+Unit testing is writing a code which would verify becahavior of the unit of code in isolation and automatically.
+
+Unit testing is great because they run all the time automatically, this way its easier to automate and maintain a large project. They verify correct logic for small components independently from external dependencies and databases using mocking.
+
+22. Describe Test-driven development.
+
+TDD is a process of writing unit tests before writing actual code for that feature to test implementation, then build that feature just enough to make that test pass.
+
+It may look like this:
+* write a "single" unit test describing an aspect of the program
+* run the test, which should fail because the program lacks that feature
+* write "just enough" code, the simplest possible, to make the test pass
+* "refactor" the code until it conforms to the simplicity criteria
+* repeat, "accumulating" unit tests over time
+
+Benefits: the code is covered by tests; By writing the test first, you're forced into thinking about how you want to call the code, which usually improves the design of the code in the long run.
+
+23. Describe Behaviour-driven development.
+
+BDD is the process to write human readable description of user requirements for the software, and use it as the basis for writing automated test scripts.
+
+24. What is NodeJS?
+
+Runtime environment that is built on Chrome V8 JavaScript Engine and allows to build JavaScript applications on server side(outside the browser). Node.js is event-driven means that the server only reacts when an event occurs. 
+
+Advantages: cross platform, includes minimum modules, open-source, handlse asynchronous code.
+
+25. What are most popular uses of Node?
+
+* Building real-time chat (slack)
+* browser games
+* streamming (netflix; allows for downloading parts of the application on demand without overloading the server and the local computer)
+* colloboration tools (trello)
+
+26. What is the difference between normal function and arrow function?
+
+Arrow function cannot be named. They do not have own "this" and "arguments", they cannot be called like construtor.
