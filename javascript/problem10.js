@@ -24,4 +24,4 @@ function spy(someFunction) {
 
 var spied = spy(myFunction);
 console.log("Function result: " + spied(5));
-console.log("totalCount: " + totalCount);
+console.log("totalCalls: " + totalCount);
