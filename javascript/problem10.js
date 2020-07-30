@@ -4,24 +4,27 @@
 // spied(1);
 // var report = spied.report(); // returns { totalCalls: 1 }
 
-function myFunction(a) {
-    var b = 6;
+function myFunction(a, b) {
     return parseInt(a) + parseInt(b);
 }
 
-var totalCount = 0;
-
 function spy(someFunction) {
+    var totalCalls = 0;
     var wrappedFunction = function() {
-        var args = [...arguments].splice(0);
         console.log(someFunction.name + " is being called!");
-        console.log(`You're about to run a function with these arguments: \n     ${args}`);
-        totalCount = totalCount + 1;
-        return someFunction(args);
+        totalCalls = totalCalls + 1;
+        wrappedFunction.report = function() {
+            return totalCalls;
+        };
+        return someFunction(...arguments);
     }
     return wrappedFunction;
 }
 
 var spied = spy(myFunction);
-console.log("Function result: " + spied(5));
-console.log("totalCalls: " + totalCount);
+var spied2 = spy(myFunction);
+spied(4, 5);
+spied(6, 7);
+spied2(7, 6);
+console.log("totalCalls: " + spied.report());
+console.log("totalCalls2: " + spied2.report());

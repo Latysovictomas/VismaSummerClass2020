@@ -18,18 +18,12 @@ function getRandom(min, max) {
 
 var hashtag = "#";
 var prevNumber = -1;
-var i;
 for (i = 0; i < 7; i++) {
-    let same = false;
     let randColorNumber = getRandom(0, 4);
     while (randColorNumber == prevNumber) {
         randColorNumber = getRandom(0, 4);
     }
     prevNumber = randColorNumber;
-    if (i == 0) {
-        console.log(myColors[randColorNumber](hashtag));
-    } else {
-        hashtag = hashtag.concat("#");
-        console.log(myColors[randColorNumber](hashtag));
-    }
+    console.log(myColors[randColorNumber](hashtag));
+    hashtag = hashtag.concat("#");
 };

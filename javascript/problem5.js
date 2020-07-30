@@ -20,7 +20,6 @@ const houses = [
 ];
 
 function motto(nameKey, houses) {
-    var i;
     for (i = 0; i < houses.length; i++) {
         if (houses[i].name === nameKey) {
             return houses[i].motto;
@@ -29,13 +28,9 @@ function motto(nameKey, houses) {
 }
 
 function mottoES6(nameKey, houses) {
-    var obj = houses.find(obj => obj.name === nameKey, undefined);
-    if (obj !== undefined) {
-        return obj.motto;
-    } else {
-        return obj;
-    }
+    var obj = houses.find(obj => obj.name === nameKey);
+    return obj && obj.name;
 }
 
-console.log(motto("Tyrell", houses))
-console.log(mottoES6("Tyrell", houses))
+console.log(motto("Tyrel", houses));
+console.log(mottoES6("Tyrell", houses));

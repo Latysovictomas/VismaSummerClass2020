@@ -5,7 +5,6 @@
 
 function sum(list) {
     var sum = 0;
-    var i = 0;
     for (i = 0; i < list.length; i++) {
         sum = sum + list[i];
     }
@@ -17,5 +16,5 @@ function sumES6(list) {
 }
 
 var list = [3, 5, 9, 6.2, 0];
-console.log(sum(list))
-console.log(sumES6(list))
+console.log(sum(list));
+console.log(sumES6(list));

@@ -3,7 +3,7 @@
 // sevenAte9('79797') // returns '777
 
 function sevenAte9(text) {
-    var pattern = "797";
+    var pattern = "79+7";
     var re = new RegExp(pattern, 'g');
     while (re.test(text) === true) {
         text = text.replace(re, '77');
@@ -12,4 +12,4 @@ function sevenAte9(text) {
 }
 
 console.log(sevenAte9('79712312'))
-console.log(sevenAte9('79797'))
+console.log(sevenAte9('79799997'))

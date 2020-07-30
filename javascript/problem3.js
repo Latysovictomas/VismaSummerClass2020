@@ -16,5 +16,5 @@ function rangeES6(x, y) {
     return Array(y - x).fill(x).map((val, index) => val + index);
 }
 
-console.log(range(4, 10))
-console.log(rangeES6(4, 10))
+console.log(range(4, 10));
+console.log(rangeES6(4, 10));

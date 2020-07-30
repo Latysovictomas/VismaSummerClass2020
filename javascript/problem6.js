@@ -5,4 +5,4 @@ function removeDuplicates(list) {
 }
 
 list = [1, 1, 1.2, 3, 4, 2, 2];
-console.log(removeDuplicates(list))
+console.log(removeDuplicates(list));

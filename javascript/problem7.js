@@ -2,7 +2,7 @@
 // the given text variable. Please note it has to be a full word.
 
 function wordSearch(w, text) {
-    return RegExp('\\b' + w).test(text);
+    return text.toLocaleLowerCase().indexOf('javascript') >= 0;
 }
 
 var text = "this is javascript.";
