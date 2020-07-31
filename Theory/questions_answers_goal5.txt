@@ -1,0 +1,83 @@
+1. What's the difference between a DOM object "attribute" and a "property"?
+
+The attributes are defined by HTML and properties are defined by DOM. The attributes initialize DOM properties, which some may have same names. HTML property values are initial and cannot be changed, whereas DOM properties represent current values.
+
+2. What are advantages and disadvantages using libraries/frameworks in your project?
+
+The benefit of using libraries/frameworks:
+* Easy to get started
+* They allow for fast prototyping or mockups
+* Code is pre-tested and 
+* They provide foundation for design
+* They are handy when something needs to be done quick
+* They provide consistent beautifully-looking UI design
+* Cross-browser compatibility is built in
+* Widely used frameworks have large community which help to solve problems
+* Framework bugs are solved by the community behind it
+
+The disadvantages of using libraries/frameworks:
+* You may need to override base styles
+* You will not understand the code which powers the framework
+* Updates may introduce issues
+* Library could be abandoned
+
+3. What is a LocalStorage and SessionStorage? How do they differ?
+
+These are webstorage objects which allow to store key/value pairs in the browser. They have few mb storage space.
+
+LocalStorage:
+* Data is shared between all tabs and windows from the same origin.
+* localsStorage data survives during browser or even OS restart.
+SessionStorage:
+* Data exists only within current browser tab.
+* In sessionStorage data survives during page refresh (not closing).
+
+4. What is CDN? Why is it useful?
+
+CDN (Content Delivery Network) is a highly-distributed platform of servers that helps minimize delays in loading web page content by reducing the physical distance between the server and the user. Content origin servers must respond to every single end user request. This results in significant traffic to the origin and subsequent load, thereby increasing the chances for origin failure.
+
+By responding to end user requests in place of the origin and in closer physical and network proximity to the end user, a CDN offloads traffic from content servers and improves the web experience. This helps users around the world view the same high-quality content without slow loading times. 
+
+5. Waiting for all data to load synchronously before being able to act makes UX (user experience) terrible. What are the main technologies for asynchronous data loading?
+
+Asynchronous allows code to run independently from main application flow, and notifies its completion. E.g. Fetch resource from external storage and do something only after data is completely downloaded.  Asynchronous programming are done by browser/server APIS's like XMLHttpRequest, Node fs module, or third party libraries like jQuery.ajax. Async.js is the library that aids in writing asynchronous code.
+
+The main technology for asynchronous data loading is XMLHttpRequest, and Fetch API.
+
+6. What does XHR stand for? Why is it useful (or not)?
+
+It stands for XMLHttpRequest. It fetches the resource at the given URL asynchronously. It has only few cross-browser inconsistencies, however it is not as useful as fetch API when you want to do several asynchronous calls after responses.
+
+7. What are the most common HTTP response codes? Which are related to a success and
+which are related to a failure?
+
+1xx: Informational
+2xx: Success
+3xx: Redirection
+4xx: Client Error
+5xx: Server Error
+
+Success:
+200 OK - request has been succesfully carried out.
+201 Created - the request has been fulfilled, resulting in the creation of a new resource.
+202 Accepted - The request has been accepted for processing, but the processing has not been completed
+
+Failure:
+400 Bad Request - request that was sent to the server has invalid syntax.
+401 Unauthorized -  the user trying to access the resource has not been authenticated.
+403 Forbidden - the user made a valid request but the server is refusing to serve the request.
+404 Not Found - the user is able to communicate with the server but it is unable to locate the requested file.
+500 Internal Server Error - server cannot process the request.
+502 Bad Gateway - proxy/gateway server it is not receiving a valid response from the backend servers
+503 Service Unavailable - the server is overloaded or under maintenance.
+504 Gateway Timeout - the server is a gateway or proxy server, and it is not receiving a response from the backend servers within the allowed time period.
+
+8. What are promises? How do they differ from callbacks?
+
+Async callbacks are functions that are specified as arguments when calling a function which will start executing code in the background. When the background code finishes running, it calls the callback function to let you know the work is done.
+
+Promises are the new style of async code. The promise is an object representing the completion or failure of the async operation. It's the browser's way of saying "I promise to get back to you with the answer as soon as I can," hence the name "promise."
+
+9. Not all JS code can run on all browsers. What are polyfills? Can you create your own polyfill?
+
+A polyfill is a piece of code used to provide modern functionality on older browsers that do not natively support it. Yu can create a new olyfll by creating a function for object prototype.
