@@ -54,17 +54,15 @@
         max-height: 1000px;
     }
     .card {
-        /* for Chrome and Edge*/
         break-inside: avoid-column;
-        /* for Firefox alternative page-break-inside: avoid;*/
         overflow: hidden;
         transform: translateZ(0);
     }
-    .card:nth-child(4) {
+    /* .card:nth-child(4) {
         height: 240px;
         max-height: 240px;
         margin-top: 80px;
-    }
+    } */
     .menu a {
         display: inline-block;
     }

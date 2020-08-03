@@ -5,39 +5,7 @@
 }
 
 
-/* card1 half text half image*/
-
-.card1-container {
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: 1fr;
-    height: 245px;
-    /*for image*/
-    object-fit: cover;
-    overflow: hidden;
-}
-
-.card-image {
-    max-height: 245px;
-    /* allows repositioning */
-    /* move the whole width of the image to the right */
-    /* magic! */
-    position: relative;
-    left: 500%;
-    margin-left: -1000%;
-    object-fit: cover;
-    overflow: hidden;
-}
-
-.card-text {
-    padding: 20px;
-    font-size: 2vh;
-    max-height: 245px;
-    overflow: auto;
-}
-
-
-/*card3 chat*/
+/*card chat*/
 
 textarea {
     width: 98%;
@@ -85,8 +53,6 @@ textarea {
     object-position: 0 0;
     width: 30px;
     height: 25px;
-    /* padding-left: 20px; */
-    /* position: absolute; */
 }
 
 .chat-message {
@@ -124,16 +90,17 @@ table {
     height: 100%;
 }
 
-.card5,
-.card6,
-.card7 {
+.userList-card {
+    /* break-inside: avoid; */
     overflow: auto;
+    /* transform: translateZ(0); */
+    max-height: 240px;
 }
 
 
 /* card headers for settings icon, and subcard headers*/
 
-.settings {
+.widget-header {
     display: flex;
     direction: row;
     align-items: center;
@@ -141,149 +108,17 @@ table {
     width: 100%;
 }
 
-.settings>p {
+.widget-header>p {
     margin-left: 20px;
 }
 
-
-/* card4 of statistics */
-
-.settings-icon,
-.table-settings-icon {
-    object-fit: none;
-    background-position: -335px -140px;
-    width: 33px;
-    height: 25px;
-    margin-right: 10px;
+.widget-link {
+    color: inherit;
+    text-decoration: inherit;
 }
 
-.card4 {
-    /* overflow:visible; */
-}
-
-.card4-container-image {
-    overflow-x: scroll;
-    width: 100%;
-    height: 190px;
-    position: absolute;
-}
-
-.card4-container-image img {
-    height: 100%;
-    display: block;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-
-/* calendar*/
-
-ul {
-    list-style-type: none;
-}
-
-.month {
-    padding: 50px 0px;
-    width: 100%;
-    background: #5585a5;
-    text-align: center;
-}
-
-.month ul {
-    margin: 0;
-    padding: 0;
-}
-
-.month ul li {
-    color: white;
-    font-size: 20px;
-    text-transform: uppercase;
-    display: inline-block;
-}
-
-.month {
-    display: flex;
-    justify-content: center;
-}
-
-.month li:first-child {
-    margin-right: 70px;
-}
-
-.month li:last-child {
-    margin-left: 70px;
-}
-
-.weekdays {
-    margin: 0;
-    padding: 10px 10px;
-    background-color: #ddd;
-}
-
-.weekdays li {
-    display: inline-block;
-    width: 12%;
-    color: #666;
-    text-align: center;
-}
-
-.days {
-    margin: 0;
-    padding: 10px 10px 10px;
-}
-
-.days li {
-    display: inline-block;
-    width: 12%;
-    color: #666;
-    text-align: center;
-    padding: 20px 0px;
-}
-
-.days li .not-included {
-    color: rgb(223, 215, 215);
-}
-
-
-/*subcard contents*/
-
-.subcard-icon {
-    object-fit: none;
-    background-position: -335px -105px;
-    width: 33px;
-    height: 25px;
-    margin-right: 10px;
-    position: absolute;
-}
-
-.subcard-title {
-    display: flex;
-    width: 100%;
-    padding-top: 10px;
-}
-
-.subcard-title p {
-    padding-left: 50px;
-    padding-top: 5px;
-}
-
-.trunc-text {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
-.subcard-content {
-    display: flex;
-    justify-content: center;
-    overflow: auto;
-    margin-left: -20px;
-}
-
-.subcard p {
-    font-weight: bold;
-    margin: 0;
-    list-style-position: inside;
+.widget-header:hover {
+    background-color: #b6d0e9;
 }
 
 
