@@ -1,0 +1,253 @@
+/* Adding details to widgets*/
+
+.sprite {
+    background-image: url("http://www.trenatics.com/public/images/iconfile/sprites/css-sprite/sprite-action-grey600.png");
+}
+
+
+/*card chat*/
+
+textarea {
+    width: 98%;
+    resize: none;
+    height: 100px;
+}
+
+.form-container .btn-send {
+    background-color: #5585a5;
+    color: white;
+    width: 100%;
+    padding: 10px;
+    opacity: 0.8;
+}
+
+.btn-container {
+    margin-right: 15px;
+}
+
+.send-icon {
+    background: url(../images/24_send.png);
+    display: inline-block;
+    object-fit: none;
+    background-position: -27px -5px;
+    width: 25px;
+    height: 15px;
+}
+
+.send-text {
+    width: 100%;
+    margin-left: 10px;
+}
+
+.btn-send:hover {
+    opacity: 1;
+    background-color: #507e9c;
+}
+
+.btn-send:hover span {
+    background-position: -85px -5px;
+}
+
+.chat-message-author {
+    display: flex;
+    align-items: center;
+    padding-right: 10px;
+}
+
+.chat-message {
+    display: flex;
+    align-items: space-around;
+    text-align: left;
+}
+
+.chat-message p {
+    width: 100%;
+    display: inline-block;
+}
+
+.chat-message-right {
+    flex-direction: row-reverse;
+}
+
+.chat-log {
+    padding: 20px;
+    font-size: 14px;
+    overflow: auto;
+    min-height: 300px;
+    max-height: 300px;
+}
+
+
+/*table*/
+
+th,
+td {
+    padding-left: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+    ;
+}
+
+table {
+    width: 100%;
+    height: 100%;
+}
+
+.userList-card {
+    break-inside: avoid;
+    overflow: auto;
+}
+
+#userList-container {
+    overflow-x: auto;
+}
+
+
+/* card headers for settings icon, and subcard headers*/
+
+.widget-header {
+    display: flex;
+    direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.widget-header>p {
+    margin-left: 20px;
+}
+
+.widget-link {
+    color: inherit;
+    text-decoration: inherit;
+}
+
+.widget-header:hover {
+    /* background-color: #b6d0e9; */
+    filter: brightness(75%);
+}
+
+
+/* four buttons at the bottom and their contents*/
+
+.overview-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.overview-card-icon {
+    display: block;
+    object-fit: none;
+    background-position: -335px -105px;
+    width: 33px;
+    height: 25px;
+}
+
+.overview-card-content div {
+    margin-bottom: 0;
+    font-weight: bold;
+    font-size: larger;
+}
+
+.overview-card-content {
+    width: 100px;
+    text-align: right;
+}
+
+.trunc-text {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+
+/* header menu*/
+
+.hide-top-menu {
+    border: 1px solid gray;
+    background-color: transparent;
+    margin-top: 10px;
+    margin-right: 20px;
+    height: 25px;
+    width: 25px;
+    /* display: inline-block; */
+}
+
+.menu a {
+    color: black;
+    text-align: center;
+    padding: 10px 10px;
+    text-decoration: none;
+    font-size: 17px;
+    position: relative;
+    margin-right: -4px;
+}
+
+.menu a:hover {
+    background-color: rgba(173, 180, 219, 0.377);
+    color: black;
+}
+
+.menu a:before {
+    background-image: url(http://www.trenatics.com/public/images/iconfile/sprites/css-sprite/sprite-action-grey600.png);
+}
+
+.top-menu1:before {
+    background-position: 0 0;
+    width: 33px;
+    height: 25px;
+    display: inline-block;
+    content: "";
+}
+
+.top-menu2:before {
+    background-position: 0 -35px;
+    width: 33px;
+    height: 25px;
+    display: inline-block;
+    content: "";
+}
+
+.top-menu3:before {
+    background-position: 0 -70px;
+    width: 33px;
+    height: 25px;
+    display: inline-block;
+    content: "";
+}
+
+.top-menu4:before {
+    background-position: 0 -105px;
+    width: 33px;
+    height: 25px;
+    display: inline-block;
+    content: "";
+}
+
+
+/* top nav menu search*/
+
+.header_search {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    overflow: hidden;
+    padding-right: 20px;
+}
+
+.header_search input[type=text] {
+    padding: 6px;
+    border: none;
+    margin-top: 8px;
+    margin-right: 16px;
+    font-size: 17px;
+}
+
+.avatar {
+    background-position: 0 0px;
+    width: 33px;
+    height: 25px;
+    display: inline-block;
+    content: "";
+}

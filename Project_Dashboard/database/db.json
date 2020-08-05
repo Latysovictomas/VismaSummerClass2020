@@ -18,19 +18,6 @@
   },
   "widgets": [
     {
-      "title": "One",
-      "column": 2,
-      "type": 1,
-      "headerType": 1,
-      "data": {
-        "id": 1,
-        "firstName": "Tomas",
-        "lastName": "Latysovic",
-        "userName": "@latysovictomas"
-      },
-      "id": 1
-    },
-    {
       "title": "My chat",
       "column": 1,
       "type": 2,
@@ -69,12 +56,6 @@
         },
         {
           "id": 3,
-          "firstName": "Tomas",
-          "lastName": "Latysovic",
-          "userName": "@latysovictomas"
-        },
-        {
-          "id": 4,
           "firstName": "Tomas",
           "lastName": "Latysovic",
           "userName": "@latysovictomas"
