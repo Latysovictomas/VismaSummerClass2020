@@ -1,9 +1,72 @@
 {
   "posts": [
-    { "id": 1, "title": "json-server", "author": "typicode" }
+    {
+      "id": 1,
+      "title": "json-server",
+      "author": "typicode"
+    }
   ],
   "comments": [
-    { "id": 1, "body": "some comment", "postId": 1 }
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
   ],
-  "profile": { "name": "typicode" }
+  "profile": {
+    "name": "typicode"
+  },
+  "widgets": [
+    {
+      "title": "My chat",
+      "column": 1,
+      "type": 2,
+      "headerType": 2,
+      "data": [
+        {
+          "id": 1,
+          "author": "Tomas",
+          "message": "The messageThe messageThe messageThe messageThe messageThe messageThe messageThe messageThe messageThe message"
+        },
+        {
+          "id": 2,
+          "author": "Jason",
+          "message": "The messageThe messageThe messageThe messageThe messageThe messageThe messageThe messageThe messageThe message"
+        },
+        {
+          "id": 3,
+          "author": "Tomas",
+          "message": "The messageThe messageThe messageThe messageThe messageThe messageThe messageThe messageThe messageThe message"
+        }
+      ],
+      "id": 2
+    },
+    {
+      "title": "Two",
+      "column": 2,
+      "type": 1,
+      "headerType": 1,
+      "data": [
+        {
+          "id": 1,
+          "firstName": "Tomas",
+          "lastName": "Latysovic",
+          "userName": "@latysovictomas"
+        },
+        {
+          "id": 2,
+          "firstName": "Tomas",
+          "lastName": "Latysovic",
+          "userName": "@latysovictomas"
+        },
+        {
+          "id": 3,
+          "firstName": "Tomas",
+          "lastName": "Latysovic",
+          "userName": "@latysovictomas"
+        }
+      ],
+      "id": 3
+    }
+  ]
 }
