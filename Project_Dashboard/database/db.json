@@ -32,6 +32,11 @@
           "id": 2,
           "author": "Jason",
           "message": "The messageThe messageThe messageThe messageThe messageThe messageThe messageThe messageThe messageThe message"
+        },
+        {
+          "id": 3,
+          "author": "Tomas",
+          "message": "The messageThe messageThe messageThe messageThe messageThe messageThe messageThe messageThe messageThe message"
         }
       ],
       "id": 2
