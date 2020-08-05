@@ -17,31 +17,70 @@
     "name": "typicode"
   },
   "widgets": [
-  {
-      "id": 1,
-      "column": 1,
+    {
+      "title": "One",
+      "column": 2,
       "type": 1,
-      "title": "This is the title",
       "headerType": 1,
       "data": {
         "id": 1,
         "firstName": "Tomas",
         "lastName": "Latysovic",
         "userName": "@latysovictomas"
-      }
+      },
+      "id": 1
     },
     {
-      "id": 2,
-      "column": 2,
+      "title": "My chat",
+      "column": 1,
       "type": 2,
-      "title": "This is the title2",
       "headerType": 2,
-      "data": {
-        "id": 1,
-        "firstName": "Vardas",
-        "lastName": "Pavardenis",
-        "userName": "@PavardenisVardas"
-      }
+      "data": [
+        {
+          "id": 1,
+          "author": "Tomas",
+          "message": "The messageThe messageThe messageThe messageThe messageThe messageThe messageThe messageThe messageThe message"
+        },
+        {
+          "id": 2,
+          "author": "Jason",
+          "message": "The messageThe messageThe messageThe messageThe messageThe messageThe messageThe messageThe messageThe message"
+        }
+      ],
+      "id": 2
+    },
+    {
+      "title": "Two",
+      "column": 2,
+      "type": 1,
+      "headerType": 1,
+      "data": [
+        {
+          "id": 1,
+          "firstName": "Tomas",
+          "lastName": "Latysovic",
+          "userName": "@latysovictomas"
+        },
+        {
+          "id": 2,
+          "firstName": "Tomas",
+          "lastName": "Latysovic",
+          "userName": "@latysovictomas"
+        },
+        {
+          "id": 3,
+          "firstName": "Tomas",
+          "lastName": "Latysovic",
+          "userName": "@latysovictomas"
+        },
+        {
+          "id": 4,
+          "firstName": "Tomas",
+          "lastName": "Latysovic",
+          "userName": "@latysovictomas"
+        }
+      ],
+      "id": 3
     }
   ]
 }

@@ -48,21 +48,21 @@ textarea {
     background-position: -85px -5px;
 }
 
-.chat-message-avatar {
-    object-fit: none;
-    object-position: 0 0;
-    width: 30px;
-    height: 25px;
+.chat-message-author {
+    display: flex;
+    align-items: center;
+    padding-right: 10px;
 }
 
 .chat-message {
     display: flex;
     align-items: space-around;
-    text-align: right;
+    text-align: left;
 }
 
 .chat-message p {
     width: 100%;
+    display: inline-block;
 }
 
 .chat-message-right {
@@ -71,8 +71,10 @@ textarea {
 
 .chat-log {
     padding: 20px;
-    font-size: 2vh;
+    font-size: 14px;
     overflow: auto;
+    min-height: 300px;
+    max-height: 300px;
 }
 
 
@@ -83,6 +85,7 @@ td {
     padding-left: 10px;
     text-align: left;
     border-bottom: 1px solid #ddd;
+    ;
 }
 
 table {
@@ -91,10 +94,12 @@ table {
 }
 
 .userList-card {
-    /* break-inside: avoid; */
+    break-inside: avoid;
     overflow: auto;
-    /* transform: translateZ(0); */
-    max-height: 240px;
+}
+
+#userList-container {
+    overflow-x: auto;
 }
 
 
@@ -118,7 +123,8 @@ table {
 }
 
 .widget-header:hover {
-    background-color: #b6d0e9;
+    /* background-color: #b6d0e9; */
+    filter: brightness(75%);
 }
 
 
@@ -147,6 +153,12 @@ table {
 .overview-card-content {
     width: 100px;
     text-align: right;
+}
+
+.trunc-text {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 

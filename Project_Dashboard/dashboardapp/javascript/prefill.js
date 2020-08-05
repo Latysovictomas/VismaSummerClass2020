@@ -26,7 +26,7 @@ function fillFormByCurrentId() {
                 document.getElementById("column-number").value = widget.column;
                 document.getElementById("types").value = widget.type;
                 document.getElementById("header-types").value = widget.headerType;
-                document.getElementById("text-area").value = JSON.stringify(widget.data);
+                document.getElementById("text-area").value = JSON.stringify(widget.data).replace('"null"', "null");
 
             }).catch((error) => {
                 console.log('Requestfailed', error)
@@ -53,18 +53,22 @@ function isValidJSON(text) { //Array?
 
 function postOrPutFormData(widget) {
     console.log(CURRENT_WIDGET_ID);
+    var widgetStringified = JSON.stringify(widget).replace('"{', "{").replace('}"', '}').replace(/\\/g, "").replace('"[', "[").replace(']"', "]");
 
     if (CURRENT_WIDGET_ID != null) { // put request
-        console.log(CURRENT_WIDGET_ID);
+        console.log("not Null. Using Put.");
+
+
 
         const putMethod = {
             method: 'PUT', // Method itself
             headers: {
                 'Content-type': 'application/json' // Indicates the content 
             },
-            body: JSON.stringify(widget).replace('"{', "{").replace('}"', '}').replace(/\\/g, "")
+            body: widgetStringified
         };
 
+        console.log(widgetStringified);
         fetch(URL + "/" + CURRENT_WIDGET_ID, putMethod)
             .then(response => response.json())
             .then(data => {
@@ -83,7 +87,7 @@ function postOrPutFormData(widget) {
             headers: {
                 'Content-type': 'application/json'
             },
-            body: JSON.stringify(widget).replace('"{', "{").replace('}"', '}').replace(/\\/g, "")
+            body: widgetStringified
         };
 
         fetch(URL, postMethod)
@@ -119,6 +123,7 @@ document.getElementById('widget-form').addEventListener('submit', (e) => {
         var data = document.getElementById('text-area').value.trim();
         // replace white space between the following chars: { , }
         data = data.replace(/({)\s+/g, '{').replace(/(,)\s+/g, ',').replace(/\s*(})\s*/g, '}');
+
         const widget = new Widget(title, column, type, headerType, data);
 
         // here decide on what type of request based on current id
