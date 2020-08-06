@@ -1,4 +1,5 @@
-const URL = "http://localhost:3000/widgets";
+import { Backend } from "./utils/urls.js";
+import { Rest } from "./utils/rest.js";
 
 // UI
 class UI {
@@ -216,26 +217,9 @@ class UI {
             mainSectionElement.appendChild(container);
         }
     }
-
-    static getWidgets() {
-
-        const options = {
-            method: "GET"
-        }
-        fetch(URL, options)
-            .then(response => response.json())
-            .then(data => {
-
-                UI.displayWidgets(data);
-            });
-
-
-    }
-
-
 }
 
 
 
 // Event: Display on initial page load
-document.addEventListener('DOMContentLoaded', UI.getWidgets());
+document.addEventListener('DOMContentLoaded', Rest.get(Backend.BACKEND_URL, UI.displayWidgets));
