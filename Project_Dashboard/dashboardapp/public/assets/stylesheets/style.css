@@ -186,3 +186,14 @@ body {
 .overview-card:hover span {
     background-position: top right;
 }
+
+
+/* header color */
+
+.light-theme {
+    background-color: rgba(100, 124, 151, 0.200);
+}
+
+.dark-theme {
+    background-color: rgba(100, 124, 151, 0.700);
+}

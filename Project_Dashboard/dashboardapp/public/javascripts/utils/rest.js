@@ -90,5 +90,4 @@ export class Rest {
                 console.log("DeleteRequestfailed", error)
             });
     }
-
 }
