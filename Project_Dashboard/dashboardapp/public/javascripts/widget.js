@@ -1,4 +1,3 @@
-// Widget
 export class Widget {
 
     constructor(title, column, type, headerType, data) {
@@ -8,6 +7,4 @@ export class Widget {
         this.headerType = headerType;
         this.data = data;
     }
-
-
 }

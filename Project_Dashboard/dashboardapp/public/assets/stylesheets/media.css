@@ -54,6 +54,15 @@
         grid-gap: 20px;
         grid-template-areas: "column-1 column-2 column-3";
     }
+    #column-1 {
+        grid-area: column-1;
+    }
+    #column-2 {
+        grid-area: column-2;
+    }
+    #column-3 {
+        grid-area: column-3;
+    }
     /*3 columns*/
     .column-1,
     .column-2,

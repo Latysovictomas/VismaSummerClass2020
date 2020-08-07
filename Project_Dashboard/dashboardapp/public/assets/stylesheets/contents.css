@@ -39,6 +39,10 @@ textarea {
     margin-left: 10px;
 }
 
+.btn-send {
+    cursor: pointer;
+}
+
 .btn-send:hover {
     opacity: 1;
     background-color: #507e9c;

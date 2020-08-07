@@ -1,14 +1,14 @@
 import { Widget } from "./widget.js";
-import { Backend } from "./utils/urls.js";
+import { BACKEND_URL, CURRENT_WIDGET_ID } from "./utils/urls.js";
 import { Rest } from "./utils/rest.js";
-const CURRENT_WIDGET_ID = new URL(window.location.href).search.split("?id=")[1];
+
 
 class WidgetForm {
 
     static fillFormByCurrentId() {
         if (CURRENT_WIDGET_ID != null) {
             //get request to fill form
-            Rest.get(Backend.BACKEND_URL, WidgetForm.fillForm, CURRENT_WIDGET_ID);
+            Rest.get(BACKEND_URL, WidgetForm.fillForm, CURRENT_WIDGET_ID);
         } else {
             console.log("Warning: No widget id is selected.");
         }
@@ -43,9 +43,9 @@ class WidgetForm {
         var widgetStringified = JSON.stringify(widget).replace('"{', "{").replace('}"', '}').replace(/\\/g, "").replace('"[', "[").replace(']"', "]");
 
         if (CURRENT_WIDGET_ID != null) { // put request
-            Rest.put(Backend.BACKEND_URL, WidgetForm.redirect, widgetStringified, CURRENT_WIDGET_ID);
+            Rest.put(BACKEND_URL, WidgetForm.redirect, widgetStringified, CURRENT_WIDGET_ID);
         } else { // post request
-            Rest.post(Backend.BACKEND_URL, WidgetForm.redirect, widgetStringified, CURRENT_WIDGET_ID);
+            Rest.post(BACKEND_URL, WidgetForm.redirect, widgetStringified, CURRENT_WIDGET_ID);
         }
     }
     static setDeleteBtnDisplay() {
@@ -57,8 +57,7 @@ class WidgetForm {
         }
     }
 
-} // end of class
-
+}
 
 
 // run the fill form function
@@ -76,7 +75,6 @@ document.getElementById("widget-form").addEventListener("submit", (e) => {
     // replace white space between the following chars: { , }, and other replacements
     data = data.replace(/({)\s+/g, "{").replace(/(,)\s+/g, ",").replace(/\s*(})\s*/g, "}").replace(/\'/g, '"');
     if (!WidgetForm.isValidJSON(data)) {
-        console.log(document.getElementById("text-area").value);
         alert("Data input is not valid JSON.");
     } else {
         // get form data
@@ -93,5 +91,5 @@ document.getElementById("widget-form").addEventListener("submit", (e) => {
 
 // Event: Delete request
 document.getElementById("delete-btn").addEventListener("click", (e) => {
-    Rest.delete(Backend.BACKEND_URL, WidgetForm.redirect, CURRENT_WIDGET_ID);
+    Rest.delete(BACKEND_URL, WidgetForm.redirect, CURRENT_WIDGET_ID);
 });
