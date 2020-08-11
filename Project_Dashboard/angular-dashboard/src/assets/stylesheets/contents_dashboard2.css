@@ -1,0 +1,329 @@
+/* Adding details to widgets*/
+
+.sprite {
+    background-image: url("http://www.trenatics.com/public/images/iconfile/sprites/css-sprite/sprite-action-grey600.png");
+}
+
+
+/* card1 half text half image*/
+
+.card1-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    height: 245px;
+    /*for image*/
+    object-fit: cover;
+    overflow: hidden;
+}
+
+.card-image {
+    max-height: 245px;
+    /* allows repositioning */
+    /* move the whole width of the image to the right */
+    /* magic! */
+    position: relative;
+    left: 500%;
+    margin-left: -1000%;
+    object-fit: cover;
+    overflow: hidden;
+}
+
+.card-text {
+    padding: 20px;
+    font-size: 2vh;
+    max-height: 245px;
+    overflow: auto;
+}
+
+
+/*table*/
+
+th,
+td {
+    padding-left: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+table {
+    width: 100%;
+    height: 100%;
+}
+
+.card5,
+.card6,
+.card7 {
+    overflow: auto;
+}
+
+
+/* card headers for settings icon, and subcard headers*/
+
+.settings {
+    display: flex;
+    direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.settings>p {
+    margin-left: 20px;
+}
+
+
+/* card4 of statistics */
+
+.settings-icon,
+.table-settings-icon {
+    object-fit: none;
+    background-position: -335px -140px;
+    width: 33px;
+    height: 25px;
+    margin-right: 10px;
+}
+
+.card4-container-image {
+    overflow-x: scroll;
+    width: 100%;
+    height: 190px;
+    position: absolute;
+}
+
+.card4-container-image img {
+    height: 100%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+/* calendar*/
+
+ul {
+    list-style-type: none;
+}
+
+.month {
+    padding: 50px 0px;
+    width: 100%;
+    background: #5585a5;
+    text-align: center;
+}
+
+.month ul {
+    margin: 0;
+    padding: 0;
+}
+
+.month ul li {
+    color: white;
+    font-size: 20px;
+    text-transform: uppercase;
+    display: inline-block;
+}
+
+.month {
+    display: flex;
+    justify-content: center;
+}
+
+.month li:first-child {
+    margin-right: 70px;
+}
+
+.month li:last-child {
+    margin-left: 70px;
+}
+
+.weekdays {
+    margin: 0;
+    padding: 10px 10px;
+    background-color: #ddd;
+}
+
+.weekdays li {
+    display: inline-block;
+    width: 12%;
+    color: #666;
+    text-align: center;
+}
+
+.days {
+    margin: 0;
+    padding: 10px 10px 10px;
+}
+
+.days li {
+    display: inline-block;
+    width: 12%;
+    color: #666;
+    text-align: center;
+    padding: 20px 0px;
+}
+
+.days li .not-included {
+    color: rgb(223, 215, 215);
+}
+
+
+/*subcard contents*/
+
+.subcard-icon {
+    object-fit: none;
+    background-position: -335px -105px;
+    width: 33px;
+    height: 25px;
+    margin-right: 10px;
+    position: absolute;
+}
+
+.subcard-title {
+    display: flex;
+    width: 100%;
+    padding-top: 10px;
+}
+
+.subcard-title p {
+    padding-left: 50px;
+    padding-top: 5px;
+}
+
+.trunc-text {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.subcard-content {
+    display: flex;
+    justify-content: center;
+    overflow: auto;
+    margin-left: -20px;
+}
+
+.subcard p {
+    font-weight: bold;
+    margin: 0;
+    list-style-position: inside;
+}
+
+
+/* four buttons at the bottom and their contents*/
+
+.overview-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.overview-card-icon {
+    display: block;
+    object-fit: none;
+    background-position: -335px -105px;
+    width: 33px;
+    height: 25px;
+}
+
+.overview-card-content div {
+    margin-bottom: 0;
+    font-weight: bold;
+    font-size: larger;
+}
+
+.overview-card-content {
+    width: 100px;
+    text-align: right;
+}
+
+
+/* header menu*/
+
+.menu__header-btn {
+    border: 1px solid gray;
+    background-color: transparent;
+    margin-top: 10px;
+    margin-right: 20px;
+    height: 25px;
+    width: 25px;
+    /* display: inline-block; */
+}
+
+.menu a {
+    color: black;
+    text-align: center;
+    padding: 10px 10px;
+    text-decoration: none;
+    font-size: 17px;
+    position: relative;
+    margin-right: -4px;
+}
+
+.menu a:hover {
+    background-color: rgba(173, 180, 219, 0.377);
+    color: black;
+}
+
+.menu a:before {
+    background-image: url(http://www.trenatics.com/public/images/iconfile/sprites/css-sprite/sprite-action-grey600.png);
+}
+
+.top-menu1:before {
+    background-position: 0 0;
+    width: 33px;
+    height: 25px;
+    display: inline-block;
+    content: "";
+}
+
+.top-menu2:before {
+    background-position: 0 -35px;
+    width: 33px;
+    height: 25px;
+    display: inline-block;
+    content: "";
+}
+
+.top-menu3:before {
+    background-position: 0 -70px;
+    width: 33px;
+    height: 25px;
+    display: inline-block;
+    content: "";
+}
+
+.top-menu4:before {
+    background-position: 0 -105px;
+    width: 33px;
+    height: 25px;
+    display: inline-block;
+    content: "";
+}
+
+
+/* top nav menu search*/
+
+.header_search {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    overflow: hidden;
+    padding-right: 20px;
+}
+
+.header_search input[type=text] {
+    padding: 6px;
+    border: none;
+    margin-top: 8px;
+    margin-right: 16px;
+    font-size: 17px;
+}
+
+.avatar {
+    background-position: 0 0px;
+    width: 33px;
+    height: 25px;
+    display: inline-block;
+    content: "";
+}

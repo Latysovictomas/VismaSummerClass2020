@@ -1,0 +1,90 @@
+@media only screen and (max-width: 750px) {
+    .menu a {
+        display: none;
+    }
+    .menu__header-btn {
+        display: inline-block;
+    }
+}
+
+@media only screen and (min-width: 751px) {
+    .main__cards {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(250px, 1fr));
+        grid-template-rows: auto;
+    }
+    .card {
+        break-inside: avoid-column;
+        overflow: hidden;
+        transform: translateZ(0);
+    }
+    .menu a {
+        display: inline-block;
+    }
+    .menu span {
+        display: none;
+    }
+    .menu__header-btn,
+    .grid-container__side-btn {
+        display: none;
+    }
+    .sidenav {
+        position: relative;
+        transform: translateX(0);
+        transition: 0s;
+        position: fixed;
+    }
+    .sidenav__close-icon {
+        visibility: hidden;
+    }
+    /*sticky header and main overlap when sidebar is fixed*/
+    .header {
+        margin-left: 150px;
+    }
+    .main {
+        margin-left: 150px;
+    }
+}
+
+@media only screen and (min-width: 1080px) {
+    .main__cards {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(250px, 1fr));
+        grid-template-rows: auto;
+        grid-gap: 20px;
+        grid-template-areas: "column-1 column-2 column-3";
+    }
+    #column-1 {
+        grid-area: column-1;
+    }
+    #column-2 {
+        grid-area: column-2;
+    }
+    #column-3 {
+        grid-area: column-3;
+    }
+    /*3 columns*/
+    .column-1,
+    .column-2,
+    .column-3 {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+    }
+    /**/
+    .card {
+        break-inside: avoid-column;
+        overflow: hidden;
+        transform: translateZ(0);
+    }
+    .menu a {
+        display: inline-block;
+    }
+    .menu span {
+        display: inline-block;
+    }
+    .menu__header-btn {
+        display: none;
+    }
+}

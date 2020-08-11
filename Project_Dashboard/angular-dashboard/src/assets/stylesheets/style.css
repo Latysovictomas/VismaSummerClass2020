@@ -1,7 +1,7 @@
 body {
-    font-family: sans-serif;
     margin: 0;
     padding: 0;
+    font-family: sans-serif;
     background-color: #acd3d6;
 }
 
@@ -16,18 +16,17 @@ body {
     height: 100hv;
 }
 
-.header {
+.grid-container__header {
     grid-area: header;
-    /* background-color: #5585a5; */
     background-color: #d4e6f7ce;
 }
 
-.sidenav {
+.grid-container__sidenav {
     grid-area: sidenav;
     background-color: #47527a;
 }
 
-.main {
+.grid-container__main {
     grid-area: main;
     background-color: #acd3d6;
 }
@@ -47,16 +46,16 @@ body {
     z-index: 1;
 }
 
-.header_box {
+.header__box {
     background-color: #d4e6f7;
     height: 100%;
 }
 
-.header_search {
+.header__search {
     max-height: 50px;
 }
 
-.header_nav {
+.header__nav {
     max-height: 50px;
 }
 
@@ -64,7 +63,7 @@ body {
 /* Side navigation */
 
 .sidenav {
-    grid-area: sidenav;
+    /* grid-area: sidenav; */
     display: flex;
     flex-direction: column;
     height: 100%;
@@ -76,27 +75,36 @@ body {
     transition: all .6s ease-in-out;
 }
 
-.sidenav_list {
+.sidenav__list {
     padding: 0px;
     margin-top: 0px;
 }
 
-.sidenav_list-item {
+.sidenav__list-item {
     padding: 20px 20px 20px 40px;
     color: #ddd;
 }
 
-.sidenav_list a {
+.sidenav__list a {
     text-decoration: none;
 }
 
-.sidenav_list-item:hover {
+.sidenav__list-item:hover {
     background-color: rgba(255, 255, 255, 0.1);
 }
 
-.sidenav_header {
+.sidenav__header {
     height: 50px;
     background-color: #354375;
+}
+
+.sidenav__close-icon {
+    position: absolute;
+    visibility: visible;
+    top: 8px;
+    right: 12px;
+    cursor: pointer;
+    font-size: 20px;
 }
 
 .grid-container__side-btn {
@@ -112,22 +120,26 @@ body {
     width: 35px;
 }
 
-.sidenav__close-icon {
-    position: absolute;
-    visibility: visible;
-    top: 8px;
-    right: 12px;
-    cursor: pointer;
-    font-size: 20px;
-}
 
-
-/* for six cards in the main body */
+/* for six cards in the main body and a button */
 
 .main__cards {
     column-count: 1;
     column-gap: 20px;
     margin: 20px;
+}
+
+.main__add-widget-btn {
+    background-color: #3e779b;
+    border: none;
+    color: white;
+    padding: 20px 34px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 20px;
+    margin: 20px 20px;
+    cursor: pointer;
 }
 
 .card {
@@ -145,60 +157,6 @@ body {
 }
 
 
-/*card1*/
-
-.card:first-child {
-    max-height: 490px;
-    text-align: center;
-}
-
-.card:nth-child(2) {
-    max-height: 300px;
-    /* overflow: hidden; */
-}
-
-.card:nth-child(3) {
-    max-height: 240px;
-}
-
-.card:nth-child(4) {
-    max-height: 240px;
-}
-
-.card:nth-child(5) {
-    max-height: 240px;
-}
-
-
-/* 4 small cards */
-
-.subcard-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr 1fr;
-    max-height: 240px;
-    gap: 20px;
-}
-
-.subcard {
-    display: flex;
-    flex-direction: column;
-    background-color: #d4e6f7;
-    background-image: linear-gradient(#d4e6f7, #ffffff);
-    break-inside: avoid-column;
-    overflow: hidden;
-    box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.1);
-    box-sizing: border-box;
-    height: 110px;
-    max-height: 110px;
-}
-
-.subcard:hover {
-    transform: scale(1.05);
-    transition: 0.2s;
-}
-
-
 /* four small rectangles at the bottom */
 
 .main-overview {
@@ -209,7 +167,7 @@ body {
     margin: 20px;
 }
 
-.overview-card {
+.main-overview__card {
     background-color: rgba(100, 124, 151, 0.178);
     background: linear-gradient(rgba(100, 124, 151, 0.178), #ffffff);
     box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.1);
@@ -219,29 +177,23 @@ body {
     justify-content: center;
 }
 
-.overview-card:hover {
+.main-overview__card:hover {
     transform: scale(1.05);
     transition: 0.2s;
+    background: linear-gradient(rgb(97, 143, 196), #ffffff);
+}
+
+.main-overview__card:hover span {
+    background-position: top right;
 }
 
 
-/* Adding details to widgets*/
+/* header color */
 
-
-/*table*/
-
-th,
-td {
-    padding-left: 10px;
-    text-align: left;
-    border-bottom: 1px solid #ddd;
-    padding-bottom: 20px;
+.light-theme {
+    background-color: rgba(100, 124, 151, 0.200);
 }
 
-.table-container {
-    overflow: auto;
-}
-
-table {
-    width: 100%;
+.dark-theme {
+    background-color: rgba(100, 124, 151, 0.700);
 }
