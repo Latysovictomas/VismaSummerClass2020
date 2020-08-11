@@ -3,7 +3,18 @@ import { BACKEND_URL, CURRENT_WIDGET_ID } from "./utils/urls.js";
 import { Rest } from "./utils/rest.js";
 
 
-class WidgetForm {
+export class WidgetForm {
+
+    static init() {
+        // run the fill form function
+        WidgetForm.fillFormByCurrentId();
+        // to display or not to display button
+        WidgetForm.setDeleteBtnDisplay();
+        // add or put widget form data
+        WidgetForm.addPutListener();
+        // delete widget
+        WidgetForm.deleteListener();
+    }
 
     static fillFormByCurrentId() {
         if (CURRENT_WIDGET_ID != null) {
@@ -57,39 +68,39 @@ class WidgetForm {
         }
     }
 
-}
 
-
-// run the fill form function
-WidgetForm.fillFormByCurrentId();
-// to display or not to display button
-WidgetForm.setDeleteBtnDisplay();
-
-
-// Event: Add/Edit a widget using post/put
-document.getElementById("widget-form").addEventListener("submit", (e) => {
-    // Prevent fast reload
-    e.preventDefault();
-    // validate json
-    var data = document.getElementById("text-area").value.trim();
-    // replace white space between the following chars: { , }, and other replacements
-    data = data.replace(/({)\s+/g, "{").replace(/(,)\s+/g, ",").replace(/\s*(})\s*/g, "}").replace(/\'/g, '"');
-    if (!WidgetForm.isValidJSON(data)) {
-        alert("Data input is not valid JSON.");
-    } else {
-        // get form data
-        var title = document.getElementById("title").value;
-        var column = Number(document.getElementById("column-number").value);
-        var type = Number(document.getElementById("types").value);
-        var headerType = parseInt(document.getElementById("header-types").value);
-        const widget = new Widget(title, column, type, headerType, data);
-        // here decide on what type of request based on current id
-        WidgetForm.postOrPutFormData(widget);
+    static addPutListener() {
+        // Event: Add/Edit a widget using post/put
+        document.getElementById("widget-form").addEventListener("submit", (e) => {
+            // Prevent fast reload
+            e.preventDefault();
+            // validate json
+            var data = document.getElementById("text-area").value.trim();
+            // replace white space between the following chars: { , }, and other replacements
+            data = data.replace(/({)\s+/g, "{").replace(/(,)\s+/g, ",").replace(/\s*(})\s*/g, "}").replace(/\'/g, '"');
+            if (!WidgetForm.isValidJSON(data)) {
+                alert("Data input is not valid JSON.");
+            } else {
+                // get form data
+                var title = document.getElementById("title").value;
+                var column = Number(document.getElementById("column-number").value);
+                var type = Number(document.getElementById("types").value);
+                var headerType = parseInt(document.getElementById("header-types").value);
+                const widget = new Widget(title, column, type, headerType, data);
+                // here decide on what type of request based on current id
+                WidgetForm.postOrPutFormData(widget);
+            }
+        });
     }
-});
 
 
-// Event: Delete request
-document.getElementById("delete-btn").addEventListener("click", (e) => {
-    Rest.delete(BACKEND_URL, WidgetForm.redirect, CURRENT_WIDGET_ID);
-});
+    static deleteListener() {
+        // Event: Delete request
+        document.getElementById("delete-btn").addEventListener("click", (e) => {
+            Rest.delete(BACKEND_URL, WidgetForm.redirect, CURRENT_WIDGET_ID);
+        });
+
+    }
+
+
+}

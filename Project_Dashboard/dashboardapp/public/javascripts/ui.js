@@ -2,7 +2,11 @@ import { BACKEND_URL } from "./utils/urls.js";
 import { Rest } from "./utils/rest.js";
 import { chatInputHTML, headerHTML, tableHTML, chatLogHTML } from "./utils/templates.js";
 
-class UI {
+export class UI {
+
+    static init() {
+        UI.onContentLoaded();
+    }
 
     static displayWidgets(widgets) {
 
@@ -95,7 +99,9 @@ class UI {
             mainSectionElement.insertAdjacentHTML("beforeend", container);
         }
     }
-}
 
-// Event: Display on initial page load
-document.addEventListener("DOMContentLoaded", Rest.get(BACKEND_URL, UI.displayWidgets));
+    static onContentLoaded() {
+        // Event: Display on initial page load
+        document.addEventListener("DOMContentLoaded", Rest.get(BACKEND_URL, UI.displayWidgets));
+    }
+}
