@@ -2,13 +2,13 @@
     .menu a {
         display: none;
     }
-    .hide-top-menu {
+    .menu__header-btn {
         display: inline-block;
     }
 }
 
 @media only screen and (min-width: 751px) {
-    .main-cards {
+    .main__cards {
         display: grid;
         grid-template-columns: repeat(2, minmax(250px, 1fr));
         grid-template-rows: auto;
@@ -24,8 +24,8 @@
     .menu span {
         display: none;
     }
-    .hide-top-menu,
-    .hide-side-menu-icon {
+    .menu__header-btn,
+    .grid-container__side-btn {
         display: none;
     }
     .sidenav {
@@ -34,7 +34,7 @@
         transition: 0s;
         position: fixed;
     }
-    .sidenav-close-icon {
+    .sidenav__close-icon {
         visibility: hidden;
     }
     /*sticky header and main overlap when sidebar is fixed*/
@@ -47,7 +47,7 @@
 }
 
 @media only screen and (min-width: 1080px) {
-    .main-cards {
+    .main__cards {
         display: grid;
         grid-template-columns: repeat(3, minmax(250px, 1fr));
         grid-template-rows: auto;
@@ -84,7 +84,7 @@
     .menu span {
         display: inline-block;
     }
-    .hide-top-menu {
+    .menu__header-btn {
         display: none;
     }
 }

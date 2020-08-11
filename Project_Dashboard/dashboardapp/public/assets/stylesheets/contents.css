@@ -7,13 +7,13 @@
 
 /*card chat*/
 
-textarea {
+.form-container__textarea {
     width: 98%;
     resize: none;
     height: 100px;
 }
 
-.form-container .btn-send {
+.form-container__btn-send {
     background-color: #5585a5;
     color: white;
     width: 100%;
@@ -25,7 +25,7 @@ textarea {
     margin-right: 15px;
 }
 
-.send-icon {
+.btn-container__send-icon {
     background: url(../images/24_send.png);
     display: inline-block;
     object-fit: none;
@@ -34,43 +34,28 @@ textarea {
     height: 15px;
 }
 
-.send-text {
+.btn-container__send-text {
     width: 100%;
     margin-left: 10px;
 }
 
-.btn-send {
+.form-container__btn-send {
     cursor: pointer;
 }
 
-.btn-send:hover {
+.form-container__btn-send:hover {
     opacity: 1;
     background-color: #507e9c;
 }
 
-.btn-send:hover span {
+.form-container__btn-send:hover span {
     background-position: -85px -5px;
 }
 
-.chat-message-author {
+.chat-log__chat-message-author {
     display: flex;
     align-items: center;
     padding-right: 10px;
-}
-
-.chat-message {
-    display: flex;
-    align-items: space-around;
-    text-align: left;
-}
-
-.chat-message p {
-    width: 100%;
-    display: inline-block;
-}
-
-.chat-message-right {
-    flex-direction: row-reverse;
 }
 
 .chat-log {
@@ -81,21 +66,23 @@ textarea {
     max-height: 300px;
 }
 
+.chat-log__chat-message {
+    display: flex;
+    align-items: space-around;
+    text-align: left;
+}
+
+.chat-log__chat-message p {
+    width: 100%;
+    display: inline-block;
+}
+
+.chat-log__chat-message-right {
+    flex-direction: row-reverse;
+}
+
 
 /*table*/
-
-th,
-td {
-    padding-left: 10px;
-    text-align: left;
-    border-bottom: 1px solid #ddd;
-    ;
-}
-
-table {
-    width: 100%;
-    height: 100%;
-}
 
 .userList-card {
     break-inside: avoid;
@@ -106,10 +93,27 @@ table {
     overflow-x: auto;
 }
 
+.userList-container__table {
+    width: 100%;
+    height: 100%;
+}
+
+.userList-container__table th,
+.userList-container__table td {
+    padding-left: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
 
 /* card headers for settings icon, and subcard headers*/
 
-.widget-header {
+.widget-link {
+    color: inherit;
+    text-decoration: inherit;
+}
+
+.widget-link__widget-header {
     display: flex;
     direction: row;
     align-items: center;
@@ -117,16 +121,11 @@ table {
     width: 100%;
 }
 
-.widget-header>p {
+.widget-link__widget-header>p {
     margin-left: 20px;
 }
 
-.widget-link {
-    color: inherit;
-    text-decoration: inherit;
-}
-
-.widget-header:hover {
+.widget-link__widget-header:hover {
     /* background-color: #b6d0e9; */
     filter: brightness(75%);
 }
@@ -134,13 +133,13 @@ table {
 
 /* four buttons at the bottom and their contents*/
 
-.overview-card {
+.main-overview__card {
     display: flex;
     align-items: center;
     justify-content: space-around;
 }
 
-.overview-card-icon {
+.main-overview__card-icon {
     display: block;
     object-fit: none;
     background-position: -335px -105px;
@@ -148,18 +147,18 @@ table {
     height: 25px;
 }
 
-.overview-card-content div {
+.main-overview__content div {
     margin-bottom: 0;
     font-weight: bold;
     font-size: larger;
 }
 
-.overview-card-content {
+.main-overview__content {
     width: 100px;
     text-align: right;
 }
 
-.trunc-text {
+.main-overview--trunc-text {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -168,7 +167,7 @@ table {
 
 /* header menu*/
 
-.hide-top-menu {
+.menu__header-btn {
     border: 1px solid gray;
     background-color: transparent;
     margin-top: 10px;
@@ -197,7 +196,7 @@ table {
     background-image: url(http://www.trenatics.com/public/images/iconfile/sprites/css-sprite/sprite-action-grey600.png);
 }
 
-.top-menu1:before {
+.menu__top-menu1:before {
     background-position: 0 0;
     width: 33px;
     height: 25px;
@@ -205,7 +204,7 @@ table {
     content: "";
 }
 
-.top-menu2:before {
+.menu__top-menu2:before {
     background-position: 0 -35px;
     width: 33px;
     height: 25px;
@@ -213,7 +212,7 @@ table {
     content: "";
 }
 
-.top-menu3:before {
+.menu__top-menu3:before {
     background-position: 0 -70px;
     width: 33px;
     height: 25px;
@@ -221,7 +220,7 @@ table {
     content: "";
 }
 
-.top-menu4:before {
+.menu__top-menu4:before {
     background-position: 0 -105px;
     width: 33px;
     height: 25px;
@@ -232,7 +231,7 @@ table {
 
 /* top nav menu search*/
 
-.header_search {
+.header__search {
     display: flex;
     justify-content: flex-end;
     align-items: center;
@@ -240,7 +239,7 @@ table {
     padding-right: 20px;
 }
 
-.header_search input[type=text] {
+.header__search input[type=text] {
     padding: 6px;
     border: none;
     margin-top: 8px;
@@ -248,7 +247,7 @@ table {
     font-size: 17px;
 }
 
-.avatar {
+.header__avatar {
     background-position: 0 0px;
     width: 33px;
     height: 25px;

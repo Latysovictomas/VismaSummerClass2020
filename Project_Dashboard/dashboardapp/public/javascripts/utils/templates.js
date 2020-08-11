@@ -1,10 +1,10 @@
 export const chatInputHTML = () => `
 <form class="form-container">
-    <textarea name="msg" placeholder="Type message required"></textarea>
-        <button class="btn-send" type="submit">
+    <textarea class="form-container__textarea" name="msg" placeholder="Type message required"></textarea>
+        <button class="form-container__btn-send" type="submit">
             <div class="btn-container">
-                <span class="send-icon"></span>
-                <span class="send-text">Send</span>
+                <span class="btn-container__send-icon"></span>
+                <span class="btn-container__send-text">Send</span>
             </div>
         </button>
 </form>`;
@@ -12,14 +12,14 @@ export const chatInputHTML = () => `
 
 export const headerHTML = (widget, colorTheme) => `
 <a href="widget-form.html?id=${widget.id}" class="widget-link">
-    <div class="widget-header ${colorTheme}">
+    <div class="widget-link__widget-header ${colorTheme}">
         <p>${widget.title}</p>
     </div>
 </a>`;
 
 export const tableHTML = (widgetsDataAsArray) => `
 <div id="userList-container">
-<table class="card-table">
+<table class="userList-container__table">
     <tr>
         <th>#</th>
         <th>First Name</th>
@@ -43,8 +43,8 @@ ${widgetsDataAsArray.map((object, index) => chatLogMessages(object, index)).join
 
 
 const chatLogMessages = (object, index) => `
-<div class="chat-message${index%2!==0?" chat-message-right":""}">
-    <span class="chat-message-author">
+<div class="chat-log__chat-message${index%2!==0?" chat-log__chat-message-right":""}">
+    <span class="chat-log__chat-message-author">
         <b>${object.author}</b>
     </span>
     <p>${object.message}</p>

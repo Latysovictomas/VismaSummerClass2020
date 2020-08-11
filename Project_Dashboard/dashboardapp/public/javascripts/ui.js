@@ -10,7 +10,7 @@ export class UI {
 
     static displayWidgets(widgets) {
 
-        let mainSection = document.getElementById("main-cards");
+        let mainSection = document.getElementById("main__cards");
 
         UI.appendColumnContainers(3, mainSection);
 

@@ -100,7 +100,7 @@ body {
     background-color: #354375;
 }
 
-.hide-side-menu-icon {
+.grid-container__side-btn {
     position: fixed;
     cursor: pointer;
     top: 50px;
@@ -113,7 +113,7 @@ body {
     width: 35px;
 }
 
-.sidenav-close-icon {
+.sidenav__close-icon {
     position: absolute;
     visibility: visible;
     top: 8px;
@@ -125,7 +125,7 @@ body {
 
 /* for six cards in the main body */
 
-.main-cards {
+.main__cards {
     column-count: 1;
     column-gap: 20px;
     margin: 20px;
