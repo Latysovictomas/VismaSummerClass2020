@@ -1,1 +1,60 @@
-@import "../../assets/stylesheets/widget_form_style.css";
+* {
+    box-sizing: border-box
+}
+
+body {
+    display: flex;
+    justify-content: center;
+}
+
+.container {
+    padding: 0px;
+    max-width: 500px;
+}
+
+#fields {
+    background-color: rgba(100, 124, 151, 0.178);
+}
+
+
+/* Changing input fields */
+
+input[type=text],
+input[type=number],
+#text-area,
+#header-types,
+#types {
+    min-width: 100px;
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 10px;
+    border: none;
+    background: #f1f1f1;
+    outline: none;
+}
+
+#text-area {
+    resize: none;
+    margin-bottom: 0px;
+}
+
+
+/* Set a style for the add a widget button*/
+
+.form-btn {
+    color: white;
+    padding: 8px 10px;
+    margin: 10px 0px;
+    border: none;
+    cursor: pointer;
+    opacity: 0.9;
+}
+
+.add-widget-btn {
+    background-color: #3e779b;
+}
+
+.delete-widget-btn {
+    margin: 0px 10px;
+    background-color: #bd4040;
+}

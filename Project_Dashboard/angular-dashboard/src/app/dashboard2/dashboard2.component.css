@@ -1,3 +1,619 @@
-@import "../../assets/stylesheets/style_dashboard2.css";
-@import "../../assets/stylesheets/contents_dashboard2.css";
-@import "../../assets/stylesheets/media.css";
+/*grid*/
+
+.grid-container {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-template-rows: 50px 1fr;
+    grid-template-areas: "sidenav header" "sidenav main";
+    height: 100hv;
+}
+
+.header {
+    grid-area: header;
+    /* background-color: #5585a5; */
+    background-color: #d4e6f7ce;
+}
+
+.sidenav {
+    grid-area: sidenav;
+    background-color: #47527a;
+}
+
+.main {
+    grid-area: main;
+    background-color: #acd3d6;
+}
+
+
+/* header */
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 20px;
+    background-color: #d4e6f7;
+    /*sticky background*/
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
+
+.header_box {
+    background-color: #d4e6f7;
+    height: 100%;
+}
+
+.header_search {
+    max-height: 50px;
+}
+
+.header_nav {
+    max-height: 50px;
+}
+
+
+/* Side navigation */
+
+.sidenav {
+    grid-area: sidenav;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 150px;
+    position: fixed;
+    overflow-y: auto;
+    z-index: 2;
+    transform: translateX(-150px);
+    transition: all .6s ease-in-out;
+}
+
+.sidenav_list {
+    padding: 0px;
+    margin-top: 0px;
+}
+
+.sidenav_list-item {
+    padding: 20px 20px 20px 40px;
+    color: #ddd;
+}
+
+.sidenav_list a {
+    text-decoration: none;
+}
+
+.sidenav_list-item:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.sidenav_header {
+    height: 50px;
+    background-color: #354375;
+}
+
+.grid-container__side-btn {
+    position: fixed;
+    cursor: pointer;
+    top: 50px;
+    z-index: 1;
+    border: 1px solid gray;
+    background-color: #d4e6f7ce;
+    margin-top: 10px;
+    margin-right: 20px;
+    height: 35px;
+    width: 35px;
+}
+
+.sidenav__close-icon {
+    position: absolute;
+    visibility: visible;
+    top: 8px;
+    right: 12px;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+
+/* for six cards in the main body */
+
+.main__cards {
+    column-count: 1;
+    column-gap: 20px;
+    margin: 20px;
+}
+
+.card {
+    background-color: #d4e6f7;
+    background-image: linear-gradient(#d4e6f7, #ffffff);
+    box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    overflow: hidden;
+    transform: translateZ(0);
+}
+
+.card:hover {
+    transform: scale(1.05);
+    transition: 0.2s;
+}
+
+
+/*card1*/
+
+.card:first-child {
+    max-height: 490px;
+    text-align: center;
+}
+
+.card:nth-child(2) {
+    max-height: 300px;
+    /* overflow: hidden; */
+}
+
+.card:nth-child(3) {
+    max-height: 240px;
+}
+
+.card:nth-child(4) {
+    max-height: 240px;
+}
+
+.card:nth-child(5) {
+    max-height: 240px;
+}
+
+
+/* 4 small cards */
+
+.subcard-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    max-height: 240px;
+    gap: 20px;
+}
+
+.subcard {
+    display: flex;
+    flex-direction: column;
+    background-color: #d4e6f7;
+    background-image: linear-gradient(#d4e6f7, #ffffff);
+    break-inside: avoid-column;
+    overflow: hidden;
+    box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
+    height: 110px;
+    max-height: 110px;
+}
+
+.subcard:hover {
+    transform: scale(1.05);
+    transition: 0.2s;
+}
+
+
+/* four small rectangles at the bottom */
+
+
+/* Adding details to widgets*/
+
+
+/*table*/
+
+th,
+td {
+    padding-left: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 20px;
+}
+
+.table-container {
+    overflow: auto;
+}
+
+table {
+    width: 100%;
+}
+
+
+/*contents*/
+
+
+/* Adding details to widgets*/
+
+.sprite {
+    background-image: url("http://www.trenatics.com/public/images/iconfile/sprites/css-sprite/sprite-action-grey600.png");
+}
+
+
+/* card1 half text half image*/
+
+.card1-container {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    height: 245px;
+    /*for image*/
+    object-fit: cover;
+    overflow: hidden;
+}
+
+.card-image {
+    max-height: 245px;
+    /* allows repositioning */
+    /* move the whole width of the image to the right */
+    /* magic! */
+    position: relative;
+    left: 500%;
+    margin-left: -1000%;
+    object-fit: cover;
+    overflow: hidden;
+}
+
+.card-text {
+    padding: 20px;
+    font-size: 2vh;
+    max-height: 245px;
+    overflow: auto;
+}
+
+
+/*table*/
+
+th,
+td {
+    padding-left: 10px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+table {
+    width: 100%;
+    height: 100%;
+}
+
+.card5,
+.card6,
+.card7 {
+    overflow: auto;
+}
+
+
+/* card headers for settings icon, and subcard headers*/
+
+.settings {
+    display: flex;
+    direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.settings>p {
+    margin-left: 20px;
+}
+
+
+/* card4 of statistics */
+
+.settings-icon,
+.table-settings-icon {
+    object-fit: none;
+    background-position: -335px -140px;
+    width: 33px;
+    height: 25px;
+    margin-right: 10px;
+}
+
+.card4-container-image {
+    overflow-x: scroll;
+    width: 100%;
+    height: 190px;
+    position: absolute;
+}
+
+.card4-container-image img {
+    height: 100%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+
+/* calendar*/
+
+ul {
+    list-style-type: none;
+}
+
+.month {
+    padding: 50px 0px;
+    width: 100%;
+    background: #5585a5;
+    text-align: center;
+}
+
+.month ul {
+    margin: 0;
+    padding: 0;
+}
+
+.month ul li {
+    color: white;
+    font-size: 20px;
+    text-transform: uppercase;
+    display: inline-block;
+}
+
+.month {
+    display: flex;
+    justify-content: center;
+}
+
+.month li:first-child {
+    margin-right: 70px;
+}
+
+.month li:last-child {
+    margin-left: 70px;
+}
+
+.weekdays {
+    margin: 0;
+    padding: 10px 10px;
+    background-color: #ddd;
+}
+
+.weekdays li {
+    display: inline-block;
+    width: 12%;
+    color: #666;
+    text-align: center;
+}
+
+.days {
+    margin: 0;
+    padding: 10px 10px 10px;
+}
+
+.days li {
+    display: inline-block;
+    width: 12%;
+    color: #666;
+    text-align: center;
+    padding: 20px 0px;
+}
+
+.days li .not-included {
+    color: rgb(223, 215, 215);
+}
+
+
+/*subcard contents*/
+
+.subcard-icon {
+    object-fit: none;
+    background-position: -335px -105px;
+    width: 33px;
+    height: 25px;
+    margin-right: 10px;
+    position: absolute;
+}
+
+.subcard-title {
+    display: flex;
+    width: 100%;
+    padding-top: 10px;
+}
+
+.subcard-title p {
+    padding-left: 50px;
+    padding-top: 5px;
+}
+
+.trunc-text {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.subcard-content {
+    display: flex;
+    justify-content: center;
+    overflow: auto;
+    margin-left: -20px;
+}
+
+.subcard p {
+    font-weight: bold;
+    margin: 0;
+    list-style-position: inside;
+}
+
+
+/* four buttons at the bottom and their contents*/
+
+
+/* header menu*/
+
+.menu__header-btn {
+    border: 1px solid gray;
+    background-color: transparent;
+    margin-top: 10px;
+    margin-right: 20px;
+    height: 25px;
+    width: 25px;
+    /* display: inline-block; */
+}
+
+.menu a {
+    color: black;
+    text-align: center;
+    padding: 10px 10px;
+    text-decoration: none;
+    font-size: 17px;
+    position: relative;
+    margin-right: -4px;
+}
+
+.menu a:hover {
+    background-color: rgba(173, 180, 219, 0.377);
+    color: black;
+}
+
+.menu a:before {
+    background-image: url(http://www.trenatics.com/public/images/iconfile/sprites/css-sprite/sprite-action-grey600.png);
+}
+
+.top-menu1:before {
+    background-position: 0 0;
+    width: 33px;
+    height: 25px;
+    display: inline-block;
+    content: "";
+}
+
+.top-menu2:before {
+    background-position: 0 -35px;
+    width: 33px;
+    height: 25px;
+    display: inline-block;
+    content: "";
+}
+
+.top-menu3:before {
+    background-position: 0 -70px;
+    width: 33px;
+    height: 25px;
+    display: inline-block;
+    content: "";
+}
+
+.top-menu4:before {
+    background-position: 0 -105px;
+    width: 33px;
+    height: 25px;
+    display: inline-block;
+    content: "";
+}
+
+
+/* top nav menu search*/
+
+.header_search {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    overflow: hidden;
+    padding-right: 20px;
+}
+
+.header_search input[type=text] {
+    padding: 6px;
+    border: none;
+    margin-top: 8px;
+    margin-right: 16px;
+    font-size: 17px;
+}
+
+.avatar {
+    background-position: 0 0px;
+    width: 33px;
+    height: 25px;
+    display: inline-block;
+    content: "";
+}
+
+
+/*media*/
+
+@media only screen and (max-width: 750px) {
+    .menu a {
+        display: none;
+    }
+    .menu__header-btn {
+        display: inline-block;
+    }
+}
+
+@media only screen and (min-width: 751px) {
+    .main__cards {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(250px, 1fr));
+        grid-template-rows: auto;
+    }
+    .card {
+        break-inside: avoid-column;
+        overflow: hidden;
+        transform: translateZ(0);
+    }
+    .menu a {
+        display: inline-block;
+    }
+    .menu span {
+        display: none;
+    }
+    .menu__header-btn,
+    .grid-container__side-btn {
+        display: none;
+    }
+    .sidenav {
+        position: relative;
+        transform: translateX(0);
+        transition: 0s;
+        position: fixed;
+    }
+    .sidenav__close-icon {
+        visibility: hidden;
+    }
+    /*sticky header and main overlap when sidebar is fixed*/
+    .header {
+        margin-left: 150px;
+    }
+    .main {
+        margin-left: 150px;
+    }
+}
+
+@media only screen and (min-width: 1080px) {
+    .main__cards {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(250px, 1fr));
+        grid-template-rows: auto;
+        grid-gap: 20px;
+        grid-template-areas: "column-1 column-2 column-3";
+    }
+    #column-1 {
+        grid-area: column-1;
+    }
+    #column-2 {
+        grid-area: column-2;
+    }
+    #column-3 {
+        grid-area: column-3;
+    }
+    /*3 columns*/
+    .column-1,
+    .column-2,
+    .column-3 {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+    }
+    /**/
+    .card {
+        break-inside: avoid-column;
+        overflow: hidden;
+        transform: translateZ(0);
+    }
+    .menu a {
+        display: inline-block;
+    }
+    .menu span {
+        display: inline-block;
+    }
+    .menu__header-btn {
+        display: none;
+    }
+}

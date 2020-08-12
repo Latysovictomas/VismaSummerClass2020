@@ -7,7 +7,7 @@ export class Widget implements widgetInterface {
     headerType: number;
     data: string;
 
-    constructor(title, column, type, headerType, data) {
+    constructor(title: string, column: number, type: number, headerType: number, data: string) {
         this.title = title;
         this.column = column;
         this.type = type;

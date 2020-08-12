@@ -1,84 +1,87 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, AfterViewInit, ViewEncapsulation } from '@angular/core';
 
 import { BACKEND_URL } from "../utils/urls";
-import { Rest } from "../utils/rest";
+import { Widget } from '../widget';
+import { RestService } from "../rest.service";
 import { chatInputHTML, headerHTML, tableHTML, chatLogHTML } from "../utils/templates";
+
 
 
 @Component({
   selector: 'app-ui',
   templateUrl: './ui.component.html',
-  styleUrls: ['./ui.component.css']
+  styleUrls: ['./ui.component.css'], 
+  encapsulation: ViewEncapsulation.None
 })
-export class UiComponent implements OnInit {
+export class UiComponent implements AfterViewInit {
 
-  constructor() { }
-
-  ngOnInit(): void {
-
-  }
+  constructor(private restService: RestService) { }
 
   ngAfterViewInit(): void{
-    UiComponent.init();
+    this.init();
   }
 
-  static init() {
-    UiComponent.onContentLoaded();
+  init(): void {
+    this.onContentLoaded();
 }
 
-static displayWidgets(widgets) {
 
-    let mainSection = document.getElementById("main__cards");
+    // displayWidgets = (widgets: Widget[]):void => {
+    displayWidgets(widgets: Widget[]): void {
 
-    UiComponent.appendColumnContainers(3, mainSection);
+    let mainSection: HTMLElement = document.getElementById("main__cards");
+
+    this.appendColumnContainers(3, mainSection);
+    
 
     // for each widget
-    widgets.forEach((widget, index) => {
-        let card = document.createElement("section");
+    widgets.forEach((widget) => {
+        let card: HTMLElement = document.createElement("section");
         if (widget.type === 1) { // userList
-          UiComponent.createUserListWidget(widget, card);
+            
+          this.createUserListWidget(widget, card);
         } else if (widget.type === 2) { // messages
-          UiComponent.createMessageWidget(widget, card);
+          this.createMessageWidget(widget, card);
         }
     });
 }
 
-static createMessageWidget(widget, card) {
+createMessageWidget(widget: Widget, card: HTMLElement): void {
     card.className = "card messages-card";
     // create header
-    card.insertAdjacentHTML("beforeend", headerHTML(widget, UiComponent.getHeaderColor(widget)));
+    card.insertAdjacentHTML("beforeend", headerHTML(widget, this.getHeaderColor(widget)));
 
     // create chat log
-    let widgetDataArray = UiComponent.getWidgetDataAsArray(widget);
+    let widgetDataArray: string[] = this.getWidgetDataAsArray(widget);
     card.insertAdjacentHTML("beforeend", chatLogHTML(widgetDataArray));
 
     // append input area below chat log
     card.insertAdjacentHTML("beforeend", chatInputHTML());
 
     // append to the right column
-    UiComponent.setWidgetPosition(widget, card);
+    this.setWidgetPosition(widget, card);
 
 }
 
 
-static createUserListWidget(widget, card) {
+createUserListWidget(widget: Widget, card: HTMLElement): void {
     card.className = "card userList-card";
     // create header
-    card.insertAdjacentHTML("beforeend", headerHTML(widget, UiComponent.getHeaderColor(widget)));
+    card.insertAdjacentHTML("beforeend", headerHTML(widget, this.getHeaderColor(widget)));
 
     // create table
-    let widgetDataArray = UiComponent.getWidgetDataAsArray(widget);
+    let widgetDataArray: string[] = this.getWidgetDataAsArray(widget);
     card.insertAdjacentHTML("beforeend", tableHTML(widgetDataArray));
 
     // append to the right column
-    UiComponent.setWidgetPosition(widget, card);
+    this.setWidgetPosition(widget, card);
 }
 
-static getWidgetDataAsArray(widget) {
+getWidgetDataAsArray(widget: Widget): string[] {
     return Array.isArray(widget.data) ? widget.data : Array.of(widget.data);
 }
 
-static getHeaderColor(widget) {
+getHeaderColor(widget: Widget): string {
     switch (widget.headerType) {
         case 1:
             return "light-theme";
@@ -89,40 +92,39 @@ static getHeaderColor(widget) {
     }
 }
 
-static setWidgetPosition(widget, card) {
+setWidgetPosition(widget: Widget, card: HTMLElement): void {
     switch (widget.column) {
         case 1:
-          UiComponent.appendWidgetToColumn(1, card);
+            this.appendWidgetToColumn(1, card);
             break;
         case 2:
-          UiComponent.appendWidgetToColumn(2, card);
+            this.appendWidgetToColumn(2, card);
             break;
         case 3:
-          UiComponent.appendWidgetToColumn(3, card);
+            this.appendWidgetToColumn(3, card);
             break;
         default:
             break;
     }
 }
 
-static appendWidgetToColumn(columnNum, card) {
-    let container = document.getElementById(`column-${columnNum}`);
+appendWidgetToColumn(columnNum: number, card: HTMLElement): void {
+    let container: HTMLElement = document.getElementById(`column-${columnNum}`);
     container.appendChild(card);
 }
 
-static appendColumnContainers(columnNum, mainSectionElement) {
-    let container;
+appendColumnContainers(columnNum: number, mainSectionElement: HTMLElement): void {
+    let container: string;
     for (let i = 0; i < columnNum; i++) {
         container = `<div id="column-${i + 1}"></div>`;
         mainSectionElement.insertAdjacentHTML("beforeend", container);
     }
 }
 
-static onContentLoaded() {
+onContentLoaded() {
     // Event: Display on initial page load
-    // document.addEventListener("DOMContentLoaded", Rest.get(BACKEND_URL, UiComponent.displayWidgets));
-    Rest.get(BACKEND_URL, UiComponent.displayWidgets);
-}
+    this.restService.get(BACKEND_URL, this.displayWidgets.bind(this));
+    }
 
 
 }

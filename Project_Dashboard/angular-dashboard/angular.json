@@ -24,12 +24,6 @@
                             "src/assets"
                         ],
                         "styles": [
-                            "src/assets/stylesheets/style.css",
-                            "src/assets/stylesheets/contents.css",
-                            "src/assets/stylesheets/widget_form_style.css",
-                            "src/assets/stylesheets/media.css",
-                            "src/assets/stylesheets/contents_dashboard2.css",
-                            "src/assets/stylesheets/style_dashboard2.css",
                             "src/styles.css"
                         ],
                         "scripts": []

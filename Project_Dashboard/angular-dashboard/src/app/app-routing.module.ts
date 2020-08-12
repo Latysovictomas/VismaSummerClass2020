@@ -4,6 +4,8 @@ import { UiComponent } from './ui/ui.component';
 import { Dashboard2Component } from './dashboard2/dashboard2.component';
 import { WidgetFormComponent } from './widget-form/widget-form.component';
 
+
+
 const routes: Routes = [
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
   { path: 'dashboard', component: UiComponent },

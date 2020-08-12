@@ -6,13 +6,17 @@ import { UiComponent } from './ui/ui.component';
 import { Dashboard2Component } from './dashboard2/dashboard2.component';
 import { AppRoutingModule } from './app-routing.module';
 import { WidgetFormComponent } from './widget-form/widget-form.component';
+import { OverviewComponent } from './overview/overview.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
     UiComponent,
     Dashboard2Component,
-    WidgetFormComponent
+    WidgetFormComponent,
+    OverviewComponent,
+    
   ],
   imports: [
     BrowserModule,

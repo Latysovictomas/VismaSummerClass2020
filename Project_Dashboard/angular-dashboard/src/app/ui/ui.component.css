@@ -1,3 +1,491 @@
-@import "../../assets/stylesheets/style.css";
-@import "../../assets/stylesheets/contents.css";
-@import "../../assets/stylesheets/media.css";
+/*grid*/
+
+.grid-container {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-template-rows: 50px 1fr;
+    grid-template-areas: "sidenav header" "sidenav main";
+    height: 100hv;
+}
+
+.grid-container__header {
+    grid-area: header;
+    background-color: #d4e6f7ce;
+}
+
+.grid-container__sidenav {
+    grid-area: sidenav;
+    background-color: #47527a;
+}
+
+.grid-container__main {
+    grid-area: main;
+    background-color: #acd3d6;
+}
+
+
+/* header */
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 20px;
+    background-color: #d4e6f7;
+    /*sticky background*/
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
+
+.header__box {
+    background-color: #d4e6f7;
+    height: 100%;
+}
+
+.header__search {
+    max-height: 50px;
+}
+
+.header__nav {
+    max-height: 50px;
+}
+
+
+/* Side navigation */
+
+.sidenav {
+    /* grid-area: sidenav; */
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    width: 150px;
+    position: fixed;
+    overflow-y: auto;
+    z-index: 2;
+    transform: translateX(-150px);
+    transition: all .6s ease-in-out;
+}
+
+.sidenav__list {
+    padding: 0px;
+    margin-top: 0px;
+}
+
+.sidenav__list-item {
+    padding: 20px 20px 20px 40px;
+    color: #ddd;
+}
+
+.sidenav__list a {
+    text-decoration: none;
+}
+
+.sidenav__list-item:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.sidenav__header {
+    height: 50px;
+    background-color: #354375;
+}
+
+.sidenav__close-icon {
+    position: absolute;
+    visibility: visible;
+    top: 8px;
+    right: 12px;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+.grid-container__side-btn {
+    position: fixed;
+    cursor: pointer;
+    top: 50px;
+    z-index: 1;
+    border: 1px solid gray;
+    background-color: #d4e6f7ce;
+    margin-top: 10px;
+    margin-right: 20px;
+    height: 35px;
+    width: 35px;
+}
+
+
+/* for six cards in the main body and a button */
+
+.main__cards {
+    column-count: 1;
+    column-gap: 20px;
+    margin: 20px;
+}
+
+.main__add-widget-btn {
+    background-color: #3e779b;
+    border: none;
+    color: white;
+    padding: 20px 34px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 20px;
+    margin: 20px 20px;
+    cursor: pointer;
+}
+
+.card {
+    background-color: #d4e6f7;
+    background-image: linear-gradient(#d4e6f7, #ffffff);
+    box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    overflow: hidden;
+    transform: translateZ(0);
+}
+
+.card:hover {
+    transform: scale(1.05);
+    transition: 0.2s;
+}
+
+
+/*overview styles were here*/
+
+
+/* header color */
+
+.light-theme {
+    background-color: rgba(100, 124, 151, 0.200);
+}
+
+.dark-theme {
+    background-color: rgba(100, 124, 151, 0.700);
+}
+
+
+/* contents*/
+
+
+/* Adding details to widgets*/
+
+.sprite {
+    background-image: url("http://www.trenatics.com/public/images/iconfile/sprites/css-sprite/sprite-action-grey600.png");
+}
+
+
+/*card chat*/
+
+.form-container__textarea {
+    width: 99%;
+    resize: none;
+    height: 100px;
+}
+
+.form-container__btn-send {
+    background-color: #5585a5;
+    color: white;
+    width: 100%;
+    padding: 6px;
+    opacity: 0.8;
+}
+
+.btn-container {
+    margin-right: 15px;
+}
+
+.btn-container__send-icon {
+    background: url(../../assets/images/24_send.png);
+    display: inline-block;
+    object-fit: none;
+    background-position: -27px -5px;
+    width: 25px;
+    height: 15px;
+}
+
+.btn-container__send-text {
+    width: 100%;
+    margin-left: 10px;
+}
+
+.form-container__btn-send {
+    cursor: pointer;
+}
+
+.form-container__btn-send:hover {
+    opacity: 1;
+    background-color: #507e9c;
+}
+
+.form-container__btn-send:hover span {
+    background-position: -85px -5px;
+}
+
+.chat-log__chat-message-author {
+    display: flex;
+    align-items: center;
+    padding-right: 10px;
+}
+
+.chat-log {
+    padding: 20px;
+    font-size: 14px;
+    overflow: auto;
+    min-height: 300px;
+    max-height: 300px;
+}
+
+.chat-log__chat-message {
+    display: flex;
+    align-items: space-around;
+    text-align: left;
+}
+
+.chat-log__chat-message p {
+    width: 100%;
+    display: inline-block;
+}
+
+.chat-log__chat-message-right {
+    flex-direction: row-reverse;
+}
+
+
+/*table*/
+
+.userList-card {
+    break-inside: avoid;
+    overflow: auto;
+}
+
+#userList-container {
+    overflow-x: auto;
+}
+
+.userList-container__table {
+    width: 100%;
+    height: 100%;
+    padding-left: 10px;
+}
+
+.userList-container__table th,
+.userList-container__table td {
+    padding: 5px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+
+/* card headers for settings icon, and subcard headers*/
+
+.widget-link {
+    color: inherit;
+    text-decoration: inherit;
+}
+
+.widget-link__widget-header {
+    display: flex;
+    direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.widget-link__widget-header>p {
+    margin-left: 20px;
+    font-weight: bold;
+}
+
+.widget-link__widget-header:hover {
+    /* background-color: #b6d0e9; */
+    filter: brightness(75%);
+}
+
+
+/*overview contents were here*/
+
+
+/* header menu*/
+
+.menu__header-btn {
+    border: 1px solid gray;
+    background-color: transparent;
+    margin-top: 10px;
+    margin-right: 20px;
+    height: 25px;
+    width: 25px;
+    /* display: inline-block; */
+}
+
+.menu a {
+    color: black;
+    text-align: center;
+    padding: 10px 10px;
+    text-decoration: none;
+    font-size: 17px;
+    position: relative;
+    margin-right: -4px;
+}
+
+.menu a:hover {
+    background-color: rgba(173, 180, 219, 0.377);
+    color: black;
+}
+
+.menu a:before {
+    background-image: url(http://www.trenatics.com/public/images/iconfile/sprites/css-sprite/sprite-action-grey600.png);
+}
+
+.menu__top-menu1:before {
+    background-position: 0 0;
+    width: 33px;
+    height: 25px;
+    display: inline-block;
+    content: "";
+}
+
+.menu__top-menu2:before {
+    background-position: 0 -35px;
+    width: 33px;
+    height: 25px;
+    display: inline-block;
+    content: "";
+}
+
+.menu__top-menu3:before {
+    background-position: 0 -70px;
+    width: 33px;
+    height: 25px;
+    display: inline-block;
+    content: "";
+}
+
+.menu__top-menu4:before {
+    background-position: 0 -105px;
+    width: 33px;
+    height: 25px;
+    display: inline-block;
+    content: "";
+}
+
+
+/* top nav menu search*/
+
+.header__search {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    overflow: hidden;
+    padding-right: 20px;
+}
+
+.header__search input[type=text] {
+    padding: 6px;
+    border: none;
+    margin-top: 8px;
+    margin-right: 16px;
+    font-size: 17px;
+    background-color: white;
+}
+
+.header__avatar {
+    background-position: 0 0px;
+    width: 33px;
+    height: 25px;
+    display: inline-block;
+    content: "";
+    margin-top: -6px;
+}
+
+
+/*media*/
+
+@media only screen and (max-width: 750px) {
+    .menu a {
+        display: none;
+    }
+    .menu__header-btn {
+        display: inline-block;
+    }
+}
+
+@media only screen and (min-width: 751px) {
+    .main__cards {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(250px, 1fr));
+        grid-template-rows: auto;
+    }
+    .card {
+        break-inside: avoid-column;
+        overflow: hidden;
+        transform: translateZ(0);
+    }
+    .menu a {
+        display: inline-block;
+    }
+    .menu span {
+        display: none;
+    }
+    .menu__header-btn,
+    .grid-container__side-btn {
+        display: none;
+    }
+    .sidenav {
+        position: relative;
+        transform: translateX(0);
+        transition: 0s;
+        position: fixed;
+    }
+    .sidenav__close-icon {
+        visibility: hidden;
+    }
+    /*sticky header and main overlap when sidebar is fixed*/
+    .header {
+        margin-left: 150px;
+    }
+    .main {
+        margin-left: 150px;
+    }
+}
+
+@media only screen and (min-width: 1080px) {
+    .main__cards {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(250px, 1fr));
+        grid-template-rows: auto;
+        grid-gap: 20px;
+        grid-template-areas: "column-1 column-2 column-3";
+    }
+    #column-1 {
+        grid-area: column-1;
+    }
+    #column-2 {
+        grid-area: column-2;
+    }
+    #column-3 {
+        grid-area: column-3;
+    }
+    /*3 columns*/
+    .column-1,
+    .column-2,
+    .column-3 {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+    }
+    /**/
+    .card {
+        break-inside: avoid-column;
+        overflow: hidden;
+        transform: translateZ(0);
+    }
+    .menu a {
+        display: inline-block;
+    }
+    .menu span {
+        display: inline-block;
+    }
+    .menu__header-btn {
+        display: none;
+    }
+}
