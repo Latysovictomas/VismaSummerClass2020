@@ -42,7 +42,7 @@
       "id": 2
     },
     {
-      "title": "My table",
+      "title": "Table",
       "column": 2,
       "type": 1,
       "headerType": 1,
@@ -55,7 +55,7 @@
         },
         {
           "id": 2,
-          "firstName": "Tomas",
+          "firstName": "Jack",
           "lastName": "Latysovic",
           "userName": "@latysovictomas"
         }

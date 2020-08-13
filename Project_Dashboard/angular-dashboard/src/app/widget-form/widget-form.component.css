@@ -54,7 +54,23 @@ input[type=number],
     background-color: #3e779b;
 }
 
+.add-widget-btn:disabled {
+    opacity: 0.5;
+    cursor: auto;
+}
+
 .delete-widget-btn {
     margin: 0px 10px;
     background-color: #bd4040;
+}
+
+
+/*default selection*/
+
+select:invalid {
+    color: gray;
+}
+
+select option:enabled {
+    color: black;
 }

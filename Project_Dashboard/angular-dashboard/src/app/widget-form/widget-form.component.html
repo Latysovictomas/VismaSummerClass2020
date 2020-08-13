@@ -10,37 +10,51 @@
 
 <body>
 
-    <form action="" id="widget-form">
+    <form [formGroup]="widgetForm" (ngSubmit)="onSubmit()" id="widget-form">
+
         <div class="container">
             <h2>Add/Edit a widget</h2>
             <p>Please fill in this form to add/edit a widget.</p>
             <fieldset id="fields">
-                <label for="title"><b>Title</b></label><br>
-                <input id="title" type="text" pattern="[A-Za-z _]+" maxlength="35" title="Only letters allowed." placeholder="Enter Title" name="title" required><br>
 
-                <label for="column-number"><b>Column number</b></label><br>
-                <input id="column-number" type="number" min="1" max="3" pattern="[0-9]" title="Only numbers allowed." placeholder="Enter Column Number" required><br>
+                <label>
+          Title:
+          <input id="title" type="text" formControlName="title" pattern="[A-Za-z _]+" maxlength="35"
+           title="Only letters allowed." placeholder="Enter Title" name="title" required>
+        </label>
 
-                <label for="types"><b>Type</b></label><br>
-                <select id="types" name="types" size="1" required>
-                    <option name="userList" value="1" selected="selected">userList</option>
-                    <option name="messages" value="2">messages</option>
-              </select><br>
+                <label>
+            Column number:
+          <input id="column-number" formControlName="column" type="number" min="1" max="3" pattern="[0-9]"
+           title="Only numbers allowed." placeholder="Enter Column Number" required>
+        </label>
 
-                <label for="header-types"><b>Header type</b></label><br>
-                <select id="header-types" name="header-types" size="1" required>
-                    <option name="light" value="1" selected="selected">light</option>
-                    <option name="dark" value="2">dark</option>
-                </select><br>
+                <label>
+            Type:
+            <select id="types" formControlName="type" name="types" size="1" required>
+                <option value="" disabled>Choose your widget type...</option>
+                <option name="userList" value="1" selected="selected">userList</option>
+                <option name="messages" value="2">messages</option>
+          </select>
+        </label>
 
-                <label for="text-area"><b>Data input</b></label><br>
-                <textarea id="text-area" cols=50 rows=10 placeholder="Enter data in JSON format" required></textarea>
+                <label>
+            Header type:
+            <select id="header-types" formControlName="headerType" name="header-types" size="1" required>
+                <option value="" disabled>Choose your header type...</option>
+                <option name="light" value="1" selected="selected">light</option>
+                <option name="dark" value="2">dark</option>
+            </select>
+        </label>
+
+                <label>
+            Data input:
+            <textarea id="text-area" formControlName="data" cols=50 rows=10
+             placeholder="Enter data in JSON format" required></textarea>
+        </label>
             </fieldset>
-
-
-            <button class="add-widget-btn form-btn" type="submit">Save</button>
-            <button class="delete-widget-btn form-btn" id="delete-btn">Delete</button>
-
+            <button type="submit" class="add-widget-btn form-btn" [disabled]="!widgetForm.valid">Submit</button>
+            <button type="button" class="delete-widget-btn form-btn" id="delete-btn" (click)="onDelete()" *ngIf="this.isButtonVisible">Delete</button>
         </div>
     </form>
 </body>

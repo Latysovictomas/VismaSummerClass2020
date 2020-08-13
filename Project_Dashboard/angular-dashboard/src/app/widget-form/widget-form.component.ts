@@ -1,15 +1,29 @@
-import { Component, AfterViewInit } from '@angular/core';
+import { Component, AfterViewInit } from "@angular/core";
 import { BACKEND_URL, CURRENT_WIDGET_ID } from "../utils/urls";
 import { RestService } from "../rest.service";
 import { Widget } from "../widget";
+import { FormGroup, FormControl } from "@angular/forms";
+import { Validators } from "@angular/forms";
 
 
 @Component({
-  selector: 'app-widget-form',
-  templateUrl: './widget-form.component.html',
-  styleUrls: ['./widget-form.component.css']
+  selector: "app-widget-form",
+  templateUrl: "./widget-form.component.html",
+  styleUrls: ["./widget-form.component.css"]
 })
 export class WidgetFormComponent implements AfterViewInit {
+
+    isButtonVisible: boolean =  Boolean(CURRENT_WIDGET_ID);
+
+    widgetForm  = new FormGroup({
+        title: new FormControl("", Validators.required),
+        column: new FormControl("", Validators.required),
+        type: new FormControl("", Validators.required),
+        headerType: new FormControl("", Validators.required),
+        data: new FormControl("", Validators.required)
+      });
+
+
 
     constructor(private restService: RestService) { }
 
@@ -21,11 +35,6 @@ export class WidgetFormComponent implements AfterViewInit {
         // run the fill form function
         this.fillFormByCurrentId();
         // to display or not to display button
-        this.setDeleteBtnDisplay();
-        // add or put widget form data
-        this.addPutListener();
-        // delete widget
-        this.deleteListener();
 }
 
     fillFormByCurrentId(): void {
@@ -38,12 +47,13 @@ export class WidgetFormComponent implements AfterViewInit {
 }
 
  fillForm(widget: Widget): void {
-    // get widget by id and fill a form
-    (<HTMLInputElement>document.getElementById("title")).value = widget.title;
-    (<HTMLInputElement>document.getElementById("column-number")).value = widget.column.toString();
-    (<HTMLInputElement>document.getElementById("types")).value = widget.type.toString();
-    (<HTMLInputElement>document.getElementById("header-types")).value = widget.headerType.toString();
-    (<HTMLInputElement>document.getElementById("text-area")).value = JSON.stringify(widget.data).replace('"null"', "null");
+    this.widgetForm.setValue({
+        title: widget.title,
+        column: widget.column.toString(),
+        type: widget.type.toString(),
+        headerType: widget.headerType.toString(),
+        data: JSON.stringify(widget.data).replace('"null"', "null")
+     });
 }
 
 
@@ -61,57 +71,46 @@ export class WidgetFormComponent implements AfterViewInit {
     window.location.href = "dashboard";
 }
 
+getCleanStringifiedData(widget: Widget): string{
+    return JSON.stringify(widget)
+    .replace('"{', "{").replace('}"', '}')
+    .replace(/\\/g, "").replace('"[', "[")
+    .replace(']"', "]").replace(/(\[n)\s+/g, "[");
+}
+
 postOrPutFormData(widget: Widget): void {
 
-    let widgetStringified: string = JSON.stringify(widget).replace('"{', "{").replace('}"', '}').replace(/\\/g, "").replace('"[', "[").replace(']"', "]");
-
+    let widgetStringified: string = this.getCleanStringifiedData(widget);
     if (CURRENT_WIDGET_ID != null) { // put request
+
         this.restService.put(BACKEND_URL+"/"+CURRENT_WIDGET_ID, widgetStringified).subscribe((data)=>this.redirect());
     } else { // post request
         this.restService.post(BACKEND_URL, widgetStringified).subscribe((data)=>this.redirect());
 
     }
 }
- setDeleteBtnDisplay(): void {
-    let x: HTMLElement = document.getElementById("delete-btn");
-    if (CURRENT_WIDGET_ID != null) {
-        x.style.display = "inline";
-    } else {
-        x.style.display = "none";
-    }
-}
 
+onSubmit(): void {
+    // TODO: Use EventEmitter with form value
+    let data: string = this.widgetForm.controls["data"].value
+    data = data.replace(/({)\s+/g, "{").replace(/(,)\s+/g, ",").replace(/\s*(})\s*/g, "}").replace(/\'/g, '"');
+    if (!this.isValidJSON(data)) {
+        alert("Data input is not valid JSON.");
+     }else {
 
-addPutListener(): void {
-    // Event: Add/Edit a widget using post/put
-    document.getElementById("widget-form").addEventListener("submit", (e) => {
-        // Prevent fast reload
-        e.preventDefault();
-        // validate json
-        let data: string = (<HTMLInputElement>document.getElementById("text-area")).value.trim();
-        // replace white space between the following chars: { , }, and other replacements
-        data = data.replace(/({)\s+/g, "{").replace(/(,)\s+/g, ",").replace(/\s*(})\s*/g, "}").replace(/\'/g, '"');
-        if (!this.isValidJSON(data)) {
-            alert("Data input is not valid JSON.");
-        } else {
-            // get form data
-            let title: string = (<HTMLInputElement>document.getElementById("title")).value;
-            let column: number = Number((<HTMLInputElement>document.getElementById("column-number")).value);
-            let type: number = Number((<HTMLInputElement>document.getElementById("types")).value);
-            let headerType: number = parseInt((<HTMLInputElement>document.getElementById("header-types")).value);
-            const widget = new Widget(title, column, type, headerType, data);
-            // here decide on what type of request based on current id
-            this.postOrPutFormData(widget);
-        }
-    });
-}
+        let title: string = this.widgetForm.controls["title"].value
+        let column: number = Number(this.widgetForm.controls["column"].value);
+        let type: number = Number(this.widgetForm.controls["type"].value);
+        let headerType: number = parseInt(this.widgetForm.controls["headerType"].value);
+        const widget = new Widget(title, column, type, headerType, data);
+        // here decide on what type of request based on current id
+        this.postOrPutFormData(widget);
+     }
 
-    deleteListener(): void {
-    // Event: Delete request
-    document.getElementById("delete-btn").addEventListener("click", (e) => {
-        this.restService.delete(BACKEND_URL+"/"+CURRENT_WIDGET_ID).subscribe((data)=>this.redirect());
-    });
+  }
 
-}
+  onDelete(): void {
+    this.restService.delete(BACKEND_URL+"/"+CURRENT_WIDGET_ID).subscribe((data)=>this.redirect());
+  }
 
 }
