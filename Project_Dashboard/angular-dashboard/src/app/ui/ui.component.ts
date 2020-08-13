@@ -4,7 +4,6 @@ import { BACKEND_URL } from "../utils/urls";
 import { Widget } from '../widget';
 import { RestService } from "../rest.service";
 import { chatInputHTML, headerHTML, tableHTML, chatLogHTML } from "../utils/templates";
-import { Observable } from 'rxjs';
 
 
 
@@ -16,8 +15,7 @@ import { Observable } from 'rxjs';
   
 })
 export class UiComponent implements AfterViewInit {
-    // widgets: Widget[];
-
+   
 
   constructor(private restService: RestService) { }
 
@@ -106,6 +104,7 @@ setWidgetPosition(widget: Widget, card: HTMLElement): void {
 }
 
 appendWidgetToColumn(columnNum: number, card: HTMLElement): void {
+    
     let container: HTMLElement = document.getElementById(`column-${columnNum}`);
     container.appendChild(card);
 }
