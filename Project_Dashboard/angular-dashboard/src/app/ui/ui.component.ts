@@ -4,6 +4,7 @@ import { BACKEND_URL } from "../utils/urls";
 import { Widget } from '../widget';
 import { RestService } from "../rest.service";
 import { chatInputHTML, headerHTML, tableHTML, chatLogHTML } from "../utils/templates";
+import { Observable } from 'rxjs';
 
 
 
@@ -11,9 +12,12 @@ import { chatInputHTML, headerHTML, tableHTML, chatLogHTML } from "../utils/temp
   selector: 'app-ui',
   templateUrl: './ui.component.html',
   styleUrls: ['./ui.component.css'], 
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.None,
+  
 })
 export class UiComponent implements AfterViewInit {
+    // widgets: Widget[];
+
 
   constructor(private restService: RestService) { }
 
@@ -26,14 +30,7 @@ export class UiComponent implements AfterViewInit {
 }
 
 
-    // displayWidgets = (widgets: Widget[]):void => {
-    displayWidgets(widgets: Widget[]): void {
-
-    let mainSection: HTMLElement = document.getElementById("main__cards");
-
-    this.appendColumnContainers(3, mainSection);
-    
-
+displayWidgets(widgets: Widget[]): void {
     // for each widget
     widgets.forEach((widget) => {
         let card: HTMLElement = document.createElement("section");
@@ -113,17 +110,9 @@ appendWidgetToColumn(columnNum: number, card: HTMLElement): void {
     container.appendChild(card);
 }
 
-appendColumnContainers(columnNum: number, mainSectionElement: HTMLElement): void {
-    let container: string;
-    for (let i = 0; i < columnNum; i++) {
-        container = `<div id="column-${i + 1}"></div>`;
-        mainSectionElement.insertAdjacentHTML("beforeend", container);
-    }
-}
-
 onContentLoaded() {
     // Event: Display on initial page load
-    this.restService.get(BACKEND_URL, this.displayWidgets.bind(this));
+     this.restService.get(BACKEND_URL).subscribe(widgets => this.displayWidgets(widgets));
     }
 
 

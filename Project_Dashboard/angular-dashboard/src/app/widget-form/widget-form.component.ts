@@ -31,7 +31,7 @@ export class WidgetFormComponent implements AfterViewInit {
     fillFormByCurrentId(): void {
     if (CURRENT_WIDGET_ID != null) {
         //get request to fill form
-        this.restService.get(BACKEND_URL, this.fillForm, CURRENT_WIDGET_ID)
+        this.restService.getById(BACKEND_URL+"/"+CURRENT_WIDGET_ID).subscribe((widget)=>this.fillForm(widget));
     } else {
         console.log("Warning: No widget id is selected.");
     }
@@ -66,9 +66,10 @@ postOrPutFormData(widget: Widget): void {
     let widgetStringified: string = JSON.stringify(widget).replace('"{', "{").replace('}"', '}').replace(/\\/g, "").replace('"[', "[").replace(']"', "]");
 
     if (CURRENT_WIDGET_ID != null) { // put request
-        this.restService.put(BACKEND_URL, this.redirect, widgetStringified, CURRENT_WIDGET_ID);
+        this.restService.put(BACKEND_URL+"/"+CURRENT_WIDGET_ID, widgetStringified).subscribe((data)=>this.redirect());
     } else { // post request
-        this.restService.post(BACKEND_URL, this.redirect, widgetStringified, CURRENT_WIDGET_ID);
+        this.restService.post(BACKEND_URL, widgetStringified).subscribe((data)=>this.redirect());
+
     }
 }
  setDeleteBtnDisplay(): void {
@@ -105,11 +106,10 @@ addPutListener(): void {
     });
 }
 
-
     deleteListener(): void {
     // Event: Delete request
     document.getElementById("delete-btn").addEventListener("click", (e) => {
-        this.restService.delete(BACKEND_URL, this.redirect, CURRENT_WIDGET_ID);
+        this.restService.delete(BACKEND_URL+"/"+CURRENT_WIDGET_ID).subscribe((data)=>this.redirect());
     });
 
 }
