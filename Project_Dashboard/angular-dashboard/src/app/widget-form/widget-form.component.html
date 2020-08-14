@@ -1,21 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
+<div class="form-flex">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Widget Form</title>
-</head>
+    <form [formGroup]="widgetForm" (ngSubmit)="onSubmit()" class="widget-form">
 
-<body>
-
-    <form [formGroup]="widgetForm" (ngSubmit)="onSubmit()" id="widget-form">
-
-        <div class="container">
+        <div class="widget-form__container">
             <h2>Add/Edit a widget</h2>
             <p>Please fill in this form to add/edit a widget.</p>
-            <fieldset id="fields">
+            <fieldset class="widget-form__fields">
 
                 <label>
           Title:
@@ -57,6 +47,5 @@
             <button type="button" class="delete-widget-btn form-btn" id="delete-btn" (click)="onDelete()" *ngIf="this.isButtonVisible">Delete</button>
         </div>
     </form>
-</body>
 
-</html>
+</div>

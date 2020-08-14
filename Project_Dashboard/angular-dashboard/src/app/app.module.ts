@@ -9,6 +9,8 @@ import { UiComponent } from './ui/ui.component';
 import { Dashboard2Component } from './dashboard2/dashboard2.component';
 import { WidgetFormComponent } from './widget-form/widget-form.component';
 import { OverviewComponent } from './overview/overview.component';
+import { SidenavComponent } from './sidenav/sidenav.component';
+import { HeaderComponent } from './header/header.component';
 
 
 
@@ -18,7 +20,9 @@ import { OverviewComponent } from './overview/overview.component';
     UiComponent,
     Dashboard2Component,
     WidgetFormComponent,
-    OverviewComponent
+    OverviewComponent,
+    SidenavComponent,
+    HeaderComponent
     
   ],
   imports: [

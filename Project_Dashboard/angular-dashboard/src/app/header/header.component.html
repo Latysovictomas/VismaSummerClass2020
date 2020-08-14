@@ -1,0 +1,18 @@
+<header class="header">
+
+    <div class="header__box header__nav">
+
+        <div class="menu">
+            <button class="menu__header-btn">
+          &#9776;
+      </button>
+            <a routerLink={{item.link}} class="{{ 'menu__top-menu' + (i + 1)  }}" *ngFor="let item of headerItems; let i = index">
+                <span>{{item.name}}</span>
+            </a>
+        </div>
+    </div>
+    <div class="header__box header__search">
+        <input type="text" placeholder="Search..">
+        <span class="sprite header__avatar"></span>
+    </div>
+</header>

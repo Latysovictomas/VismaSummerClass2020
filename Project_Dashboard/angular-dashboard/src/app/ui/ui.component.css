@@ -10,93 +10,14 @@
 
 .grid-container__header {
     grid-area: header;
-    background-color: #d4e6f7ce;
 }
 
 .grid-container__sidenav {
     grid-area: sidenav;
-    background-color: #47527a;
 }
 
 .grid-container__main {
     grid-area: main;
-    background-color: #acd3d6;
-}
-
-
-/* header */
-
-.header {
-    display: flex;
-    justify-content: space-between;
-    padding: 0 20px;
-    background-color: #d4e6f7;
-    /*sticky background*/
-    position: -webkit-sticky;
-    position: sticky;
-    top: 0;
-    z-index: 1;
-}
-
-.header__box {
-    background-color: #d4e6f7;
-    height: 100%;
-}
-
-.header__search {
-    max-height: 50px;
-}
-
-.header__nav {
-    max-height: 50px;
-}
-
-
-/* Side navigation */
-
-.sidenav {
-    /* grid-area: sidenav; */
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    width: 150px;
-    position: fixed;
-    overflow-y: auto;
-    z-index: 2;
-    transform: translateX(-150px);
-    transition: all .6s ease-in-out;
-}
-
-.sidenav__list {
-    padding: 0px;
-    margin-top: 0px;
-}
-
-.sidenav__list-item {
-    padding: 20px 20px 20px 40px;
-    color: #ddd;
-}
-
-.sidenav__list a {
-    text-decoration: none;
-}
-
-.sidenav__list-item:hover {
-    background-color: rgba(255, 255, 255, 0.1);
-}
-
-.sidenav__header {
-    height: 50px;
-    background-color: #354375;
-}
-
-.sidenav__close-icon {
-    position: absolute;
-    visibility: visible;
-    top: 8px;
-    right: 12px;
-    cursor: pointer;
-    font-size: 20px;
 }
 
 .grid-container__side-btn {
@@ -296,7 +217,6 @@
 }
 
 .widget-link__widget-header:hover {
-    /* background-color: #b6d0e9; */
     filter: brightness(75%);
 }
 
@@ -304,109 +224,7 @@
 /*overview contents were here*/
 
 
-/* header menu*/
-
-.menu__header-btn {
-    border: 1px solid gray;
-    background-color: transparent;
-    margin-top: 10px;
-    margin-right: 20px;
-    height: 25px;
-    width: 25px;
-    /* display: inline-block; */
-}
-
-.menu a {
-    color: black;
-    text-align: center;
-    padding: 10px 10px;
-    text-decoration: none;
-    font-size: 17px;
-    position: relative;
-    margin-right: -4px;
-}
-
-.menu a:hover {
-    background-color: rgba(173, 180, 219, 0.377);
-    color: black;
-}
-
-.menu a:before {
-    background-image: url(http://www.trenatics.com/public/images/iconfile/sprites/css-sprite/sprite-action-grey600.png);
-}
-
-.menu__top-menu1:before {
-    background-position: 0 0;
-    width: 33px;
-    height: 25px;
-    display: inline-block;
-    content: "";
-}
-
-.menu__top-menu2:before {
-    background-position: 0 -35px;
-    width: 33px;
-    height: 25px;
-    display: inline-block;
-    content: "";
-}
-
-.menu__top-menu3:before {
-    background-position: 0 -70px;
-    width: 33px;
-    height: 25px;
-    display: inline-block;
-    content: "";
-}
-
-.menu__top-menu4:before {
-    background-position: 0 -105px;
-    width: 33px;
-    height: 25px;
-    display: inline-block;
-    content: "";
-}
-
-
-/* top nav menu search*/
-
-.header__search {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    overflow: hidden;
-    padding-right: 20px;
-}
-
-.header__search input[type=text] {
-    padding: 6px;
-    border: none;
-    margin-top: 8px;
-    margin-right: 16px;
-    font-size: 17px;
-    background-color: white;
-}
-
-.header__avatar {
-    background-position: 0 0px;
-    width: 33px;
-    height: 25px;
-    display: inline-block;
-    content: "";
-    margin-top: -6px;
-}
-
-
 /*media*/
-
-@media only screen and (max-width: 750px) {
-    .menu a {
-        display: none;
-    }
-    .menu__header-btn {
-        display: inline-block;
-    }
-}
 
 @media only screen and (min-width: 751px) {
     .main__cards {
@@ -419,28 +237,8 @@
         overflow: hidden;
         transform: translateZ(0);
     }
-    .menu a {
-        display: inline-block;
-    }
-    .menu span {
-        display: none;
-    }
-    .menu__header-btn,
     .grid-container__side-btn {
         display: none;
-    }
-    .sidenav {
-        position: relative;
-        transform: translateX(0);
-        transition: 0s;
-        position: fixed;
-    }
-    .sidenav__close-icon {
-        visibility: hidden;
-    }
-    /*sticky header and main overlap when sidebar is fixed*/
-    .header {
-        margin-left: 150px;
     }
     .main {
         margin-left: 150px;
@@ -478,14 +276,5 @@
         break-inside: avoid-column;
         overflow: hidden;
         transform: translateZ(0);
-    }
-    .menu a {
-        display: inline-block;
-    }
-    .menu span {
-        display: inline-block;
-    }
-    .menu__header-btn {
-        display: none;
     }
 }

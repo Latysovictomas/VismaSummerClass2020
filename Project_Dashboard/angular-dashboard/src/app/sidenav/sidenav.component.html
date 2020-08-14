@@ -1,0 +1,10 @@
+<aside class="sidenav">
+    <div class="sidenav__header"></div>
+    <button class='sidenav__close-icon'>X</button>
+
+    <ul class="sidenav__list">
+        <a routerLink={{routerLink}} *ngFor="let item of listItems">
+            <li class="sidenav__list-item">{{item}}</li>
+        </a>
+    </ul>
+</aside>

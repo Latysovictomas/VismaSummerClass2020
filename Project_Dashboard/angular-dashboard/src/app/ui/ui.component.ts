@@ -15,6 +15,8 @@ import { chatInputHTML, headerHTML, tableHTML, chatLogHTML } from "../utils/temp
   
 })
 export class UiComponent implements AfterViewInit {
+
+  columns = new Array(3);
    
 
   constructor(private restService: RestService) { }
@@ -33,7 +35,6 @@ displayWidgets(widgets: Widget[]): void {
     widgets.forEach((widget) => {
         let card: HTMLElement = document.createElement("section");
         if (widget.type === 1) { // userList
-            
           this.createUserListWidget(widget, card);
         } else if (widget.type === 2) { // messages
           this.createMessageWidget(widget, card);
@@ -55,7 +56,6 @@ createMessageWidget(widget: Widget, card: HTMLElement): void {
 
     // append to the right column
     this.setWidgetPosition(widget, card);
-
 }
 
 
