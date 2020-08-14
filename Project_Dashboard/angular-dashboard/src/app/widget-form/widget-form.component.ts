@@ -13,9 +13,9 @@ import { Validators } from "@angular/forms";
 })
 export class WidgetFormComponent implements AfterViewInit {
 
-    isButtonVisible: boolean =  Boolean(CURRENT_WIDGET_ID);
+    public isButtonVisible: boolean =  Boolean(CURRENT_WIDGET_ID);
 
-    widgetForm  = new FormGroup({
+    public widgetForm  = new FormGroup({
         title: new FormControl("", Validators.required),
         column: new FormControl("", Validators.required),
         type: new FormControl("", Validators.required),
@@ -27,17 +27,17 @@ export class WidgetFormComponent implements AfterViewInit {
 
     constructor(private restService: RestService) { }
 
-    ngAfterViewInit(): void{
+  public ngAfterViewInit(): void{
         this.init();
   }
 
-    init(): void {
+  private init(): void {
         // run the fill form function
         this.fillFormByCurrentId();
         // to display or not to display button
 }
 
-    fillFormByCurrentId(): void {
+private fillFormByCurrentId(): void {
     if (CURRENT_WIDGET_ID != null) {
         //get request to fill form
         this.restService.getById(BACKEND_URL+"/"+CURRENT_WIDGET_ID).subscribe((widget)=>this.fillForm(widget));
@@ -46,7 +46,7 @@ export class WidgetFormComponent implements AfterViewInit {
     }
 }
 
- fillForm(widget: Widget): void {
+private fillForm(widget: Widget): void {
     this.widgetForm.setValue({
         title: widget.title,
         column: widget.column.toString(),
@@ -57,7 +57,7 @@ export class WidgetFormComponent implements AfterViewInit {
 }
 
 
- isValidJSON(text: string): boolean {
+private isValidJSON(text: string): boolean {
     try {
         JSON.parse(text);
         return true;
@@ -67,18 +67,18 @@ export class WidgetFormComponent implements AfterViewInit {
 }
 
 
- redirect(): void {
+private redirect(): void {
     window.location.href = "dashboard";
 }
 
-getCleanStringifiedData(widget: Widget): string{
+private getCleanStringifiedData(widget: Widget): string{
     return JSON.stringify(widget)
     .replace('"{', "{").replace('}"', '}')
     .replace(/\\/g, "").replace('"[', "[")
     .replace(']"', "]").replace(/(\[n)\s+/g, "[");
 }
 
-postOrPutFormData(widget: Widget): void {
+private postOrPutFormData(widget: Widget): void {
 
     let widgetStringified: string = this.getCleanStringifiedData(widget);
     if (CURRENT_WIDGET_ID != null) { // put request
@@ -90,7 +90,7 @@ postOrPutFormData(widget: Widget): void {
     }
 }
 
-onSubmit(): void {
+public onSubmit(): void {
     // TODO: Use EventEmitter with form value
     let data: string = this.widgetForm.controls["data"].value
     data = data.replace(/({)\s+/g, "{").replace(/(,)\s+/g, ",").replace(/\s*(})\s*/g, "}").replace(/\'/g, '"');
@@ -109,7 +109,7 @@ onSubmit(): void {
 
   }
 
-  onDelete(): void {
+  public onDelete(): void {
     this.restService.delete(BACKEND_URL+"/"+CURRENT_WIDGET_ID).subscribe((data)=>this.redirect());
   }
 

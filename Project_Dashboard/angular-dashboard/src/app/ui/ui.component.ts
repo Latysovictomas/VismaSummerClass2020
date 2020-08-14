@@ -16,21 +16,21 @@ import { chatInputHTML, headerHTML, tableHTML, chatLogHTML } from "../utils/temp
 })
 export class UiComponent implements AfterViewInit {
 
-  columns = new Array(3);
+  public columns = new Array(3);
    
 
   constructor(private restService: RestService) { }
 
-  ngAfterViewInit(): void{
+  public ngAfterViewInit(): void{
     this.init();
   }
 
-  init(): void {
+  private init(): void {
     this.onContentLoaded();
 }
 
 
-displayWidgets(widgets: Widget[]): void {
+private displayWidgets(widgets: Widget[]): void {
     // for each widget
     widgets.forEach((widget) => {
         let card: HTMLElement = document.createElement("section");
@@ -42,7 +42,7 @@ displayWidgets(widgets: Widget[]): void {
     });
 }
 
-createMessageWidget(widget: Widget, card: HTMLElement): void {
+private createMessageWidget(widget: Widget, card: HTMLElement): void {
     card.className = "card messages-card";
     // create header
     card.insertAdjacentHTML("beforeend", headerHTML(widget, this.getHeaderColor(widget)));
@@ -59,7 +59,7 @@ createMessageWidget(widget: Widget, card: HTMLElement): void {
 }
 
 
-createUserListWidget(widget: Widget, card: HTMLElement): void {
+private createUserListWidget(widget: Widget, card: HTMLElement): void {
     card.className = "card userList-card";
     // create header
     card.insertAdjacentHTML("beforeend", headerHTML(widget, this.getHeaderColor(widget)));
@@ -72,11 +72,11 @@ createUserListWidget(widget: Widget, card: HTMLElement): void {
     this.setWidgetPosition(widget, card);
 }
 
-getWidgetDataAsArray(widget: Widget): string[] {
+private getWidgetDataAsArray(widget: Widget): string[] {
     return Array.isArray(widget.data) ? widget.data : Array.of(widget.data);
 }
 
-getHeaderColor(widget: Widget): string {
+private getHeaderColor(widget: Widget): string {
     switch (widget.headerType) {
         case 1:
             return "light-theme";
@@ -87,7 +87,7 @@ getHeaderColor(widget: Widget): string {
     }
 }
 
-setWidgetPosition(widget: Widget, card: HTMLElement): void {
+private setWidgetPosition(widget: Widget, card: HTMLElement): void {
     switch (widget.column) {
         case 1:
             this.appendWidgetToColumn(1, card);
@@ -103,13 +103,13 @@ setWidgetPosition(widget: Widget, card: HTMLElement): void {
     }
 }
 
-appendWidgetToColumn(columnNum: number, card: HTMLElement): void {
+private appendWidgetToColumn(columnNum: number, card: HTMLElement): void {
     
     let container: HTMLElement = document.getElementById(`column-${columnNum}`);
     container.appendChild(card);
 }
 
-onContentLoaded() {
+private onContentLoaded() {
     // Event: Display on initial page load
      this.restService.get(BACKEND_URL).subscribe(widgets => this.displayWidgets(widgets));
     }
