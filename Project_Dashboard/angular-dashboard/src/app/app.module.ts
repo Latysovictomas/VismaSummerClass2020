@@ -12,6 +12,7 @@ import { SidenavComponent } from './sidenav/sidenav.component';
 import { HeaderComponent } from './header/header.component';
 import { DashboardMainComponent } from './dashboard-main/dashboard-main.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
+import { Dashboard2MainComponent } from './dashboard2-main/dashboard2-main.component';
 
 
 
@@ -24,7 +25,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     SidenavComponent,
     HeaderComponent,
     DashboardMainComponent,
-    DashboardComponent
+    DashboardComponent,
+    Dashboard2MainComponent
     
   ],
   imports: [

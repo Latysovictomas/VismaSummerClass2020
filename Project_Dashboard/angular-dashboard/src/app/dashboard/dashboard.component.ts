@@ -7,9 +7,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DashboardComponent implements OnInit {
 
-  constructor() { }
+  public dashboardState: number;
 
-  ngOnInit(): void {
+  constructor() {
+
   }
 
+  public ngOnInit(): void{
+  }
 }
