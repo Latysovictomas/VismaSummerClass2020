@@ -1,0 +1,10 @@
+<main class="main" id="main">
+    <a routerLink="/form" class="main__add-widget-btn">Add widget</a>
+    <section class="main__cards" id="main__cards">
+        <div id="{{ 'column-' + (i + 1)  }}" *ngFor="let column of columns; let i = index"></div>
+    </section>
+
+    <!-- overview content at the bottom -->
+    <app-overview></app-overview>
+
+</main>

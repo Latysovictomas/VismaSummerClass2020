@@ -9,7 +9,7 @@ import { Validators } from "@angular/forms";
 @Component({
   selector: "app-widget-form",
   templateUrl: "./widget-form.component.html",
-  styleUrls: ["./widget-form.component.css"]
+  styleUrls: ["./widget-form.component.scss"]
 })
 export class WidgetFormComponent implements AfterViewInit {
 
