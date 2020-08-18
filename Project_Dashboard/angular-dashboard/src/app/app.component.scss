@@ -1,0 +1,39 @@
+/*grid*/
+
+.grid-container {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-template-rows: 50px 1fr;
+    grid-template-areas: "sidenav header" "sidenav main";
+    height: 100hv;
+    &__header {
+        grid-area: header;
+    }
+    &__sidenav {
+        grid-area: sidenav;
+    }
+    &__main {
+        grid-area: main;
+    }
+    &__side-btn {
+        position: fixed;
+        cursor: pointer;
+        top: 50px;
+        z-index: 1;
+        border: 1px solid gray;
+        background-color: #d4e6f7ce;
+        margin-top: 10px;
+        margin-right: 20px;
+        height: 35px;
+        width: 35px;
+    }
+}
+
+
+/*media*/
+
+@media only screen and (min-width: 751px) {
+    .grid-container__side-btn {
+        display: none;
+    }
+}

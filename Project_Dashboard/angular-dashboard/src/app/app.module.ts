@@ -13,6 +13,8 @@ import { HeaderComponent } from './header/header.component';
 import { DashboardMainComponent } from './dashboard-main/dashboard-main.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { Dashboard2MainComponent } from './dashboard2-main/dashboard2-main.component';
+import { MessagesWidgetComponent } from './messages-widget/messages-widget.component';
+import { UserListWidgetComponent } from './user-list-widget/user-list-widget.component';
 
 
 
@@ -26,7 +28,9 @@ import { Dashboard2MainComponent } from './dashboard2-main/dashboard2-main.compo
     HeaderComponent,
     DashboardMainComponent,
     DashboardComponent,
-    Dashboard2MainComponent
+    Dashboard2MainComponent,
+    MessagesWidgetComponent,
+    UserListWidgetComponent
     
   ],
   imports: [

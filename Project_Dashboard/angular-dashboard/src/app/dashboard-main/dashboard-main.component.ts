@@ -14,18 +14,14 @@ import { chatInputHTML, headerHTML, tableHTML, chatLogHTML } from "../utils/temp
 export class DashboardMainComponent implements AfterViewInit {
 
 
-  public columns = new Array(3);
-   
+  public widgetsGroupedByColumn: Widget[][] = [[],[],[]]; // [column-1, column-2, column-3]
 
   constructor(private restService: RestService) { }
 
   public ngAfterViewInit(): void{
-    this.init();
+    this.groupWidgetByColumn();
+  
   }
-
-  private init(): void {
-    this.onContentLoaded();
-}
 
 private displayWidgets(widgets: Widget[]): void {
   // for each widget
@@ -106,9 +102,31 @@ private appendWidgetToColumn(columnNum: number, card: HTMLElement): void {
   container.appendChild(card);
 }
 
-private onContentLoaded() {
-  // Event: Display on initial page load
-   this.restService.get(BACKEND_URL).subscribe(widgets => this.displayWidgets(widgets));
+
+private pushWidgetToColumn(widget: Widget): void{
+    switch (widget.column) {
+      case 1:
+          this.widgetsGroupedByColumn[0].push(widget);
+          break;
+      case 2:
+        this.widgetsGroupedByColumn[1].push(widget);
+          break;
+      case 3:
+        this.widgetsGroupedByColumn[2].push(widget);
+          break;
+      default:
+          break;
+  }
+}
+
+private groupWidgetByColumn() {
+
+   this.restService.get(BACKEND_URL).subscribe(widgets => 
+    {
+      widgets.forEach((widget) => {
+      this.pushWidgetToColumn(widget);})
+    });
+  
   }
 
 }
