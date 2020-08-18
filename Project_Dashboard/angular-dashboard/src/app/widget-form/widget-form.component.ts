@@ -1,10 +1,11 @@
 import { Component, AfterViewInit } from "@angular/core";
-import { BACKEND_URL, CURRENT_WIDGET_ID } from "../utils/urls";
+import { BACKEND_URL } from "../utils/urls";
 import { RestService } from "../rest.service";
-import { Widget } from "../widget";
+import { Widget } from "../widget-list/widget";
 import { FormGroup, FormControl } from "@angular/forms";
 import { Validators } from "@angular/forms";
-
+import { ActivatedRoute } from '@angular/router';
+// import { widgetInterface } from '../widget-list/widget.interface';
 
 @Component({
   selector: "app-widget-form",
@@ -13,7 +14,8 @@ import { Validators } from "@angular/forms";
 })
 export class WidgetFormComponent implements AfterViewInit {
 
-    public isButtonVisible: boolean =  Boolean(CURRENT_WIDGET_ID);
+    private currentWidgetId:string;
+    public isButtonVisible: boolean;
 
     public widgetForm  = new FormGroup({
         title: new FormControl("", Validators.required),
@@ -23,9 +25,10 @@ export class WidgetFormComponent implements AfterViewInit {
         data: new FormControl("", Validators.required)
       });
 
-
-
-    constructor(private restService: RestService) { }
+    constructor(private restService: RestService, private activatedRoute: ActivatedRoute) { 
+        this.currentWidgetId = this.activatedRoute.snapshot["params"].id;
+        this.isButtonVisible = Boolean(this.currentWidgetId);
+    }
 
   public ngAfterViewInit(): void{
         this.init();
@@ -34,13 +37,12 @@ export class WidgetFormComponent implements AfterViewInit {
   private init(): void {
         // run the fill form function
         this.fillFormByCurrentId();
-        // to display or not to display button
 }
 
 private fillFormByCurrentId(): void {
-    if (CURRENT_WIDGET_ID != null) {
+    if (this.currentWidgetId != null) {
         //get request to fill form
-        this.restService.getById(BACKEND_URL+"/"+CURRENT_WIDGET_ID).subscribe((widget)=>this.fillForm(widget));
+        this.restService.getById(BACKEND_URL+"/"+this.currentWidgetId).subscribe((widget)=>this.fillForm(widget));
     } else {
         console.log("Warning: No widget id is selected.");
     }
@@ -81,9 +83,9 @@ private getCleanStringifiedData(widget: Widget): string{
 private postOrPutFormData(widget: Widget): void {
 
     let widgetStringified: string = this.getCleanStringifiedData(widget);
-    if (CURRENT_WIDGET_ID != null) { // put request
+    if (this.currentWidgetId != null) { // put request
 
-        this.restService.put(BACKEND_URL+"/"+CURRENT_WIDGET_ID, widgetStringified).subscribe((data)=>this.redirect());
+        this.restService.put(BACKEND_URL+"/"+this.currentWidgetId, widgetStringified).subscribe((data)=>this.redirect());
     } else { // post request
         this.restService.post(BACKEND_URL, widgetStringified).subscribe((data)=>this.redirect());
 
@@ -110,7 +112,7 @@ public onSubmit(): void {
   }
 
   public onDelete(): void {
-    this.restService.delete(BACKEND_URL+"/"+CURRENT_WIDGET_ID).subscribe((data)=>this.redirect());
+    this.restService.delete(BACKEND_URL+"/"+this.currentWidgetId).subscribe((data)=>this.redirect());
   }
 
 }

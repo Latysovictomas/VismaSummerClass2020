@@ -1,4 +1,4 @@
-/* for six cards in the main body and a button */
+/* for widgets in the main body and a 'add a widget' button */
 
 .main__cards {
     column-count: 1;
@@ -31,154 +31,6 @@
 .card:hover {
     transform: scale(1.05);
     transition: 0.2s;
-}
-
-
-/* header color */
-
-.light-theme {
-    background-color: rgba(100, 124, 151, 0.200);
-}
-
-.dark-theme {
-    background-color: rgba(100, 124, 151, 0.700);
-}
-
-
-/* contents*/
-
-
-/* Adding details to widgets*/
-
-.sprite {
-    background-image: url("http://www.trenatics.com/public/images/iconfile/sprites/css-sprite/sprite-action-grey600.png");
-}
-
-
-/*card chat*/
-
-.form-container__textarea {
-    width: 99%;
-    resize: none;
-    height: 100px;
-}
-
-.form-container__btn-send {
-    background-color: #5585a5;
-    color: white;
-    width: 100%;
-    padding: 6px;
-    opacity: 0.8;
-}
-
-.btn-container {
-    margin-right: 15px;
-}
-
-.btn-container__send-icon {
-    background: url(../../assets/images/24_send.png);
-    display: inline-block;
-    object-fit: none;
-    background-position: -27px -5px;
-    width: 25px;
-    height: 15px;
-}
-
-.btn-container__send-text {
-    width: 100%;
-    margin-left: 10px;
-}
-
-.form-container__btn-send {
-    cursor: pointer;
-}
-
-.form-container__btn-send:hover {
-    opacity: 1;
-    background-color: #507e9c;
-}
-
-.form-container__btn-send:hover span {
-    background-position: -85px -5px;
-}
-
-.chat-log__chat-message-author {
-    display: flex;
-    align-items: center;
-    padding-right: 10px;
-}
-
-.chat-log {
-    padding: 20px;
-    font-size: 14px;
-    overflow: auto;
-    min-height: 300px;
-    max-height: 300px;
-}
-
-.chat-log__chat-message {
-    display: flex;
-    align-items: space-around;
-    text-align: left;
-}
-
-.chat-log__chat-message p {
-    width: 100%;
-    display: inline-block;
-}
-
-.chat-log__chat-message-right {
-    flex-direction: row-reverse;
-}
-
-
-/*table*/
-
-.userList-card {
-    break-inside: avoid;
-    overflow: auto;
-}
-
-#userList-container {
-    overflow-x: auto;
-}
-
-.userList-container__table {
-    width: 100%;
-    height: 100%;
-    padding-left: 10px;
-}
-
-.userList-container__table th,
-.userList-container__table td {
-    padding: 5px;
-    text-align: left;
-    border-bottom: 1px solid #ddd;
-}
-
-
-/* card headers for settings icon, and subcard headers*/
-
-.widget-link {
-    color: black;
-    text-decoration: none;
-}
-
-.widget-link__widget-header {
-    display: flex;
-    direction: row;
-    align-items: center;
-    justify-content: space-between;
-    width: 100%;
-}
-
-.widget-link__widget-header>p {
-    margin-left: 20px;
-    font-weight: bold;
-}
-
-.widget-link__widget-header:hover {
-    filter: brightness(75%);
 }
 
 @media only screen and (min-width: 751px) {
@@ -214,7 +66,6 @@
     #column-3 {
         grid-area: column-3;
     }
-    /*3 columns*/
     .column-1,
     .column-2,
     .column-3 {
@@ -223,7 +74,6 @@
         justify-content: flex-start;
         align-items: flex-start;
     }
-    /**/
     .card {
         break-inside: avoid-column;
         overflow: hidden;

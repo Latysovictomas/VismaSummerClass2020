@@ -1,0 +1,65 @@
+/*card chat*/
+
+.form-container {
+    &__textarea {
+        width: 99%;
+        resize: none;
+        height: 100px;
+    }
+    &__btn-send {
+        background-color: #5585a5;
+        color: white;
+        width: 100%;
+        padding: 6px;
+        opacity: 0.8;
+        cursor: pointer;
+    }
+    &__btn-send:hover {
+        opacity: 1;
+        background-color: #507e9c;
+    }
+    &__btn-send:hover span {
+        background-position: -85px -5px;
+    }
+}
+
+.btn-container {
+    margin-right: 15px;
+    &__send-icon {
+        background: url(../../../assets/images/24_send.png);
+        display: inline-block;
+        object-fit: none;
+        background-position: -27px -5px;
+        width: 25px;
+        height: 15px;
+    }
+    &__send-text {
+        width: 100%;
+        margin-left: 10px;
+    }
+}
+
+.chat-log {
+    padding: 20px;
+    font-size: 14px;
+    overflow: auto;
+    min-height: 300px;
+    max-height: 300px;
+    &__chat-message-author {
+        display: flex;
+        align-items: center;
+        padding-right: 10px;
+    }
+    &__chat-message {
+        display: flex;
+        align-items: space-around;
+        text-align: left;
+    }
+    &__chat-message p {
+        width: 100%;
+        display: inline-block;
+    }
+    &__chat-message-right {
+        flex-direction: row-reverse;
+    }
+}

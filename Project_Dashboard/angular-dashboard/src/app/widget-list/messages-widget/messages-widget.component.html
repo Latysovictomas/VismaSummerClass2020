@@ -1,0 +1,22 @@
+<section class="card messages-card">
+    <!-- header -->
+    <app-widget-header [widget]="widget"></app-widget-header>
+    <!-- chat -->
+    <div class="chat-log">
+        <div [ngClass]="i%2!==0 ? 'chat-log__chat-message' : 'chat-log__chat-message chat-log__chat-message-right'" *ngFor="let widgetData of widgetDataArray; let i=index">
+            <span class="chat-log__chat-message-author">
+                <b>{{widgetData.author}}</b>
+            </span>
+            <p>{{widgetData.message}}</p>
+        </div>
+    </div>
+    <form class="form-container">
+        <textarea class="form-container__textarea" name="msg" placeholder="Type message required"></textarea>
+        <button class="form-container__btn-send" type="submit">
+        <div class="btn-container">
+            <span class="btn-container__send-icon"></span>
+            <span class="btn-container__send-text">Send</span>
+        </div>
+        </button>
+    </form>
+</section>

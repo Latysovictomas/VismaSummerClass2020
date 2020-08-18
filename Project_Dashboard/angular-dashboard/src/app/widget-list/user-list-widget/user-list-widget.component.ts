@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import { widgetInterface } from '../widget.interface';
 
 @Component({
   selector: 'app-user-list-widget',
@@ -7,6 +8,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UserListWidgetComponent implements OnInit {
 
+  @Input() widget: widgetInterface;
+  
   constructor() { }
 
   ngOnInit(): void {

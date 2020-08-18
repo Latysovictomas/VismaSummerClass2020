@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { Dashboard2Component } from './dashboard2.component';
+import { WidgetHeaderComponent } from './widget-header.component';
 
-describe('Dashboard2Component', () => {
-  let component: Dashboard2Component;
-  let fixture: ComponentFixture<Dashboard2Component>;
+describe('WidgetHeaderComponent', () => {
+  let component: WidgetHeaderComponent;
+  let fixture: ComponentFixture<WidgetHeaderComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ Dashboard2Component ]
+      declarations: [ WidgetHeaderComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(Dashboard2Component);
+    fixture = TestBed.createComponent(WidgetHeaderComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -5,11 +5,12 @@
         <div id="{{ 'column-' + (i + 1)  }}" *ngFor="let widgets of widgetsGroupedByColumn; let i = index">
             <section *ngFor="let widget of widgets">
                 <ng-container [ngSwitch]="widget.type">
-                    <app-user-list-widget *ngSwitchCase="1"></app-user-list-widget>
-                    <app-messages-widget *ngSwitchCase="2"></app-messages-widget>
+                    <app-user-list-widget *ngSwitchCase="1" [widget]="widget"></app-user-list-widget>
+                    <app-messages-widget *ngSwitchCase="2" [widget]="widget"></app-messages-widget>
                 </ng-container>
             </section>
         </div>
+
     </section>
 
     <!-- overview content at the bottom -->

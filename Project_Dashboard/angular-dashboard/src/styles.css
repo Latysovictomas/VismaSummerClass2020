@@ -6,3 +6,7 @@ body {
     font-family: sans-serif;
     background-color: #acd3d6;
 }
+
+.sprite {
+    background-image: url("http://www.trenatics.com/public/images/iconfile/sprites/css-sprite/sprite-action-grey600.png");
+}

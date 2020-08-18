@@ -1,4 +1,4 @@
-import { widgetInterface } from './widget-interface';
+import { widgetInterface } from './widget.interface';
 
 export class Widget implements widgetInterface {
     title: string;

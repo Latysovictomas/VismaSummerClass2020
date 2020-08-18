@@ -1,9 +1,8 @@
 import { Component, AfterViewInit, ViewEncapsulation } from '@angular/core';
 
 import { BACKEND_URL } from "../utils/urls";
-import { Widget } from '../widget';
-import { RestService } from "../rest.service";
-import { chatInputHTML, headerHTML, tableHTML, chatLogHTML } from "../utils/templates";
+import { widgetInterface } from '../widget-list/widget.interface';
+import { WidgetsService } from '../widget-list/widgets.service';
 
 @Component({
   selector: 'app-dashboard-main',
@@ -14,114 +13,114 @@ import { chatInputHTML, headerHTML, tableHTML, chatLogHTML } from "../utils/temp
 export class DashboardMainComponent implements AfterViewInit {
 
 
-  public widgetsGroupedByColumn: Widget[][] = [[],[],[]]; // [column-1, column-2, column-3]
+  public widgetsGroupedByColumn: widgetInterface[][] = [[],[],[]]; // [column-1, column-2, column-3]
 
-  constructor(private restService: RestService) { }
+  constructor(private widgetResource: WidgetsService) { }
 
-  public ngAfterViewInit(): void{
+  public ngAfterViewInit(): void {
     this.groupWidgetByColumn();
   
   }
 
-private displayWidgets(widgets: Widget[]): void {
-  // for each widget
-  widgets.forEach((widget) => {
-      let card: HTMLElement = document.createElement("section");
-      if (widget.type === 1) { // userList
-        this.createUserListWidget(widget, card);
-      } else if (widget.type === 2) { // messages
-        this.createMessageWidget(widget, card);
-      }
-  });
-}
+// private displayWidgets(widgets: Widget[]): void {
+//   // for each widget
+//   widgets.forEach((widget) => {
+//       let card: HTMLElement = document.createElement("section");
+//       if (widget.type === 1) { // userList
+//         this.createUserListWidget(widget, card);
+//       } else if (widget.type === 2) { // messages
+//         this.createMessageWidget(widget, card);
+//       }
+//   });
+// }
 
-private createMessageWidget(widget: Widget, card: HTMLElement): void {
-  card.className = "card messages-card";
-  // create header
-  card.insertAdjacentHTML("beforeend", headerHTML(widget, this.getHeaderColor(widget)));
+// private createMessageWidget(widget: Widget, card: HTMLElement): void {
+//   card.className = "card messages-card";
+//   // create header
+//   card.insertAdjacentHTML("beforeend", headerHTML(widget, this.getHeaderColor(widget)));
 
-  // create chat log
-  let widgetDataArray: string[] = this.getWidgetDataAsArray(widget);
-  card.insertAdjacentHTML("beforeend", chatLogHTML(widgetDataArray));
+//   // create chat log
+//   let widgetDataArray: string[] = this.getWidgetDataAsArray(widget);
+//   card.insertAdjacentHTML("beforeend", chatLogHTML(widgetDataArray));
 
-  // append input area below chat log
-  card.insertAdjacentHTML("beforeend", chatInputHTML());
+//   // append input area below chat log
+//   card.insertAdjacentHTML("beforeend", chatInputHTML());
 
-  // append to the right column
-  this.setWidgetPosition(widget, card);
-}
+//   // append to the right column
+//   this.setWidgetPosition(widget, card);
+// }
 
 
-private createUserListWidget(widget: Widget, card: HTMLElement): void {
-  card.className = "card userList-card";
-  // create header
-  card.insertAdjacentHTML("beforeend", headerHTML(widget, this.getHeaderColor(widget)));
+// private createUserListWidget(widget: Widget, card: HTMLElement): void {
+//   card.className = "card userList-card";
+//   // create header
+//   card.insertAdjacentHTML("beforeend", headerHTML(widget, this.getHeaderColor(widget)));
 
-  // create table
-  let widgetDataArray: string[] = this.getWidgetDataAsArray(widget);
-  card.insertAdjacentHTML("beforeend", tableHTML(widgetDataArray));
+//   // create table
+//   let widgetDataArray: string[] = this.getWidgetDataAsArray(widget);
+//   card.insertAdjacentHTML("beforeend", tableHTML(widgetDataArray));
 
-  // append to the right column
-  this.setWidgetPosition(widget, card);
-}
+//   // append to the right column
+//   this.setWidgetPosition(widget, card);
+// }
 
-private getWidgetDataAsArray(widget: Widget): string[] {
-  return Array.isArray(widget.data) ? widget.data : Array.of(widget.data);
-}
+// private getWidgetDataAsArray(widget: Widget): string[] {
+//   return Array.isArray(widget.data) ? widget.data : Array.of(widget.data);
+// }
 
-private getHeaderColor(widget: Widget): string {
-  switch (widget.headerType) {
-      case 1:
-          return "light-theme";
-      case 2:
-          return "dark-theme";
-      default:
-          break;
-  }
-}
+// private getHeaderColor(widget: Widget): string {
+//   switch (widget.headerType) {
+//       case 1:
+//           return "light-theme";
+//       case 2:
+//           return "dark-theme";
+//       default:
+//           break;
+//   }
+// }
 
-private setWidgetPosition(widget: Widget, card: HTMLElement): void {
-  switch (widget.column) {
-      case 1:
-          this.appendWidgetToColumn(1, card);
-          break;
-      case 2:
-          this.appendWidgetToColumn(2, card);
-          break;
-      case 3:
-          this.appendWidgetToColumn(3, card);
-          break;
-      default:
-          break;
-  }
-}
+// private setWidgetPosition(widget: Widget, card: HTMLElement): void {
+//   switch (widget.column) {
+//       case 1:
+//           this.appendWidgetToColumn(1, card);
+//           break;
+//       case 2:
+//           this.appendWidgetToColumn(2, card);
+//           break;
+//       case 3:
+//           this.appendWidgetToColumn(3, card);
+//           break;
+//       default:
+//           break;
+//   }
+// }
 
-private appendWidgetToColumn(columnNum: number, card: HTMLElement): void {
+// private appendWidgetToColumn(columnNum: number, card: HTMLElement): void {
   
-  let container: HTMLElement = document.getElementById(`column-${columnNum}`);
-  container.appendChild(card);
-}
+//   let container: HTMLElement = document.getElementById(`column-${columnNum}`);
+//   container.appendChild(card);
+// }
 
 
-private pushWidgetToColumn(widget: Widget): void{
+private pushWidgetToColumn(widget: widgetInterface): void {
     switch (widget.column) {
       case 1:
           this.widgetsGroupedByColumn[0].push(widget);
           break;
       case 2:
-        this.widgetsGroupedByColumn[1].push(widget);
+          this.widgetsGroupedByColumn[1].push(widget);
           break;
       case 3:
-        this.widgetsGroupedByColumn[2].push(widget);
+          this.widgetsGroupedByColumn[2].push(widget);
           break;
       default:
           break;
   }
 }
 
-private groupWidgetByColumn() {
+private groupWidgetByColumn(): void {
 
-   this.restService.get(BACKEND_URL).subscribe(widgets => 
+   this.widgetResource.getWidgets(BACKEND_URL).subscribe(widgets => 
     {
       widgets.forEach((widget) => {
       this.pushWidgetToColumn(widget);})
