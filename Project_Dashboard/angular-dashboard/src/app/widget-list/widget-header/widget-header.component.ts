@@ -13,16 +13,16 @@ export class WidgetHeaderComponent implements OnInit {
   public routerLink:string;
 
   public ngOnInit(): void {
-    this.routerLink = "/form";
+    this.routerLink = '/form';
     this.colorTheme = this.getHeaderColor(this.widget);
   }
 
   private getHeaderColor(widget: widgetInterface): string {
   switch (widget.headerType) {
       case 1:
-          return "light-theme";
+          return 'light-theme';
       case 2:
-          return "dark-theme";
+          return 'dark-theme';
       default:
           break;
   }

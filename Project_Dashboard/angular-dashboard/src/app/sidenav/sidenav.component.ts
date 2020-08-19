@@ -8,7 +8,7 @@ import { Component, OnInit} from '@angular/core';
 export class SidenavComponent implements OnInit {
 
   public listItems: string[]  = [];
-  public routerLink:string = "/dashboard2";
+  public routerLink:string = '/dashboard2';
   private numOfListItems: number = 5;
 
   constructor() { }
@@ -19,7 +19,7 @@ export class SidenavComponent implements OnInit {
 
   private pushNavListItems(): void{
     for(let i=0; i<this.numOfListItems; i++){
-      this.listItems.push("Dashboard2");
+      this.listItems.push('Dashboard2');
     }
   }
 

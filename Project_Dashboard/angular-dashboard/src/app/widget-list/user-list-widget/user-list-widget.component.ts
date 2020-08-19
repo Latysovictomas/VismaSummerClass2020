@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { widgetInterface } from '../widget.interface';
-import { getWidgetDataAsArray } from "../widget-utils";
+import { getWidgetDataAsArray } from '../widget-utils';
 
 @Component({
   selector: 'app-user-list-widget',

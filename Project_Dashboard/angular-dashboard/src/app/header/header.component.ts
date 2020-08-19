@@ -9,20 +9,20 @@ export class HeaderComponent implements OnInit {
 
   public headerItems: object[]  = [
     {
-      name: "Home",
-      link: "/dashboard"
+      name: 'Home',
+      link: '/dashboard'
     },
     {
-      name: "Dashboard2",
-      link: "/dashboard2"
+      name: 'Dashboard2',
+      link: '/dashboard2'
     },
     {
-      name: "Dashboard2",
-      link: "/dashboard2"
+      name: 'Dashboard2',
+      link: '/dashboard2'
     },
     {
-      name: "Dashboard2",
-      link: "/dashboard2"
+      name: 'Dashboard2',
+      link: '/dashboard2'
     },
 ];
 
