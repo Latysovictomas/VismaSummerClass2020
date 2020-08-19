@@ -1,3 +1,5 @@
+$lightTheme: rgba(100, 124, 151, 0.200);
+$darkTheme: rgba(100, 124, 151, 0.700);
 .widget-link {
     color: black;
     text-decoration: none;
@@ -21,9 +23,9 @@
 /* header color */
 
 .light-theme {
-    background-color: rgba(100, 124, 151, 0.200);
+    background-color: $lightTheme;
 }
 
 .dark-theme {
-    background-color: rgba(100, 124, 151, 0.700);
+    background-color: $darkTheme;
 }

@@ -1,63 +1,61 @@
-/* four small rectangles at the bottom */
+/* styling four small rectangles at the bottom */
 
+$cardColorDefault: rgba(100, 124, 151, 0.178);
+$cardColorLinear: linear-gradient(rgba(100, 124, 151, 0.178), #ffffff);
+$cardColorLinearOnHover: linear-gradient(rgb(97, 143, 196), #ffffff);
 .main-overview {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(165px, 1fr));
     grid-auto-rows: 95px;
     grid-gap: 20px;
     margin: 20px;
-}
-
-.main-overview__card {
-    background-color: rgba(100, 124, 151, 0.178);
-    background: linear-gradient(rgba(100, 124, 151, 0.178), #ffffff);
-    box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.1);
-    max-height: 110px;
-    /*for the content*/
-    display: flex;
-    justify-content: center;
-}
-
-.main-overview__card:hover {
-    transform: scale(1.05);
-    transition: 0.2s;
-    background: linear-gradient(rgb(97, 143, 196), #ffffff);
-}
-
-.main-overview__card:hover span {
-    background-position: top right;
+    &__card {
+        background-color: $cardColorDefault;
+        background: $cardColorLinear;
+        box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.1);
+        max-height: 110px;
+        /*for the content*/
+        display: flex;
+        justify-content: center;
+        &:hover {
+            transform: scale(1.05);
+            transition: 0.2s;
+            background: $cardColorLinearOnHover;
+            span {
+                background-position: top right;
+            }
+        }
+    }
 }
 
 
-/* four buttons at the bottom and their contents*/
+/* styling the content for four buttons at the bottom*/
 
-.main-overview__card {
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-}
-
-.main-overview__card-icon {
-    display: block;
-    object-fit: none;
-    background-position: -335px -105px;
-    width: 33px;
-    height: 25px;
-}
-
-.main-overview__content div {
-    margin-bottom: 0;
-    font-weight: bold;
-    font-size: larger;
-}
-
-.main-overview__content {
-    width: 100px;
-    text-align: right;
-}
-
-.main-overview--trunc-text {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
+.main-overview {
+    &__card {
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+    }
+    &__card-icon {
+        display: block;
+        object-fit: none;
+        background-position: -335px -105px;
+        width: 33px;
+        height: 25px;
+    }
+    &__content {
+        width: 100px;
+        text-align: right;
+        div {
+            margin-bottom: 0;
+            font-weight: bold;
+            font-size: larger;
+        }
+    }
+    &--trunc-text {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
 }

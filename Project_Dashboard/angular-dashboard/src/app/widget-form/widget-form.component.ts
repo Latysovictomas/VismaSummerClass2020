@@ -5,6 +5,7 @@ import { FormGroup, FormControl } from "@angular/forms";
 import { Validators } from "@angular/forms";
 import { ActivatedRoute } from "@angular/router";
 import { widgetInterface } from "../widget-list/widget.interface";
+import { Router } from "@angular/router";
 
 @Component({
   selector: "app-widget-form",
@@ -17,7 +18,7 @@ export class WidgetFormComponent implements OnInit {
     public widgetForm: FormGroup;
     private currentWidgetId:string;
 
-    constructor(private widgetResource: WidgetsService, private activatedRoute: ActivatedRoute) { 
+    constructor(private widgetResource: WidgetsService, private activatedRoute: ActivatedRoute, private router: Router) { 
         this.currentWidgetId = this.activatedRoute.snapshot["params"].id;
         this.isButtonVisible = Boolean(this.currentWidgetId);
     }
@@ -32,7 +33,7 @@ export class WidgetFormComponent implements OnInit {
             column: new FormControl(widget ? widget.column : null, Validators.required),
             type: new FormControl(widget ? widget.type : 1, Validators.required),
             headerType: new FormControl(widget ? widget.headerType : 1, Validators.required),
-            data: new FormControl(widget ? JSON.stringify(widget.data) : "", Validators.required)
+            data: new FormControl(widget ? this.stringifyIfArray(widget.data) : "", Validators.required)
           });
     }
 
@@ -61,6 +62,7 @@ export class WidgetFormComponent implements OnInit {
     private fillFormByCurrentId(): void {
         if (this.currentWidgetId != null) {
             //get request to fill form
+            
             this.widgetResource.getWidgetById(BACKEND_URL+"/"+this.currentWidgetId).subscribe((widget)=> this.widgetForm = this.generateForm(widget));
         } else {
             console.log("Warning: No widget id is selected.");
@@ -68,6 +70,14 @@ export class WidgetFormComponent implements OnInit {
             this.widgetForm = this.generateForm();
         }
 }
+
+    private stringifyIfArray(data): string {
+        if(!Array.isArray(data)){
+            return data;
+        } else {
+            return JSON.stringify(data);
+        }
+    }
 
     private isValidJSON(text: string): boolean {
         try {
@@ -80,7 +90,7 @@ export class WidgetFormComponent implements OnInit {
 
 
     private redirect(): void {
-        window.location.href = "dashboard";
+        this.router.navigateByUrl("/dashboard");
     }
 
     private getCleanStringifiedData(widget: widgetInterface): string{

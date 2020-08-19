@@ -1,129 +1,125 @@
+$headerColor: #d4e6f7;
 .header {
     display: flex;
     justify-content: space-between;
     padding: 0 20px;
-    background-color: #d4e6f7;
+    background-color: $headerColor;
     position: fixed;
     top: 0;
     z-index: 1;
     width: 100%;
     height: 50px;
-}
-
-.header__box {
-    height: 100%;
+    &__box {
+        height: 100%;
+    }
+    /* top nav menu search*/
+    &__search {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        overflow: hidden;
+        padding-right: 40px;
+    }
+    &__search input[type=text] {
+        padding: 6px;
+        border: none;
+        margin-top: 8px;
+        margin-right: 16px;
+        font-size: 17px;
+        background-color: white;
+    }
+    &__avatar {
+        background-position: 0 0px;
+        width: 33px;
+        height: 25px;
+        display: inline-block;
+        content: "";
+        margin-top: -6px;
+    }
 }
 
 
 /* header menu*/
 
-.menu__header-btn {
-    border: 1px solid gray;
-    background-color: transparent;
-    margin-top: 10px;
-    margin-right: 20px;
-    height: 25px;
-    width: 25px;
-}
-
-.menu a {
-    color: black;
-    text-align: center;
-    padding: 10px 10px;
-    text-decoration: none;
-    font-size: 17px;
-    position: relative;
-    margin-right: -4px;
-}
-
-.menu a:hover {
-    background-color: rgba(173, 180, 219, 0.377);
-    color: black;
-}
-
-.menu a:before {
-    background-image: url(http://www.trenatics.com/public/images/iconfile/sprites/css-sprite/sprite-action-grey600.png);
-}
-
-.menu__top-menu1:before {
-    background-position: 0 0;
-    width: 33px;
-    height: 25px;
-    display: inline-block;
-    content: "";
-}
-
-.menu__top-menu2:before {
-    background-position: 0 -35px;
-    width: 33px;
-    height: 25px;
-    display: inline-block;
-    content: "";
-}
-
-.menu__top-menu3:before {
-    background-position: 0 -70px;
-    width: 33px;
-    height: 25px;
-    display: inline-block;
-    content: "";
-}
-
-.menu__top-menu4:before {
-    background-position: 0 -105px;
-    width: 33px;
-    height: 25px;
-    display: inline-block;
-    content: "";
-}
-
-
-/* top nav menu search*/
-
-.header__search {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    overflow: hidden;
-    padding-right: 40px;
-}
-
-.header__search input[type=text] {
-    padding: 6px;
-    border: none;
-    margin-top: 8px;
-    margin-right: 16px;
-    font-size: 17px;
-    background-color: white;
-}
-
-.header__avatar {
-    background-position: 0 0px;
-    width: 33px;
-    height: 25px;
-    display: inline-block;
-    content: "";
-    margin-top: -6px;
+.menu {
+    &__header-btn {
+        border: 1px solid gray;
+        background-color: transparent;
+        margin-top: 10px;
+        margin-right: 20px;
+        height: 25px;
+        width: 25px;
+    }
+    a {
+        color: black;
+        text-align: center;
+        padding: 10px 10px;
+        text-decoration: none;
+        font-size: 17px;
+        position: relative;
+        margin-right: -4px;
+        &:hover {
+            background-color: rgba(173, 180, 219, 0.377);
+            color: black;
+        }
+        &:before {
+            background-image: url(http://www.trenatics.com/public/images/iconfile/sprites/css-sprite/sprite-action-grey600.png);
+        }
+    }
+    &__top-menu {
+        &-item1:before {
+            background-position: 0 0;
+            width: 33px;
+            height: 25px;
+            display: inline-block;
+            content: "";
+        }
+        &-item2:before {
+            background-position: 0 -35px;
+            width: 33px;
+            height: 25px;
+            display: inline-block;
+            content: "";
+        }
+        &-item3:before {
+            background-position: 0 -70px;
+            width: 33px;
+            height: 25px;
+            display: inline-block;
+            content: "";
+        }
+        &-item4:before {
+            background-position: 0 -105px;
+            width: 33px;
+            height: 25px;
+            display: inline-block;
+            content: "";
+        }
+    }
 }
 
 @media only screen and (max-width: 750px) {
-    .menu a {
-        display: none;
-    }
-    .menu__header-btn {
-        display: inline-block;
+    .menu {
+        a {
+            display: none;
+        }
+        &__header-btn {
+            display: inline-block;
+        }
     }
 }
 
 @media only screen and (min-width: 751px) {
-    .menu a {
-        display: inline-block;
-    }
-    .menu span {
-        display: none;
-    }
-    .menu__header-btn {
-        display: none;
+    .menu {
+        a {
+            display: inline-block;
+        }
+        span {
+            display: none;
+        }
+        &__header-btn {
+            display: none;
+        }
     }
     .header__nav {
         margin-left: 150px;
@@ -131,13 +127,15 @@
 }
 
 @media only screen and (min-width: 1080px) {
-    .menu a {
-        display: inline-block;
-    }
-    .menu span {
-        display: inline-block;
-    }
-    .menu__header-btn {
-        display: none;
+    .menu {
+        a {
+            display: inline-block;
+        }
+        span {
+            display: inline-block;
+        }
+        &__header-btn {
+            display: none;
+        }
     }
 }

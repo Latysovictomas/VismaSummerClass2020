@@ -6,7 +6,7 @@
             <button class="menu__header-btn">
           &#9776;
       </button>
-            <a routerLink={{item.link}} class="{{ 'menu__top-menu' + (i + 1)  }}" *ngFor="let item of headerItems; let i = index">
+            <a routerLink={{item.link}} class="{{ 'menu__top-menu-item' + (i + 1)  }}" *ngFor="let item of headerItems; let i = index">
                 <span>{{item.name}}</span>
             </a>
         </div>

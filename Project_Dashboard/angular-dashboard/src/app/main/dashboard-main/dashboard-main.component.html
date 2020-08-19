@@ -1,8 +1,8 @@
-<main class="main grid-container__main" id="main">
+<main class="main grid-container__main">
     <a routerLink="/form" class="main__add-widget-btn">Add widget</a>
-    <section class="main__cards" id="main__cards">
+    <section class="main__cards">
 
-        <div id="{{ 'column-' + (i + 1)  }}" *ngFor="let widgets of widgetsGroupedByColumn; let i = index">
+        <div class="{{ 'main__container-' + (i + 1)  }}" *ngFor="let widgets of widgetsGroupedByColumn; let i = index">
             <section *ngFor="let widget of widgets">
                 <ng-container [ngSwitch]="widget.type">
                     <app-user-list-widget *ngSwitchCase="1" [widget]="widget"></app-user-list-widget>

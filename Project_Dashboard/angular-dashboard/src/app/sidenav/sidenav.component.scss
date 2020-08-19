@@ -1,3 +1,7 @@
+$sidenavColor: #47527a;
+$sidenavHeaderColor: #354375;
+$listItemColor: #ddd;
+$listItemColorOnHover: rgba(255, 255, 255, 0.1);
 .sidenav {
     display: flex;
     flex-direction: column;
@@ -8,39 +12,33 @@
     overflow-y: auto;
     position: fixed;
     z-index: 2;
-    background-color: #47527a;
-}
-
-.sidenav__list {
-    padding: 0px;
-    margin-top: 0px;
-}
-
-.sidenav__list-item {
-    padding: 20px 20px 20px 40px;
-    color: #ddd;
-}
-
-.sidenav__list a {
-    text-decoration: none;
-}
-
-.sidenav__list-item:hover {
-    background-color: rgba(255, 255, 255, 0.1);
-}
-
-.sidenav__header {
-    height: 50px;
-    background-color: #354375;
-}
-
-.sidenav__close-icon {
-    position: absolute;
-    visibility: visible;
-    top: 8px;
-    right: 12px;
-    cursor: pointer;
-    font-size: 20px;
+    background-color: $sidenavColor;
+    &__list {
+        padding: 0px;
+        margin-top: 0px;
+        a {
+            text-decoration: none;
+        }
+    }
+    &__list-item {
+        padding: 20px 20px 20px 40px;
+        color: $listItemColor;
+        &:hover {
+            background-color: $listItemColorOnHover
+        }
+    }
+    &__header {
+        height: 50px;
+        background-color: $sidenavHeaderColor;
+    }
+    &__close-icon {
+        position: absolute;
+        visibility: visible;
+        top: 8px;
+        right: 12px;
+        cursor: pointer;
+        font-size: 20px;
+    }
 }
 
 @media only screen and (min-width: 751px) {
@@ -49,8 +47,8 @@
         transform: translateX(0);
         transition: 0s;
         position: fixed;
-    }
-    .sidenav__close-icon {
-        visibility: hidden;
+        &__close-icon {
+            visibility: hidden;
+        }
     }
 }

@@ -1,5 +1,7 @@
 /*card chat*/
 
+$sendBtnColor:#5585a5;
+$sendBtnColorOnHover:#507e9c;
 .form-container {
     &__textarea {
         width: 99%;
@@ -7,7 +9,7 @@
         height: 100px;
     }
     &__btn-send {
-        background-color: #5585a5;
+        background-color: $sendBtnColor;
         color: white;
         width: 100%;
         padding: 6px;
@@ -16,7 +18,7 @@
     }
     &__btn-send:hover {
         opacity: 1;
-        background-color: #507e9c;
+        background-color: $sendBtnColorOnHover;
     }
     &__btn-send:hover span {
         background-position: -85px -5px;
