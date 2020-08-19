@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { widgetInterface } from '../widget.interface';
+import { getWidgetDataAsArray } from "../widget-utils";
 
 @Component({
   selector: 'app-user-list-widget',
@@ -9,10 +10,10 @@ import { widgetInterface } from '../widget.interface';
 export class UserListWidgetComponent implements OnInit {
 
   @Input() widget: widgetInterface;
+  public widgetDataArray: string[];
   
-  constructor() { }
-
-  ngOnInit(): void {
+  public ngOnInit(): void {
+    this.widgetDataArray = getWidgetDataAsArray(this.widget);
   }
 
 }

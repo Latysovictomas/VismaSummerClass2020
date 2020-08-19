@@ -1,6 +1,6 @@
 <div class="form-flex">
 
-    <form [formGroup]="widgetForm" (ngSubmit)="onSubmit()" class="widget-form">
+    <form [formGroup]="widgetForm" *ngIf="widgetForm" (ngSubmit)="onSubmit()" class="widget-form">
 
         <div class="widget-form__container">
             <h2>Add/Edit a widget</h2>

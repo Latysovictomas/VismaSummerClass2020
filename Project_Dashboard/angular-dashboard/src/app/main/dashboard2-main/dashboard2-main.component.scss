@@ -1,0 +1,12 @@
+.coming-soon {
+    height: 80vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@media only screen and (min-width: 751px) {
+    .coming-soon {
+        margin-left: 150px;
+    }
+}
