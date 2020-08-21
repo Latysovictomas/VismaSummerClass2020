@@ -105,9 +105,9 @@ export class WidgetFormComponent implements OnInit {
         let widgetStringified: string = this.getCleanStringifiedData(widget);
         if (this.currentWidgetId != null) { // put request
 
-            this.widgetResource.putWidget(BACKEND_URL+'/'+this.currentWidgetId, widgetStringified).subscribe((data)=>this.redirect());
+            // this.widgetResource.putWidget(BACKEND_URL+'/'+this.currentWidgetId, widgetStringified).subscribe((data)=>this.redirect());
         } else { // post request
-            this.widgetResource.postWidget(BACKEND_URL, widgetStringified).subscribe((data)=>this.redirect());
+            // this.widgetResource.postWidget(BACKEND_URL, widgetStringified).subscribe((data)=>this.redirect());
 
         }
     }

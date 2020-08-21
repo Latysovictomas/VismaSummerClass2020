@@ -8,6 +8,16 @@ import { Dashboard2MainComponent } from './dashboard2-main/dashboard2-main.compo
 import { OverviewComponent } from '../overview/overview.component';
 
 
+
+//ngrx
+import { WidgetsService } from '../widget-list/widgets.service';
+import { WidgetEffects } from '../widget-form/store/widget.effects';
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
+import { widgetReducer } from '../widget-form/store/widget.reducers';
+
+
+
 @NgModule({
   declarations: [
     DashboardMainComponent,
@@ -18,7 +28,10 @@ import { OverviewComponent } from '../overview/overview.component';
   imports: [
     CommonModule, 
     RouterModule, 
-    widgetListModule 
+    widgetListModule,
+    
+    StoreModule.forFeature('widgets', widgetReducer),
+    EffectsModule.forFeature([WidgetEffects])
     ],
 
   exports: [
@@ -26,7 +39,7 @@ import { OverviewComponent } from '../overview/overview.component';
     Dashboard2MainComponent
 ],
 
-  providers: [],
+  providers: [WidgetsService],
   bootstrap: []
 })
 export class mainModule { }

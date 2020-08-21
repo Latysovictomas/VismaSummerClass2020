@@ -8,6 +8,11 @@ import { WidgetHeaderComponent } from './widget-header/widget-header.component';
 
 
 
+
+
+
+
+
 @NgModule({
   declarations: [
     MessagesWidgetComponent,
@@ -15,7 +20,8 @@ import { WidgetHeaderComponent } from './widget-header/widget-header.component';
     WidgetHeaderComponent
     
   ],
-  imports: [CommonModule, RouterModule],
+  imports: [CommonModule, RouterModule
+  ],
 
   exports: [
     MessagesWidgetComponent,

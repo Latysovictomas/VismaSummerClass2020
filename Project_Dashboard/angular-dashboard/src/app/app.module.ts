@@ -10,6 +10,14 @@ import { sidenavModule } from './sidenav/sidenav.module'
 import { headerModule } from './header/header.module'
 
 import { AppComponent } from './app.component';
+import { StoreModule } from '@ngrx/store';
+import { reducers, metaReducers } from './store/reducers';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+
+//ngrx
+import { EffectsModule } from '@ngrx/effects';
+//route resolver
+import { WidgetResolver} from './widget-list/widget.resolver';
 
 
 @NgModule({
@@ -25,9 +33,15 @@ import { AppComponent } from './app.component';
     mainModule,
     widgetFormModule,
     sidenavModule,
-    headerModule
+    headerModule,
+    EffectsModule.forRoot([]),
+    StoreModule.forRoot(reducers, {
+      metaReducers
+    }),
+    StoreDevtoolsModule.instrument({maxAge: 25}),
+
   ],
-  providers: [],
+  providers: [WidgetResolver],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

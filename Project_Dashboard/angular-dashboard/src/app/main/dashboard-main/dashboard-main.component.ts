@@ -1,7 +1,10 @@
-import { Component, AfterViewInit, ViewEncapsulation } from '@angular/core';
-import { BACKEND_URL } from '../../utils/urls';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { widgetInterface } from '../../widget-list/widget.interface';
 import { WidgetsService } from '../../widget-list/widgets.service';
+import { Observable } from 'rxjs';
+import { Store } from '@ngrx/store';
+import { AppState } from '../../store/reducers/index';
+import { getAllWidgets } from '../../widget-form/store/widget.selectors';
 
 @Component({
   selector: 'app-dashboard-main',
@@ -9,16 +12,21 @@ import { WidgetsService } from '../../widget-list/widgets.service';
   styleUrls: ['./dashboard-main.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class DashboardMainComponent implements AfterViewInit {
+export class DashboardMainComponent implements OnInit {
 
 
   public widgetsGroupedByColumn: widgetInterface[][] = [[],[],[]]; // [column-1, column-2, column-3]
+  private widgets$: Observable<widgetInterface[]>;
 
-  constructor(private widgetResource: WidgetsService) { }
 
-  public ngAfterViewInit(): void {
-    this.groupWidgetByColumn();
+  constructor(private widgetResource: WidgetsService, private store: Store<AppState>) { }
   
+  public ngOnInit() {
+
+    this.widgets$ = this.store.select(getAllWidgets);
+    this.groupWidgetsByColumn();
+
+
   }
 
   private pushWidgetToColumn(widget: widgetInterface): void {
@@ -37,14 +45,14 @@ export class DashboardMainComponent implements AfterViewInit {
   }
 }
 
-  private groupWidgetByColumn(): void {
+  private groupWidgetsByColumn():void{
+    this.widgets$.subscribe( widgets => 
+      {
+        widgets.forEach((widget) => {
+        this.pushWidgetToColumn(widget);})
+      }
 
-   this.widgetResource.getWidgets(BACKEND_URL).subscribe(widgets => 
-    {
-      widgets.forEach((widget) => {
-      this.pushWidgetToColumn(widget);})
-    });
-  
+      );
   }
 
 }

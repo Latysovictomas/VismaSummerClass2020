@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { widgetInterface } from './widget.interface';
 import { Observable } from 'rxjs';
+import { BACKEND_URL } from '../utils/urls';
 
 @Injectable({
   providedIn: 'root'
@@ -10,41 +11,24 @@ export class WidgetsService {
 
   constructor(private http: HttpClient) { }
 
-  public getWidgets(url: string): any {
-      return this.http.get(url);
+  public getWidgets(): Observable<widgetInterface[]> {
+      return this.http.get<widgetInterface[]>(BACKEND_URL);
   }
 
-  public getWidgetById(url: string): any {
-    return this.http.get(url);
+  public getWidgetById(widgetId: string | number): Observable<any> {
+    return this.http.get(BACKEND_URL + '/' + widgetId);
 }
 
-  public putWidget(url: string, dataStringified: string): any {
-    
-  const options = {
-      headers: {
-        'Content-type': 'application/json'
-      }
-  };
-      return this.http.put(url, dataStringified, options);
+  public updateWidget(widgetId: string | number, changes: Partial<widgetInterface>): Observable<any> {
+    return this.http.put(BACKEND_URL + '/' + widgetId, changes);
 }
 
-  public postWidget(url: string, dataStringified: string): any {
-
-  const options = {
-      headers: {
-        'Content-type': 'application/json'
-      }
-  };
-  return this.http.post(url, dataStringified, options);
+  public createWidget(widget: widgetInterface): Observable<widgetInterface> {
+    return this.http.post<widgetInterface>(BACKEND_URL, widget);
 }
 
-  public deleteWidget(url: string): any {
-  const options = {
-      headers: {
-        'Content-type': 'application/json'
-      }
-  };
-  return this.http.delete(url, options);
+  public deleteWidget(widgetId:string | number): Observable<any> {
+    return this.http.delete(BACKEND_URL + '/' + widgetId);
 }
 
 
