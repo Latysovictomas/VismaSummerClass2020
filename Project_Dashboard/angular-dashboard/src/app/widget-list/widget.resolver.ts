@@ -22,6 +22,7 @@ export class WidgetResolver implements Resolve<Observable<any>> {
     .pipe(
         select(areWidgetsLoaded),
         tap((widgetsLoaded) => {
+          
           if (!widgetsLoaded) {
             this.store.dispatch(loadWidgets());
           }

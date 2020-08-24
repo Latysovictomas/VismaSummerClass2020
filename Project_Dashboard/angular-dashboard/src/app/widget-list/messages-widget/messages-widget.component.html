@@ -4,10 +4,12 @@
     <!-- chat -->
     <div class="chat-log">
         <div [ngClass]="i%2!==0 ? 'chat-log__chat-message' : 'chat-log__chat-message chat-log__chat-message-right'" *ngFor="let widgetData of widgetDataArray; let i=index">
-            <span class="chat-log__chat-message-author">
+            <ng-container *ngIf="widgetData!==null">
+                <span class="chat-log__chat-message-author">
                 <b>{{widgetData.author}}</b>
             </span>
-            <p>{{widgetData.message}}</p>
+                <p>{{widgetData.message}}</p>
+            </ng-container>
         </div>
     </div>
     <form class="form-container">

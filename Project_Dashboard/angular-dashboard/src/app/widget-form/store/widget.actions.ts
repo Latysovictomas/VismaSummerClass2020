@@ -7,23 +7,18 @@ export const loadWidgets = createAction(
   '[Dashboard Main Component] Load Widgets via Service',
 );
 
-export const widgetsLoaded = createAction(
+export const widgetsLoaded = createAction( //not used directly
   '[Dashboard Main Effect] Widgets Loaded Successfully',
   props<{widgets: widgetInterface[]}>()
 );
 
-// export const loadWidgetById = createAction(
-//   '[Widget Form Component] Load Widget by id via Service',
-//   props<{widgetId: string}>()
-// );
-
-// export const widgetLoadedById = createAction(
-//   '[Widget Form Component] Widget by id Loaded Successfully',
-//   props<{widget: widgetInterface}>()
-// );
-
 export const createWidget = createAction(
   '[Widget Form Component] Create Widget',
+  props<{widget: widgetInterface}>()
+);
+
+export const widgetCreated = createAction( //not used directly
+  '[Widget Form Component] Widget created with id from backend',
   props<{widget: widgetInterface}>()
 );
 
@@ -39,10 +34,9 @@ export const updateWidget = createAction(
 
 export const widgetActionTypes = {
   loadWidgets,
-  // loadWidgetById,
   widgetsLoaded,
-  // widgetLoadedById,
   createWidget,
   deleteWidget,
-  updateWidget
+  updateWidget,
+  widgetCreated
 };

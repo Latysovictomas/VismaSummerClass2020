@@ -6,6 +6,11 @@ import { Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { widgetInterface } from '../widget-list/widget.interface';
 import { Router } from '@angular/router';
+import { select, Store } from '@ngrx/store';
+import { AppState } from '../store/reducers/index';
+import { getWidgetById } from './store/widget.selectors';
+import { widgetActionTypes  } from './store/widget.actions';
+import { Update } from '@ngrx/entity';
 
 @Component({
   selector: 'app-widget-form',
@@ -14,11 +19,16 @@ import { Router } from '@angular/router';
 })
 export class WidgetFormComponent implements OnInit {
 
+
     public isButtonVisible: boolean;
     public widgetForm: FormGroup;
+    // public widgetToBeUpdated: widgetInterface;
     private currentWidgetId:string;
+    
 
-    constructor(private widgetResource: WidgetsService, private activatedRoute: ActivatedRoute, private router: Router) { 
+    constructor(private widgetResource: WidgetsService, 
+        private activatedRoute: ActivatedRoute, private router: Router,
+        private store: Store<AppState>) { 
         this.currentWidgetId = this.activatedRoute.snapshot['params'].id;
         this.isButtonVisible = Boolean(this.currentWidgetId);
     }
@@ -56,14 +66,38 @@ export class WidgetFormComponent implements OnInit {
   }
 
     public onDelete(): void {
-        this.widgetResource.deleteWidget(BACKEND_URL+'/'+this.currentWidgetId).subscribe((data)=>this.redirect());
-  }
+        let widgetId:string = this.currentWidgetId;
+        this.store.dispatch(widgetActionTypes.deleteWidget({widgetId}));
+    }
+
+    private postOrPutFormData(widget: widgetInterface): void {
+        widget.data = JSON.parse(widget.data);
+        
+        if (this.currentWidgetId != null) { // put request
+            const update: Update<widgetInterface> = {
+                id: this.currentWidgetId,
+                changes: {
+                  ...widget
+                }
+              };
+
+            this.store.dispatch(widgetActionTypes.updateWidget({update}));
+        } else { // post request
+            
+            this.store.dispatch(widgetActionTypes.createWidget({widget}));
+        }
+    }
+
 
     private fillFormByCurrentId(): void {
         if (this.currentWidgetId != null) {
+            let widgetId:string = this.currentWidgetId;
             //get request to fill form
-            
-            this.widgetResource.getWidgetById(BACKEND_URL+'/'+this.currentWidgetId).subscribe((widget)=> this.widgetForm = this.generateForm(widget));
+            this.store.pipe(
+                select(getWidgetById(this.currentWidgetId)),
+              ).subscribe((widget)=> this.widgetForm = this.generateForm(widget));
+
+
         } else {
             console.log('Warning: No widget id is selected.');
 
@@ -85,30 +119,6 @@ export class WidgetFormComponent implements OnInit {
             return true;
         } catch (error) {
             return false;
-        }
-    }
-
-
-    private redirect(): void {
-        this.router.navigateByUrl('/dashboard');
-    }
-
-    private getCleanStringifiedData(widget: widgetInterface): string{
-        return JSON.stringify(widget)
-        .replace('"{', '{').replace('}"', '}')
-        .replace(/\\/g, '').replace('"[', '[')
-        .replace(']"', ']').replace(/(\[n)\s+/g, '[');
-    }
-
-    private postOrPutFormData(widget: widgetInterface): void {
-
-        let widgetStringified: string = this.getCleanStringifiedData(widget);
-        if (this.currentWidgetId != null) { // put request
-
-            // this.widgetResource.putWidget(BACKEND_URL+'/'+this.currentWidgetId, widgetStringified).subscribe((data)=>this.redirect());
-        } else { // post request
-            // this.widgetResource.postWidget(BACKEND_URL, widgetStringified).subscribe((data)=>this.redirect());
-
         }
     }
 

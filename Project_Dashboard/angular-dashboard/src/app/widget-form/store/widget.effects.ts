@@ -20,13 +20,13 @@ export class WidgetEffects {
   );
 
   createWidget$ = createEffect(() =>
-    this.actions$.pipe(
-      ofType(widgetActionTypes.createWidget),
-      concatMap((action) => this.widgetsService.createWidget(action.widget)),
-      tap(() => this.redirect())
-    ),
-    {dispatch: false}
-  );
+  this.actions$.pipe(
+    ofType(widgetActionTypes.createWidget),
+    concatMap((action) => this.widgetsService.createWidget(action.widget)),
+    map(widget => widgetActionTypes.widgetCreated({widget})),
+    tap(() => this.redirect())
+  )
+);
 
   deleteWidget$ = createEffect(() =>
     this.actions$.pipe(

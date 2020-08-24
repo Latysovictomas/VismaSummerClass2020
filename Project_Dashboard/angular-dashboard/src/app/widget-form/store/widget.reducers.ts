@@ -1,20 +1,16 @@
 import { widgetInterface } from '../../widget-list/widget.interface';
 import { EntityState, EntityAdapter, createEntityAdapter } from '@ngrx/entity';
 import { createReducer, on } from '@ngrx/store';
-import { widgetActionTypes, widgetsLoaded, 
-  //widgetLoadedById 
-} from './widget.actions';
+import { widgetActionTypes, widgetsLoaded } from './widget.actions';
 
 export interface WidgetState extends EntityState<widgetInterface> {
   widgetsLoaded: boolean;
-  // widgetLoadedById: boolean;
 }
 
 export const adapter: EntityAdapter<widgetInterface> = createEntityAdapter<widgetInterface>();
 
 export const initialState = adapter.getInitialState({
   widgetsLoaded: false
-  // ,widgetLoadedById: false
 });
 
 export const widgetReducer = createReducer(
@@ -27,17 +23,10 @@ export const widgetReducer = createReducer(
     );
   }),
 
-  // on(widgetActionTypes.widgetLoadedById, (state, action) => {
-  //   return adapter.addOne(
-  //     action.widget,
-  //     {...state, widgetLoadedById: true}
-  //   );
-  // }),
-
-  on(widgetActionTypes.createWidget, (state, action) => {
+  on(widgetActionTypes.widgetCreated, (state, action) => {
     return adapter.addOne(action.widget, state);
   }),
-
+  
   on(widgetActionTypes.deleteWidget, (state, action) => {
     return adapter.removeOne(action.widgetId, state);
   }),
@@ -45,7 +34,6 @@ export const widgetReducer = createReducer(
   on(widgetActionTypes.updateWidget, (state, action) => {
     return adapter.updateOne(action.update, state);
   }),
-
 );
 
-export const { selectAll, selectIds } = adapter.getSelectors();
+export const { selectAll } = adapter.getSelectors();
