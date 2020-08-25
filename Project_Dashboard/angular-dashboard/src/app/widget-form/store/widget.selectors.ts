@@ -19,3 +19,8 @@ export const areWidgetsLoaded = createSelector(
   widgetFeatureSelector,
   state => state.widgetsLoaded
 );
+
+export const getError = createSelector(
+  widgetFeatureSelector,
+  state => state.error
+);

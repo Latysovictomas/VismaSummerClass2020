@@ -7,9 +7,14 @@ export const loadWidgets = createAction(
   '[Dashboard Main Component] Load Widgets via Service',
 );
 
-export const widgetsLoaded = createAction( //not used directly
-  '[Dashboard Main Effect] Widgets Loaded Successfully',
+export const loadWidgetsSuccess = createAction(
+  '[Dashboard Route Resolver] Widgets Loaded Successfully',
   props<{widgets: widgetInterface[]}>()
+);
+
+export const loadWidgetsFailure = createAction(
+  '[Dashboard Route Resolver] Widgets Failed to Load',
+  props<{error: string }>()
 );
 
 export const createWidget = createAction(
@@ -17,9 +22,14 @@ export const createWidget = createAction(
   props<{widget: widgetInterface}>()
 );
 
-export const widgetCreated = createAction( //not used directly
-  '[Widget Form Component] Widget created with id from backend',
+export const createWidgetSuccess = createAction(
+  '[Widget Form Component] Widget Created with Id from Backend Sucessfully',
   props<{widget: widgetInterface}>()
+);
+
+export const createWidgetFailure = createAction(
+  '[Widget Form Component] Widget Failed to Create',
+  props<{error: string }>()
 );
 
 export const deleteWidget = createAction(
@@ -27,16 +37,42 @@ export const deleteWidget = createAction(
   props<{widgetId: string}>()
 );
 
+export const deleteWidgetSuccess = createAction(
+  '[Widget form Component] Widget Deleted Sucessfully',
+  props<{widgetId: string}>()
+);
+
+export const deleteWidgetFailure = createAction(
+  '[Widget form Component] Widget Failed to Delete',
+  props<{error: string }>()
+);
+
 export const updateWidget = createAction(
   '[Widget Form Component] Update Widget',
   props<{update: Update<widgetInterface>}>()
 );
 
+export const updateWidgetSuccess = createAction(
+  '[Widget Form Component] Widget Updated Successfully',
+  props<{update: Update<widgetInterface>}>()
+);
+export const updateWidgetFailure = createAction(
+  '[Widget Form Component] Widget Failed to Update',
+  props<{error: string }>()
+);
+
 export const widgetActionTypes = {
   loadWidgets,
-  widgetsLoaded,
+  loadWidgetsSuccess,
+  loadWidgetsFailure,
   createWidget,
+  createWidgetSuccess,
+  createWidgetFailure,
   deleteWidget,
+  deleteWidgetSuccess,
+  deleteWidgetFailure,
   updateWidget,
-  widgetCreated
+  updateWidgetSuccess,
+  updateWidgetFailure
+
 };

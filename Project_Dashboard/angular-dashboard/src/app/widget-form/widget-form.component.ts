@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { BACKEND_URL } from '../utils/urls';
-import { WidgetsService } from '../widget-list/widgets.service';
 import { FormGroup, FormControl } from '@angular/forms';
 import { Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
@@ -8,9 +6,12 @@ import { widgetInterface } from '../widget-list/widget.interface';
 import { Router } from '@angular/router';
 import { select, Store } from '@ngrx/store';
 import { AppState } from '../store/reducers/index';
-import { getWidgetById } from './store/widget.selectors';
+import { getWidgetById, getError } from './store/widget.selectors';
 import { widgetActionTypes  } from './store/widget.actions';
 import { Update } from '@ngrx/entity';
+import { Observable } from 'rxjs';
+import { Actions, ofType } from '@ngrx/effects';
+import { take } from 'rxjs/operators';
 
 @Component({
   selector: 'app-widget-form',
@@ -22,19 +23,18 @@ export class WidgetFormComponent implements OnInit {
 
     public isButtonVisible: boolean;
     public widgetForm: FormGroup;
-    // public widgetToBeUpdated: widgetInterface;
     private currentWidgetId:string;
     
 
-    constructor(private widgetResource: WidgetsService, 
-        private activatedRoute: ActivatedRoute, private router: Router,
-        private store: Store<AppState>) { 
+    constructor(private activatedRoute: ActivatedRoute, private router: Router,
+        private store: Store<AppState>, private actions$: Actions) { 
         this.currentWidgetId = this.activatedRoute.snapshot['params'].id;
         this.isButtonVisible = Boolean(this.currentWidgetId);
     }
 
     public ngOnInit(): void{
         this.fillFormByCurrentId();
+        
   }
 
     public generateForm(widget ?:widgetInterface): FormGroup{
@@ -50,7 +50,7 @@ export class WidgetFormComponent implements OnInit {
     public onSubmit(): void {
         let serializedData: string = this.widgetForm.controls['data'].value;
         const formValue = this.widgetForm.getRawValue();
-        serializedData = this.cleanData(serializedData);
+        serializedData = this.getCleanData(serializedData);
         if (!this.isValidJSON(serializedData)) {
             alert('Data input is not valid JSON.');
         }
@@ -63,11 +63,16 @@ export class WidgetFormComponent implements OnInit {
             this.postOrPutFormData(widget);
         }
 
+        this.actions$.pipe(ofType(...[widgetActionTypes.createWidgetFailure, widgetActionTypes.updateWidgetFailure]), take(1)).subscribe(() => 
+        alert("Failed to perform an operation. Try again later or contact support."));
+
   }
 
     public onDelete(): void {
         let widgetId:string = this.currentWidgetId;
         this.store.dispatch(widgetActionTypes.deleteWidget({widgetId}));
+        this.actions$.pipe(ofType(widgetActionTypes.deleteWidgetFailure), take(1)).subscribe(() => 
+        alert("Failed to perform delete operation. Try again later or contact support."));
     }
 
     private postOrPutFormData(widget: widgetInterface): void {
@@ -80,6 +85,7 @@ export class WidgetFormComponent implements OnInit {
                   ...widget
                 }
               };
+              
 
             this.store.dispatch(widgetActionTypes.updateWidget({update}));
         } else { // post request
@@ -122,7 +128,7 @@ export class WidgetFormComponent implements OnInit {
         }
     }
 
-    private cleanData(serializedData: string): string {
+    private getCleanData(serializedData: string): string {
         return serializedData.replace(/({)\s+/g, '{').replace(/(,)\s+/g, ',').replace(/\s*(})\s*/g, '}').replace(/\'/g, '"');
     }
 

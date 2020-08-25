@@ -1,9 +1,12 @@
-import { widgetActionTypes, widgetsLoaded, updateWidget } from './widget.actions';
+import { widgetActionTypes } from './widget.actions';
 import { WidgetsService } from '../../widget-list/widgets.service';
 import { createEffect, Actions, ofType } from '@ngrx/effects';
-import { concatMap, map, tap } from 'rxjs/operators';
+import { concatMap, map, tap, catchError } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { of } from 'rxjs';
+import { Update } from '@ngrx/entity';
+import { widgetInterface } from 'src/app/widget-list/widget.interface';
 
 @Injectable()
 export class WidgetEffects {
@@ -11,40 +14,70 @@ export class WidgetEffects {
   constructor(private widgetsService: WidgetsService, private actions$: Actions, private router: Router) {}
 
 
-  loadWidgets$ = createEffect(() =>
-    this.actions$.pipe(
+  loadWidgets$ = createEffect(() => {
+    return this.actions$.pipe(
       ofType(widgetActionTypes.loadWidgets),
-      concatMap(() => this.widgetsService.getWidgets()),
-      map(widgets => widgetActionTypes.widgetsLoaded({widgets}))
+      concatMap(() => 
+      this.widgetsService.getWidgets()
+      .pipe(
+        map(widgets => widgetActionTypes.loadWidgetsSuccess({widgets})),
+        catchError(error => of(widgetActionTypes.loadWidgetsFailure({ error })))
+        )
+      )
+    );
+  });
+
+  createWidget$ = createEffect(() => {
+  return this.actions$.pipe(
+    ofType(widgetActionTypes.createWidget),
+    concatMap((action) => 
+    this.widgetsService.createWidget(action.widget)
+    .pipe(
+      map(widget => widgetActionTypes.createWidgetSuccess({widget})),
+      tap(() => this.redirect()),
+      catchError(error => of(widgetActionTypes.createWidgetFailure({ error })))
+      )
     )
   );
+});
 
-  createWidget$ = createEffect(() =>
-  this.actions$.pipe(
-    ofType(widgetActionTypes.createWidget),
-    concatMap((action) => this.widgetsService.createWidget(action.widget)),
-    map(widget => widgetActionTypes.widgetCreated({widget})),
-    tap(() => this.redirect())
-  )
-);
-
-  deleteWidget$ = createEffect(() =>
-    this.actions$.pipe(
+  deleteWidget$ = createEffect(() => {
+    return this.actions$.pipe(
       ofType(widgetActionTypes.deleteWidget),
-      concatMap((action) => this.widgetsService.deleteWidget(action.widgetId)),
-      tap(() => this.redirect())
-    ),
-    {dispatch: false}
-  );
+      concatMap((action) => 
+      this.widgetsService.deleteWidget(action.widgetId)
+      .pipe(
+        map(() => widgetActionTypes.deleteWidgetSuccess({widgetId: action.widgetId})),
+        tap(() => this.redirect()),
+        catchError(error => of(widgetActionTypes.deleteWidgetFailure({ error })))
+        )
+      )
+    );
+  });
 
-  updateWidget$ = createEffect(() =>
-    this.actions$.pipe(
+
+
+  updateWidget$ = createEffect(() =>{
+    return this.actions$.pipe(
       ofType(widgetActionTypes.updateWidget),
-      concatMap((action) => this.widgetsService.updateWidget(action.update.id, action.update.changes)),
-      tap(() => this.redirect())
-    ),
-    {dispatch: false}
-  );
+      concatMap((action) => 
+      this.widgetsService.updateWidget(action.update.id, action.update.changes)
+      .pipe(
+        map(widget => {
+          const update: Update<widgetInterface> = {
+            id: widget.id,
+            changes: {
+              ...widget
+            }
+          };
+          return widgetActionTypes.updateWidgetSuccess({update})}
+          ),
+        tap(() => this.redirect()),
+        catchError(error => of(widgetActionTypes.updateWidgetFailure({ error })))
+        )
+      )
+    );
+  });
 
   private redirect(): void {
     this.router.navigateByUrl('/dashboard');

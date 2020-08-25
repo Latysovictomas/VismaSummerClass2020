@@ -1,11 +1,12 @@
 import { areWidgetsLoaded } from '../widget-form/store/widget.selectors';
-import { loadWidgets } from '../widget-form/store/widget.actions';
+import { widgetActionTypes } from '../widget-form/store/widget.actions';
 import { AppState } from '../store/reducers/index';
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/router';
 import { Observable } from 'rxjs';
 import { select, Store } from '@ngrx/store';
-import { filter, first, tap } from 'rxjs/operators';
+import { filter, first, tap, take } from 'rxjs/operators';
+import { Actions, ofType } from '@ngrx/effects';
 
 // DashboardMainComponent uses a resolver to fetch data.
 // A route resolver is responsible for retrieving the widget list
@@ -15,7 +16,7 @@ import { filter, first, tap } from 'rxjs/operators';
 @Injectable()
 export class WidgetResolver implements Resolve<Observable<any>> {
 
-  constructor(private store: Store<AppState>) {}
+  constructor(private store: Store<AppState>, private actions$: Actions) {}
 
   resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<any> {
     return this.store
@@ -24,8 +25,11 @@ export class WidgetResolver implements Resolve<Observable<any>> {
         tap((widgetsLoaded) => {
           
           if (!widgetsLoaded) {
-            this.store.dispatch(loadWidgets());
+            this.store.dispatch(widgetActionTypes.loadWidgets());
+            this.actions$.pipe(ofType(widgetActionTypes.loadWidgetsFailure), take(1)).subscribe(() => 
+        alert("Failed to load widgets. Try again later or contact support."));
           }
+          
           
         }),
         filter(widgetsLoaded => widgetsLoaded),
