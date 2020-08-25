@@ -5,7 +5,7 @@ import { widgetListModule } from '../widget-list/widget-list.module'
 
 import { DashboardMainComponent } from './dashboard-main/dashboard-main.component';
 import { Dashboard2MainComponent } from './dashboard2-main/dashboard2-main.component';
-import { OverviewComponent } from '../overview/overview.component';
+import { OverviewButtonsComponent } from '../overview-buttons/overview-buttons.component';
 
 //ngrx
 import { WidgetsService } from '../widget-list/widgets.service';
@@ -20,7 +20,7 @@ import { widgetReducer } from '../widget-form-management/store/widget.reducers';
   declarations: [
     DashboardMainComponent,
     Dashboard2MainComponent,
-    OverviewComponent
+    OverviewButtonsComponent
     
   ],
   imports: [
@@ -40,4 +40,4 @@ import { widgetReducer } from '../widget-form-management/store/widget.reducers';
   providers: [WidgetsService],
   bootstrap: []
 })
-export class mainModule { }
+export class dashboardModule { }

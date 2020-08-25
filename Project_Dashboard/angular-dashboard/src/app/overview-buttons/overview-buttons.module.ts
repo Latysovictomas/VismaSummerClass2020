@@ -1,21 +1,21 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common'
 
-import { OverviewComponent } from './overview.component';
+import { OverviewButtonsComponent } from './overview-buttons.component';
 
 @NgModule({
   declarations: [
-    OverviewComponent
+    OverviewButtonsComponent
     
   ],
   imports: [
     CommonModule],
 
   exports: [
-    OverviewComponent
+    OverviewButtonsComponent
 ],
 
   providers: [],
   bootstrap: []
 })
-export class overviewModule { }
+export class overviewButtonsModule { }

@@ -4,14 +4,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http'; 
 //custom modules
 import { widgetRoutingModule } from './widget-list/widget-routing.module';
-import { mainModule } from './main/main.module';
+import { dashboardModule } from './dashboard/dashboard.module';
 import { widgetFormModule } from './widget-form-management/widget-form.module';
 import { sidenavModule } from './sidenav/sidenav.module';
 import { headerModule } from './header/header.module';
 
 import { AppComponent } from './app.component';
 import { StoreModule } from '@ngrx/store';
-import { reducers, metaReducers } from './store/reducers';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 //ngrx
@@ -30,14 +29,12 @@ import { WidgetResolver} from './widget-list/widget.resolver';
     HttpClientModule,
     //custom modules
     widgetRoutingModule,
-    mainModule,
+    dashboardModule,
     widgetFormModule,
     sidenavModule,
     headerModule,
     EffectsModule.forRoot([]),
-    StoreModule.forRoot(reducers, {
-      metaReducers
-    }),
+    StoreModule.forRoot({}),
     StoreDevtoolsModule.instrument({maxAge: 25}),
 
   ],

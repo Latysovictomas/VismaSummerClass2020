@@ -9,7 +9,9 @@ import { getWidgetDataAsArray } from '../widget-utils';
 })
 export class UserListWidgetComponent implements OnInit {
 
-  @Input() widget: widgetInterface;
+  @Input() 
+  public widget: widgetInterface;
+  
   public widgetDataArray: string[];
   
   public ngOnInit(): void {

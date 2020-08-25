@@ -10,12 +10,10 @@
                 <th>Username</th>
             </tr>
             <tr *ngFor="let widgetData of widgetDataArray">
-                <ng-container *ngIf="widgetData!==null">
-                    <td>{{widgetData.id}}</td>
-                    <td>{{widgetData.firstName}}</td>
-                    <td>{{widgetData.lastName}}</td>
-                    <td>{{widgetData.userName}}</td>
-                </ng-container>
+                <td>{{widgetData.id}}</td>
+                <td>{{widgetData.firstName}}</td>
+                <td>{{widgetData.lastName}}</td>
+                <td>{{widgetData.userName}}</td>
             </tr>
         </table>
     </div>

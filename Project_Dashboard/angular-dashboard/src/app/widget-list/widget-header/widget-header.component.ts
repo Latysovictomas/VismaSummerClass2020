@@ -18,14 +18,10 @@ export class WidgetHeaderComponent implements OnInit {
   }
 
   private getHeaderColor(widget: widgetInterface): string {
-  switch (widget.headerType) {
-      case 1:
-          return 'light-theme';
-      case 2:
-          return 'dark-theme';
-      default:
-          break;
-  }
+    return {
+      1: 'light-theme',
+      2: 'dark-theme'
+    }[widget.headerType] || '';
 }
 
 }

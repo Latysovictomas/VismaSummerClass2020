@@ -23,7 +23,7 @@ export const createWidget = createAction(
 );
 
 export const createWidgetSuccess = createAction(
-  '[Widget Form Component] Widget Created with Id from Backend Sucessfully',
+  '[Widget Form Component] Widget Created with Id from Backend Successfully',
   props<{widget: widgetInterface}>()
 );
 
@@ -38,7 +38,7 @@ export const deleteWidget = createAction(
 );
 
 export const deleteWidgetSuccess = createAction(
-  '[Widget form Component] Widget Deleted Sucessfully',
+  '[Widget form Component] Widget Deleted Successfully',
   props<{widgetId: string}>()
 );
 

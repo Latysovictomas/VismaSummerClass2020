@@ -99,7 +99,7 @@ export class WidgetFormComponent implements OnInit {
             let widgetId:string = this.currentWidgetId;
             //get request to fill form
             this.store.pipe(
-                select(getWidgetById(this.currentWidgetId)),
+                select(getWidgetById, {id: this.currentWidgetId}),
               ).subscribe((widget)=> this.widgetForm = this.generateForm(widget));
 
 
@@ -111,11 +111,7 @@ export class WidgetFormComponent implements OnInit {
 }
 
     private stringifyIfArray(data): string {
-        if(!Array.isArray(data)){
-            return data;
-        } else {
-            return JSON.stringify(data);
-        }
+        return !Array.isArray(data) ? data : JSON.stringify(data);
     }
 
     private isValidJSON(text: string): boolean {

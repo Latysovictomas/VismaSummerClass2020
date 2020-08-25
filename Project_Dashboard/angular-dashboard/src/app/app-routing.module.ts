@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { WidgetFormComponent } from './widget-form-management/widget-form.component';
-import { DashboardMainComponent } from './main/dashboard-main/dashboard-main.component';
-import { Dashboard2MainComponent } from './main/dashboard2-main/dashboard2-main.component';
+import { DashboardMainComponent } from './dashboard/dashboard-main/dashboard-main.component';
+import { Dashboard2MainComponent } from './dashboard/dashboard2-main/dashboard2-main.component';
 import { WidgetResolver} from './widget-list/widget.resolver';
 
 

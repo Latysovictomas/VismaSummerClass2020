@@ -19,40 +19,29 @@ export const widgetReducer = createReducer(
   initialState,
 
   on(widgetActionTypes.loadWidgetsSuccess, (state, action) => {
-    return adapter.addAll(
+    return adapter.setAll(
       action.widgets,
       {...state, widgetsLoaded: true}
     );
-  }),
-
-  on(widgetActionTypes.loadWidgetsFailure, (state, action) => {
-    return {...state, error: action.error}
   }),
 
   on(widgetActionTypes.createWidgetSuccess, (state, action) => {
     return adapter.addOne(action.widget, state);
   }),
 
-  on(widgetActionTypes.createWidgetFailure, (state, action) => {
-    return {...state, error: action.error}
-  }),
-
   on(widgetActionTypes.updateWidgetSuccess, (state, action) => {
     return adapter.updateOne(action.update, state);
-  }),
-
-  on(widgetActionTypes.updateWidgetFailure, (state, action) => {
-    return {...state, error: action.error}
   }),
   
   on(widgetActionTypes.deleteWidgetSuccess, (state, action) => {
     return adapter.removeOne(action.widgetId, state);
   }),
 
-  on(widgetActionTypes.deleteWidgetFailure, (state, action) => {
-    return {...state, error: action.error}
-  }),
-
+  on(widgetActionTypes.loadWidgetsFailure, widgetActionTypes.createWidgetFailure,
+    widgetActionTypes.updateWidgetFailure, widgetActionTypes.deleteWidgetFailure,
+    (state, {error}) => {
+   return {...state, error: error}
+ }),
 
 );
 

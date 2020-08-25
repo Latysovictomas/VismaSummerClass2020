@@ -9,9 +9,9 @@ export const getAllWidgets = createSelector(
   selectAll
 );
 
-export const getWidgetById = id => createSelector(
+export const getWidgetById = createSelector(
   widgetFeatureSelector,
-  state => state.entities[id]
+  (state, {id}) => state.entities[id]
   );
 
 
