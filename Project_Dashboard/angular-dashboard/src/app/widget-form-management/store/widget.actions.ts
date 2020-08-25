@@ -1,19 +1,19 @@
 import { widgetInterface } from '../../widget-list/widget.interface';
 import { createAction, props } from '@ngrx/store';
-import {Update} from '@ngrx/entity';
+import { Update } from '@ngrx/entity';
 
 
 export const loadWidgets = createAction(
-  '[Dashboard Main Component] Load Widgets via Service',
+  '[Widget List Component] Load Widgets via Service',
 );
 
 export const loadWidgetsSuccess = createAction(
-  '[Dashboard Route Resolver] Widgets Loaded Successfully',
+  '[Widget List Route Resolver] Widgets Loaded Successfully',
   props<{widgets: widgetInterface[]}>()
 );
 
 export const loadWidgetsFailure = createAction(
-  '[Dashboard Route Resolver] Widgets Failed to Load',
+  '[Widget List Route Resolver] Widgets Failed to Load',
   props<{error: string }>()
 );
 
@@ -74,5 +74,4 @@ export const widgetActionTypes = {
   updateWidget,
   updateWidgetSuccess,
   updateWidgetFailure
-
 };

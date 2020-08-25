@@ -5,19 +5,15 @@ import { RouterModule } from '@angular/router';
 import { MessagesWidgetComponent } from './messages-widget/messages-widget.component';
 import { UserListWidgetComponent } from './user-list-widget/user-list-widget.component';
 import { WidgetHeaderComponent } from './widget-header/widget-header.component';
-
-
-
-
-
-
+import { WidgetListComponent } from './widget-list.component';
 
 
 @NgModule({
   declarations: [
     MessagesWidgetComponent,
     UserListWidgetComponent,
-    WidgetHeaderComponent
+    WidgetHeaderComponent,
+    WidgetListComponent
     
   ],
   imports: [CommonModule, RouterModule
@@ -26,7 +22,8 @@ import { WidgetHeaderComponent } from './widget-header/widget-header.component';
   exports: [
     MessagesWidgetComponent,
     UserListWidgetComponent,
-    WidgetHeaderComponent],
+    WidgetHeaderComponent,
+    WidgetListComponent],
 
   providers: [],
   bootstrap: []

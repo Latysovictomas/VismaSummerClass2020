@@ -8,7 +8,7 @@ import { select, Store } from '@ngrx/store';
 import { filter, first, tap, take } from 'rxjs/operators';
 import { Actions, ofType } from '@ngrx/effects';
 
-// DashboardMainComponent uses a resolver to fetch data.
+// WidgetListComponent uses a resolver to fetch data.
 // A route resolver is responsible for retrieving the widget list
 // and ensures its ready to use by the component
 // before navigating to a /dashboard
@@ -28,9 +28,7 @@ export class WidgetResolver implements Resolve<Observable<any>> {
             this.store.dispatch(widgetActionTypes.loadWidgets());
             this.actions$.pipe(ofType(widgetActionTypes.loadWidgetsFailure), take(1)).subscribe(() => 
         alert("Failed to load widgets. Try again later or contact support."));
-          }
-          
-          
+          } 
         }),
         filter(widgetsLoaded => widgetsLoaded),
         first()

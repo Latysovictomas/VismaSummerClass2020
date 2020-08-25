@@ -1,0 +1,41 @@
+$widgetColorDefault:#d4e6f7;
+$widgetColorLinear:linear-gradient(#d4e6f7, #ffffff);
+.card {
+    background-color: $widgetColorDefault;
+    background-image: $widgetColorLinear;
+    box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    overflow: hidden;
+    transform: translateZ(0);
+    &:hover {
+        transform: scale(1.05);
+        transition: 0.2s;
+    }
+}
+
+@media only screen and (min-width: 751px) {
+    .card {
+        break-inside: avoid-column;
+        overflow: hidden;
+        transform: translateZ(0);
+    }
+}
+
+@media only screen and (min-width: 1080px) {
+    .main {
+        &__container-1 {
+            grid-area: column-1;
+        }
+        &__container-2 {
+            grid-area: column-2;
+        }
+        &__container-3 {
+            grid-area: column-3;
+        }
+    }
+    .card {
+        break-inside: avoid-column;
+        overflow: hidden;
+        transform: translateZ(0);
+    }
+}
