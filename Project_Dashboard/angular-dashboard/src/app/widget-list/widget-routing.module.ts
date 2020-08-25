@@ -1,6 +1,6 @@
 import { NgModule }             from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { WidgetFormComponent } from '../widget-form/widget-form.component';
+import { WidgetFormComponent } from '../widget-form-management/widget-form.component';
 
 const secondaryRoutes: Routes = [
   { path: 'form/:id',  component: WidgetFormComponent }

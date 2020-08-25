@@ -5,7 +5,7 @@ import { HttpClientModule } from '@angular/common/http';
 //custom modules
 import { widgetRoutingModule } from './widget-list/widget-routing.module'
 import { mainModule } from './main/main.module'
-import { widgetFormModule } from './widget-form/widget-form.module'
+import { widgetFormModule } from './widget-form-management/widget-form.module'
 import { sidenavModule } from './sidenav/sidenav.module'
 import { headerModule } from './header/header.module'
 
@@ -17,7 +17,7 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 //ngrx
 import { EffectsModule } from '@ngrx/effects';
 //route resolver
-import { WidgetResolver} from './widget-list/widget.resolver';
+import { WidgetResolver} from './main/widget.resolver';
 
 
 @NgModule({

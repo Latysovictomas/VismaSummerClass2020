@@ -1,5 +1,5 @@
-import { areWidgetsLoaded } from '../widget-form/store/widget.selectors';
-import { widgetActionTypes } from '../widget-form/store/widget.actions';
+import { areWidgetsLoaded } from '../widget-form-management/store/widget.selectors';
+import { widgetActionTypes } from '../widget-form-management/store/widget.actions';
 import { AppState } from '../store/reducers/index';
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/router';

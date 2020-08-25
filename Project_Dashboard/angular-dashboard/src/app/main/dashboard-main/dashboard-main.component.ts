@@ -4,7 +4,7 @@ import { WidgetsService } from '../../widget-list/widgets.service';
 import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { AppState } from '../../store/reducers/index';
-import { getAllWidgets } from '../../widget-form/store/widget.selectors';
+import { getAllWidgets } from '../../widget-form-management/store/widget.selectors';
 
 @Component({
   selector: 'app-dashboard-main',

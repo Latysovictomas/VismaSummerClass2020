@@ -9,7 +9,6 @@ import { AppState } from '../store/reducers/index';
 import { getWidgetById, getError } from './store/widget.selectors';
 import { widgetActionTypes  } from './store/widget.actions';
 import { Update } from '@ngrx/entity';
-import { Observable } from 'rxjs';
 import { Actions, ofType } from '@ngrx/effects';
 import { take } from 'rxjs/operators';
 

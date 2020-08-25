@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { WidgetFormComponent } from './widget-form/widget-form.component';
+import { WidgetFormComponent } from './widget-form-management/widget-form.component';
 import { DashboardMainComponent } from './main/dashboard-main/dashboard-main.component';
 import { Dashboard2MainComponent } from './main/dashboard2-main/dashboard2-main.component';
-import { WidgetResolver} from './widget-list/widget.resolver';
+import { WidgetResolver} from './main/widget.resolver';
 
 
 const routes: Routes = [
