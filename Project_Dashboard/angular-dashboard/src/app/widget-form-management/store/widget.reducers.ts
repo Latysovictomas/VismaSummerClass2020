@@ -1,7 +1,7 @@
 import { widgetInterface } from '../../widget-list/widget.interface';
 import { EntityState, EntityAdapter, createEntityAdapter } from '@ngrx/entity';
 import { createReducer, on } from '@ngrx/store';
-import { widgetActionTypes } from './widget.actions';
+import * as widgetActionTypes from './widget.actions';
 
 export interface WidgetState extends EntityState<widgetInterface> {
   widgetsLoaded: boolean;

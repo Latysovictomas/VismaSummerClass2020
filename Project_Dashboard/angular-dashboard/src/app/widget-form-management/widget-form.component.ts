@@ -6,11 +6,12 @@ import { widgetInterface } from '../widget-list/widget.interface';
 import { Router } from '@angular/router';
 import { select, Store } from '@ngrx/store';
 import { AppState } from '../store/reducers/index';
-import { getWidgetById, getError } from './store/widget.selectors';
-import { widgetActionTypes  } from './store/widget.actions';
+import { getWidgetById } from './store/widget.selectors';
+import  * as widgetActionTypes from './store/widget.actions';
 import { Update } from '@ngrx/entity';
 import { Actions, ofType } from '@ngrx/effects';
 import { take } from 'rxjs/operators';
+import { WidgetsService } from '../widget-list/widgets.service';
 
 @Component({
   selector: 'app-widget-form',
@@ -26,14 +27,13 @@ export class WidgetFormComponent implements OnInit {
     
 
     constructor(private activatedRoute: ActivatedRoute, private router: Router,
-        private store: Store<AppState>, private actions$: Actions) { 
+        private store: Store<AppState>, private actions$: Actions,
+        private widgetsService: WidgetsService) { }
+
+    public ngOnInit(): void {
         this.currentWidgetId = this.activatedRoute.snapshot['params'].id;
         this.isButtonVisible = Boolean(this.currentWidgetId);
-    }
-
-    public ngOnInit(): void{
         this.fillFormByCurrentId();
-        
   }
 
     public generateForm(widget ?:widgetInterface): FormGroup{
@@ -47,61 +47,50 @@ export class WidgetFormComponent implements OnInit {
     }
 
     public onSubmit(): void {
-        let serializedData: string = this.widgetForm.controls['data'].value;
         const formValue = this.widgetForm.getRawValue();
-        serializedData = this.getCleanData(serializedData);
+        let serializedData: string = this.getCleanData(formValue.data);
         if (!this.isValidJSON(serializedData)) {
             alert('Data input is not valid JSON.');
         }
         else {
-            const widget = {
-                ...formValue,
-                data: serializedData
-            }
+            const widget = {...formValue, data: JSON.parse(serializedData)};
             // here decide on what type of request based on current id
-            this.postOrPutFormData(widget);
+            this.currentWidgetId === undefined ? this.postFormData(widget) : this.putFormData(widget);
         }
 
-        this.actions$.pipe(ofType(...[widgetActionTypes.createWidgetFailure, widgetActionTypes.updateWidgetFailure]), take(1)).subscribe(() => 
-        alert("Failed to perform an operation. Try again later or contact support."));
-
+        // redirect from the component on success
+        this.actions$.pipe(ofType(...[widgetActionTypes.createWidgetSuccess, widgetActionTypes.updateWidgetSuccess]), take(1)).subscribe(()=>
+        this.redirect())
+    
   }
 
     public onDelete(): void {
         let widgetId:string = this.currentWidgetId;
         this.store.dispatch(widgetActionTypes.deleteWidget({widgetId}));
-        this.actions$.pipe(ofType(widgetActionTypes.deleteWidgetFailure), take(1)).subscribe(() => 
-        alert("Failed to perform delete operation. Try again later or contact support."));
+         // redirect from the component on success
+        this.actions$.pipe(ofType(widgetActionTypes.deleteWidgetSuccess), take(1)).subscribe(()=>
+        this.redirect())
     }
 
-    private postOrPutFormData(widget: widgetInterface): void {
-        widget.data = JSON.parse(widget.data);
-        
-        if (this.currentWidgetId != null) { // put request
-            const update: Update<widgetInterface> = {
-                id: this.currentWidgetId,
-                changes: {
-                  ...widget
-                }
-              };
-              
-
-            this.store.dispatch(widgetActionTypes.updateWidget({update}));
-        } else { // post request
-            
-            this.store.dispatch(widgetActionTypes.createWidget({widget}));
-        }
+    private postFormData(widget: widgetInterface): void {
+        this.store.dispatch(widgetActionTypes.createWidget({widget}));
     }
 
+    private putFormData(widget: widgetInterface): void {
+        const update: Update<widgetInterface> = {
+            id: this.currentWidgetId,
+            changes: {
+              ...widget
+            }
+          };
+        this.store.dispatch(widgetActionTypes.updateWidget({update}));
+    }
 
     private fillFormByCurrentId(): void {
         if (this.currentWidgetId != null) {
-            let widgetId:string = this.currentWidgetId;
             //get request to fill form
-            this.store.pipe(
-                select(getWidgetById, {id: this.currentWidgetId}),
-              ).subscribe((widget)=> this.widgetForm = this.generateForm(widget));
-
+            this.widgetsService.getWidgetById(this.currentWidgetId).subscribe((widget)=>
+             this.widgetForm = this.generateForm(widget));
 
         } else {
             console.log('Warning: No widget id is selected.');
@@ -126,5 +115,9 @@ export class WidgetFormComponent implements OnInit {
     private getCleanData(serializedData: string): string {
         return serializedData.replace(/({)\s+/g, '{').replace(/(,)\s+/g, ',').replace(/\s*(})\s*/g, '}').replace(/\'/g, '"');
     }
+
+    private redirect(): void {
+        this.router.navigateByUrl('/dashboard');
+      }
 
 }

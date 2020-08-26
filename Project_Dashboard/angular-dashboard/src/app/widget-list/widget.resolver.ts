@@ -1,5 +1,5 @@
 import { areWidgetsLoaded } from '../widget-form-management/store/widget.selectors';
-import { widgetActionTypes } from '../widget-form-management/store/widget.actions';
+import { loadWidgets, loadWidgetsFailure } from '../widget-form-management/store/widget.actions';
 import { AppState } from '../store/reducers/index';
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from '@angular/router';
@@ -25,9 +25,7 @@ export class WidgetResolver implements Resolve<Observable<any>> {
         tap((widgetsLoaded) => {
           
           if (!widgetsLoaded) {
-            this.store.dispatch(widgetActionTypes.loadWidgets());
-            this.actions$.pipe(ofType(widgetActionTypes.loadWidgetsFailure), take(1)).subscribe(() => 
-        alert("Failed to load widgets. Try again later or contact support."));
+            this.store.dispatch(loadWidgets());
           } 
         }),
         filter(widgetsLoaded => widgetsLoaded),

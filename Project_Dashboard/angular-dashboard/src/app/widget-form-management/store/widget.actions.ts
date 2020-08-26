@@ -60,18 +60,3 @@ export const updateWidgetFailure = createAction(
   '[Widget Form Component] Widget Failed to Update',
   props<{error: string }>()
 );
-
-export const widgetActionTypes = {
-  loadWidgets,
-  loadWidgetsSuccess,
-  loadWidgetsFailure,
-  createWidget,
-  createWidgetSuccess,
-  createWidgetFailure,
-  deleteWidget,
-  deleteWidgetSuccess,
-  deleteWidgetFailure,
-  updateWidget,
-  updateWidgetSuccess,
-  updateWidgetFailure
-};

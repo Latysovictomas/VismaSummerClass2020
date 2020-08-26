@@ -1,6 +1,5 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { widgetInterface } from './widget.interface';
-import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 import { AppState } from '../store/reducers/index';
 import { getAllWidgets } from '../widget-form-management/store/widget.selectors';
@@ -26,14 +25,12 @@ export class WidgetListComponent implements OnInit {
   }
 
   private groupWidgetsByColumn():void{
-    this.widgets$.pipe(take(1)).subscribe( widgets => 
-      {
-        widgets.forEach((widget) => {
+    this.widgets$.pipe(take(1)).subscribe( widgets => widgets.forEach((widget) => {
           this.widgetsGroupedByColumn[widget.column - 1].push(widget);
-          }
-        )
-      }
-    );
+        }
+          ));
   }
+
+
 
 }

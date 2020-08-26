@@ -1,7 +1,7 @@
-import { widgetActionTypes } from './widget.actions';
+import * as widgetActionTypes from './widget.actions';
 import { WidgetsService } from '../../widget-list/widgets.service';
 import { createEffect, Actions, ofType } from '@ngrx/effects';
-import { concatMap, map, tap, catchError } from 'rxjs/operators';
+import { concatMap, map, tap, catchError, take, mergeMap, switchMap } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { of } from 'rxjs';
@@ -34,7 +34,6 @@ export class WidgetEffects {
     this.widgetsService.createWidget(action.widget)
     .pipe(
       map(widget => widgetActionTypes.createWidgetSuccess({widget})),
-      tap(() => this.redirect()),
       catchError(error => of(widgetActionTypes.createWidgetFailure({ error })))
       )
     )
@@ -48,7 +47,6 @@ export class WidgetEffects {
       this.widgetsService.deleteWidget(action.widgetId)
       .pipe(
         map(() => widgetActionTypes.deleteWidgetSuccess({widgetId: action.widgetId})),
-        tap(() => this.redirect()),
         catchError(error => of(widgetActionTypes.deleteWidgetFailure({ error })))
         )
       )
@@ -72,14 +70,19 @@ export class WidgetEffects {
           };
           return widgetActionTypes.updateWidgetSuccess({update})}
           ),
-        tap(() => this.redirect()),
         catchError(error => of(widgetActionTypes.updateWidgetFailure({ error })))
         )
       )
     );
   });
 
-  private redirect(): void {
-    this.router.navigateByUrl('/dashboard');
-  }
+  public error$ = createEffect(()=> { return this.actions$.pipe(
+    ofType(...[widgetActionTypes.createWidgetFailure, widgetActionTypes.updateWidgetFailure, 
+      widgetActionTypes.deleteWidgetFailure, widgetActionTypes.loadWidgetsFailure]),
+    tap(() => alert("Failed to perform an operation. Try again later or contact support."))
+    )
+}, 
+{ dispatch: false }
+)
+
 }
