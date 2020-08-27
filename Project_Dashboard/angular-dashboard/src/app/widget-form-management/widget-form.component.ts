@@ -4,9 +4,8 @@ import { Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { widgetInterface } from '../widget-list/widget.interface';
 import { Router } from '@angular/router';
-import { select, Store } from '@ngrx/store';
+import { Store } from '@ngrx/store';
 import { AppState } from '../store/reducers/index';
-import { getWidgetById } from './store/widget.selectors';
 import  * as widgetActionTypes from './store/widget.actions';
 import { Update } from '@ngrx/entity';
 import { Actions, ofType } from '@ngrx/effects';
@@ -23,11 +22,14 @@ export class WidgetFormComponent implements OnInit {
 
     public isButtonVisible: boolean;
     public widgetForm: FormGroup;
-    private currentWidgetId:string;
+    public currentWidgetId:string;
     
 
-    constructor(private activatedRoute: ActivatedRoute, private router: Router,
-        private store: Store<AppState>, private actions$: Actions,
+    constructor(
+        private activatedRoute: ActivatedRoute, 
+        private router: Router,
+        private store: Store<AppState>, 
+        private actions$: Actions,
         private widgetsService: WidgetsService) { }
 
     public ngOnInit(): void {

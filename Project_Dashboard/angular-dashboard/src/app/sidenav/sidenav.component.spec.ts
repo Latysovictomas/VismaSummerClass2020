@@ -16,10 +16,15 @@ describe('SidenavComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(SidenavComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
+
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  describe('pushNavListItems', () => {
+    it('should push nav list items to array', () => {
+      component.ngOnInit();
+      expect(component.listItems).toBeTruthy();
+    });
+
   });
+
 });
